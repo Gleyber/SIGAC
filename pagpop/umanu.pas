@@ -1,0 +1,1276 @@
+unit umanu;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ImgList, Menus, ExtCtrls, StdCtrls, jpeg, Buttons, ActnList, DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset,shellapi,inifiles,
+  DBCtrls, dbcgrids, Grids, DBClient,PRINTERS, RLReport;
+
+                          
+                                                          
+  var
+  prod,estoqueM:string;
+
+
+type
+  Tfmenu = class(TForm)
+    prodape: TPanel;
+    Label13: TLabel;
+    lreg: TLabel;
+    lemailfone: TLabel;
+    Label18: TLabel;
+    lusu: TLabel;
+    Timer1: TTimer;
+    ActionList1: TActionList;
+    produto: TAction;
+    estoque: TAction;
+    caixafechado: TAction;
+    btapagar: TAction;
+    Label1: TLabel;
+    dempresa: TAction;
+    conf: TAction;
+    caixa: TAction;
+    MainMenu1: TMainMenu;
+    Financeiro1: TMenuItem;
+    Abrirocaixa1: TMenuItem;
+    Fecharocaixa1: TMenuItem;
+    Sadacaixa1: TMenuItem;
+    Entradacaixa1: TMenuItem;
+    Fluxodecaixa1: TMenuItem;
+    N7: TMenuItem;
+    ContasaReceber1: TMenuItem;
+    Recebimentos1: TMenuItem;
+    N8: TMenuItem;
+    Contasagar1: TMenuItem;
+    Pagamentos1: TMenuItem;
+    N10: TMenuItem;
+    Cadastros1: TMenuItem;
+    Cliente1: TMenuItem;
+    Fornecedor1: TMenuItem;
+    Funcionrio1: TMenuItem;
+    Relatrios1: TMenuItem;
+    Utilitrios1: TMenuItem;
+    ConsultarCNPJIE1: TMenuItem;
+    Meuip1: TMenuItem;
+    N1: TMenuItem;
+    Aniversariantes1: TMenuItem;
+    N4: TMenuItem;
+    AgendaFone1: TMenuItem;
+    Recibo1: TMenuItem;
+    N2: TMenuItem;
+    ltimidiadoms1: TMenuItem;
+    Clculodecalendrio1: TMenuItem;
+    Calculadora1: TMenuItem;
+    N3: TMenuItem;
+    Sadaparaexplorer1: TMenuItem;
+    SadaparaDOS1: TMenuItem;
+    Manuteno1: TMenuItem;
+    Alterarasenha1: TMenuItem;
+    Backup1: TMenuItem;
+    Dadosdaempresa1: TMenuItem;
+    Logar1: TMenuItem;
+    abelas1: TMenuItem;
+    UsurioPermisses1: TMenuItem;
+    N5: TMenuItem;
+    Cadastrarfiliais1: TMenuItem;
+    ConectarLocal1: TMenuItem;
+    ConectaraumaFilial1: TMenuItem;
+    N6: TMenuItem;
+    Configuraes1: TMenuItem;
+    Sair1: TMenuItem;
+    Sair2: TMenuItem;
+    AgendaPessoal1: TMenuItem;
+    mov: TAction;
+    senha: TAction;
+    Dedoduro1: TMenuItem;
+    Operaescomsenha1: TMenuItem;
+    N15: TMenuItem;
+    Contas1: TMenuItem;
+    N16: TMenuItem;
+    Bancos1: TMenuItem;
+    Movimentobancrios1: TMenuItem;
+    Lancamentodecontas1: TMenuItem;
+    consultarcontas1: TMenuItem;
+    Caoxa1: TMenuItem;
+    N18: TMenuItem;
+    N19: TMenuItem;
+    N20: TMenuItem;
+    Listagem1: TMenuItem;
+    Cadastro1: TMenuItem;
+    Cadastro3: TMenuItem;
+    Listagem3: TMenuItem;
+    Cadastro4: TMenuItem;
+    Listagem4: TMenuItem;
+    f4: TAction;
+    lestacionamento: TLabel;
+    estacion: TAction;
+    fatura: TAction;
+    faturacompra: TAction;
+    N26: TMenuItem;
+    Feriados1: TMenuItem;
+    N28: TMenuItem;
+    Cep1: TMenuItem;
+    Cep2: TMenuItem;
+    IBGE1: TMenuItem;
+    N30: TMenuItem;
+    dcod: TAction;
+    CaixasAnteriores1: TMenuItem;
+    Lanamentodecontas1: TMenuItem;
+    Movimentodecontas1: TMenuItem;
+    Consultarconta1: TMenuItem;
+    ransferirocaixa1: TMenuItem;
+    imagelogo: TImage;
+    SpeedButton4: TSpeedButton;
+    SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    SpeedButton10: TSpeedButton;
+    SpeedButton11: TSpeedButton;
+    lfantasia1: TLabel;
+    lfantasia: TLabel;
+    N9: TMenuItem;
+    ControleFinanceiro1: TMenuItem;
+    Configfinanceiro1: TMenuItem;
+    Contato1: TMenuItem;
+
+
+   procedure materiaprima(cod:string;alt:boolean);
+
+    procedure relsindicato(criterio:string);
+    procedure permissaovenda;
+    procedure impressora(modulo:string);
+
+
+    procedure impec(cnpj,nome,fone,endereco:string;ntb,ntbitem:tzquery);
+    procedure acesso;
+
+    procedure Timer1Timer(Sender: TObject);
+    procedure L6Click(Sender: TObject);
+    procedure L2Click(Sender: TObject);
+    procedure caixafechadoExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Dadosdaempresa1Click(Sender: TObject);
+    procedure dempresaExecute(Sender: TObject);
+    procedure confExecute(Sender: TObject);
+    procedure ConsultarCNPJIE1Click(Sender: TObject);
+    procedure Aniversariantes1Click(Sender: TObject);
+    procedure Meuip1Click(Sender: TObject);
+    procedure AgendaFone1Click(Sender: TObject);
+    procedure Sadaparaexplorer1Click(Sender: TObject);
+    procedure SadaparaDOS1Click(Sender: TObject);
+    procedure Backup1Click(Sender: TObject);
+    procedure Logar1Click(Sender: TObject);
+    procedure Cadastrarfiliais1Click(Sender: TObject);
+    procedure UsurioPermisses1Click(Sender: TObject);
+    procedure Alterarasenha1Click(Sender: TObject);
+    procedure Recibo1Click(Sender: TObject);
+    procedure ltimidiadoms1Click(Sender: TObject);
+    procedure Calculadora1Click(Sender: TObject);
+    procedure Clculodecalendrio1Click(Sender: TObject);
+    procedure abelas1Click(Sender: TObject);
+    procedure ConectarLocal1Click(Sender: TObject);
+    procedure ConectaraumaFilial1Click(Sender: TObject);
+    procedure caixaExecute(Sender: TObject);
+    procedure ContasaReceber1Click(Sender: TObject);
+    procedure Recebimentos1Click(Sender: TObject);
+    procedure Contasagar1Click(Sender: TObject);
+    procedure Pagamentos1Click(Sender: TObject);
+    procedure Situaodascontas1Click(Sender: TObject);
+    procedure Sair2Click(Sender: TObject);
+    procedure AgendaPessoal1Click(Sender: TObject);
+    procedure Sair1Click(Sender: TObject);
+    procedure senhaExecute(Sender: TObject);
+    procedure Configuraes1Click(Sender: TObject);
+    procedure Dedoduro1Click(Sender: TObject);
+    procedure Operaescomsenha1Click(Sender: TObject);
+    procedure Lancamentodecontas1Click(Sender: TObject);
+    procedure consultarcontas1Click(Sender: TObject);
+    procedure Listagem1Click(Sender: TObject);
+    procedure Cadastro1Click(Sender: TObject);
+    procedure Cadastro4Click(Sender: TObject);
+    procedure Listagem4Click(Sender: TObject);
+    procedure estacionExecute(Sender: TObject);
+    procedure lemailfoneClick(Sender: TObject);
+    procedure Feriados1Click(Sender: TObject);
+    procedure Cep2Click(Sender: TObject);
+    procedure IBGE1Click(Sender: TObject);
+    procedure dcodExecute(Sender: TObject);
+    procedure Label3DblClick(Sender: TObject);
+    procedure Consultarconta1Click(Sender: TObject);
+    procedure Contas1Click(Sender: TObject);
+    procedure Bancos1Click(Sender: TObject);
+    procedure Cadastro3Click(Sender: TObject);
+    procedure Listagem3Click(Sender: TObject);
+    procedure produtoExecute(Sender: TObject);
+    procedure SpeedButton10Click(Sender: TObject);
+    procedure SpeedButton11Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure SpeedButton7Click(Sender: TObject);
+    procedure SpeedButton8Click(Sender: TObject);
+    procedure SpeedButton9Click(Sender: TObject);
+    procedure ControleFinanceiro1Click(Sender: TObject);
+    procedure SpeedButton6Click(Sender: TObject);
+    procedure Configfinanceiro1Click(Sender: TObject);
+    procedure Contato1Click(Sender: TObject);
+  private
+
+    legenda,conexaolocal: boolean;
+     filial,nemp:string;
+
+
+    { Private declarations }
+  public
+  decimais:integer;
+  
+
+    { Public declarations }
+  end;
+
+var
+  fmenu: Tfmenu;
+  email: string = 'contato@bitpamp.com.br';
+  msn  : string = 'contato@bitpamp.com.br';
+  fone : string = '(16) 3975-2014';
+  printnome : string;
+
+
+procedure totbalcao(tbg,tbi:tzquery);
+procedure periodo(page,controle:string;altura,largura:integer);
+
+
+implementation
+
+
+
+ uses funcoes, udm, urelatorio,uacesso, ubackup, uconfig, ufinanceiro,
+  ucontaconf, uclientelocaliza;
+
+{$R *.dfm}
+
+
+
+procedure tfmenu.materiaprima(cod:string;alt:boolean);
+begin
+close;end;
+
+
+procedure tfmenu.acesso;
+begin
+        vf:=false;
+        application.CreateForm(tfacesso,facesso);
+        facesso.showmodal;
+
+        if vf then begin
+           application.Terminate;
+           close;
+           abort;
+        end;
+
+
+        if ip <> '' then filial := '         -   Conectado em '+ip;
+end;
+
+procedure tfmenu.relsindicato(criterio:string);
+var
+usu,conta:string;
+begin
+        usu   := nomelink('tbsindmov.usu','chave', 'nome','tbusuario','Usuario');
+
+        conta := 'if (tbsindmov.Conta = 0,"MENSALIDADE",if (tbsindmov.Conta = 1,"CONFEDERATIVO",if (tbsindmov.Conta = 2,"ASSISTENCIAL",if (tbsindmov.Conta = 3,"SINDICAL",'+
+                     'if (tbsindmov.Conta = 4,"CONVMEDICO",if (tbsindmov.Conta = 5,"ODONTOLOGICO",tbsindmov.CONTA)))))) as Conta';
+
+       // conta := nomelink('tbsindmov.conta','codigo', 'descricao','tbconta','Conta');
+
+        relatorio('Relatório Lançamentos','tbsindmov.data','nome',
+
+                  'select tbsindmov.chave,tbsindmov.chave as N_Lancamento, tbsindmov.Data, '+
+                  ' tbcliente.CdEmp, tbcliente.NomeEmpresa, tbcliente.CodEmp, tbsindmov.codigo, tbcliente.nome, ' + conta + ',tbsindmov.Valor,'+ usu ,
+
+                  ' from tbsindmov, tbcliente ',
+                  ' and tbsindmov.codigo = tbcliente.codigo ' + criterio,
+                  '',
+                  'Valor','','','','', '','','','','','', '','','','','','','',
+                  'tbsindmov',
+                  'Pagos',
+                  'tbsindmov',0,0);
+
+end;
+
+
+
+procedure periodo(page,controle:string;altura,largura:integer);
+begin
+        msg('OK',0);
+end;
+
+
+procedure Tfmenu.permissaovenda;
+begin
+        acesso1('Vendas');
+        permissao(sqlacesso.FieldByName('consultar').AsString, 'PC', 'Vendas');
+        sqlacesso.Destroy;
+end;
+
+procedure Tfmenu.impressora(modulo: string);
+begin
+        showmessage('');
+end;
+
+procedure totbalcao(tbg,tbi:tzquery);
+begin
+showmessage('');
+end;
+
+
+
+procedure TFMenu.impec(cnpj,nome,fone,endereco:string;ntb,ntbitem:tzquery);
+begin
+          showmessage('');
+end;
+
+
+procedure Tfmenu.Timer1Timer(Sender: TObject);
+var
+  Texto: string;
+begin
+  Caption :=  Application.Title+'        Hoje: ' + formatdatetime('dddd', date) +
+               '        '+datetimetostr(now) + filial+
+               '        '+ nemp;
+
+end;
+
+procedure Tfmenu.L6Click(Sender: TObject);
+begin
+      cadg('select chave,codigo,descricao,un,data,valor,ultimavenda,ultalteracao,'+
+           ' grupo,obs from tbcadastroservico ', 'descricao', 18);
+end;
+
+procedure Tfmenu.L2Click(Sender: TObject);
+begin
+      cadg(cadfornecedor, 'nome', 7);
+end;
+
+procedure Tfmenu.caixafechadoExecute(Sender: TObject);
+begin
+        fdm.tbcaixagrupo.close;
+        fdm.tbcaixagrupo.Open;
+        if (fdm.tbcaixagrupo['modo'] <> 'A') and (fdm.tbcaixagrupo['modo'] <> 'ABERTO') then
+            msg('#O caixa não está aberto!',0);
+end;
+
+procedure Tfmenu.FormShow(Sender: TObject);
+var
+st:string;
+begin
+
+        timer1.Enabled := true;
+        acesso;
+        application.CreateForm(tfdm,fdm);
+
+        regprimeiro;
+
+        st := verempresa;
+        if emp_ <> '' then begin
+           nemp  := st;
+           fdm.tbempresa.Filter := 'chave = '+quotedstr(emp_);
+           fdm.tbempresa.Filtered := true;
+        end;
+
+        confExecute(self);
+
+
+        fdm.tbconfig.Open;
+        if fdm.tbconfig.FieldByName('venctodata').asstring <> datetostr(now) then begin
+
+              contanaoconfig;
+              baixaconta;
+              selecione('update tbconfig set venctodata = now()');
+
+        end;
+
+
+
+        sqlpub := nil;
+
+        dempresaexecute(self);
+
+        selecione( 'select nome from tbfuncionario where usuario = ' + quotedstr(inttostr(usuariolink)));
+        vendedor := sqlpub.FieldByName('nome').AsString;
+
+
+        selecione( 'select contado from tbproduto where contado = "S" limit 0,1');
+        contprod := sqlpub['contado']='S';
+
+
+        selecione('select fsuporte, email, MSN from tbrepresentante');
+
+        if sqlpub['fsuporte']<> null then fone:= sqlpub.fieldbyname('fsuporte').AsString;
+        if sqlpub['email']<> null then email:= sqlpub.fieldbyname('email').AsString;
+        if sqlpub['msn']<> null then msn:= sqlpub.fieldbyname('msn').AsString;
+        sqlpub := nil;
+
+        lusu.Caption       := usuario + '   '+ timetostr(now);
+        lemailfone.Caption := fone;
+        lreg.Caption       := 'Reg N º '+ codloc;
+        codloc :='';
+
+
+        if fileexists(ExtractFilePath(ParamStr(0)) + 'imagem\imt.jpg') then
+           imageform('imt',altop, self, (PChar(ExtractFilePath(ParamStr(0)) +'imagem\imt.jpg')),nil);
+
+        if fileexists(ExtractFilePath(ParamStr(0)) + 'imagem\imb.jpg') then
+           imagepanel('imb',alnone, prodape, (PChar(ExtractFilePath(ParamStr(0)) +'imagem\imb.jpg')),nil);
+
+
+        resolucao := Height;
+        fdm.tbconfig.Close;
+        estacionExecute(self);
+
+end;
+
+procedure Tfmenu.Dadosdaempresa1Click(Sender: TObject);
+begin
+        cadg(cpempresa,'nome', 0);
+        dempresaExecute(self);
+        verempresa;
+end;
+
+procedure Tfmenu.dempresaExecute(Sender: TObject);
+begin
+        fdm.tbempresa.close;
+        fdm.tbempresa.Open;
+        fantasiaempresa    := fdm.tbempresa.fieldbyname('fantasia').AsString;
+        ufempresa := fdm.tbempresa.FieldByName('uf').AsString;
+        printnome := fdm.tbempresa.FieldByName('nome').AsString;
+
+
+       if fileexists(PChar(ExtractFilePath(ParamStr(0)) + 'imagem\' +
+           fdm.tbempresa.FieldByName('codigo').AsString + '.jpg')) then begin
+           imagelogo.Picture.LoadFromFile(PChar(ExtractFilePath(ParamStr(0)) + 'imagem\' +
+                                          fdm.tbempresa.FieldByName('codigo').AsString + '.jpg'));
+           imagelogo.Align := alclient;
+
+           end else imagelogo.Picture := nil;
+
+        fdm.tbempresa.close;
+
+end;
+
+procedure Tfmenu.confExecute(Sender: TObject);
+
+      procedure estoqueprod;
+      var multempresa:boolean;
+      begin
+
+         selecione2('select multempresa from tbconfig');
+         multempresa := sqlpub2['multempresa'] = 'S';
+
+         if multempresa then begin
+             selecione2('select chave from tbempresa where (flag  <> "D" or flag is null) order by chave');
+             estoqueM :='';
+             if sqlpub2.RecordCount >=2 then begin
+
+                while not sqlpub2.eof do begin
+                      estoqueM := estoqueM + 'estoque'+sqlpub2.fieldbyname('chave').asstring+',';
+                      sqlpub2.Next;
+                   end;
+
+                sqlpub2 := nil;
+                end else estoqueM :='';
+
+           end else estoqueM :='';
+
+            prod := ' Select Chave,codigo,codigobarras,codigofornecedor,codigooriginal,NCMSH,descricao,tamanho,'+
+                    ' vrcompra,fracao,despesaacessoria,desctotal,vrunit,percent,vrvenda,percentatacado,vratacado,'+
+                    ' percent3,valor3,vrminimo,'+estoqueM+' estoque,cmedio,minimo,maximo,promocao,vrpromocao,iniciopromocao,validade,un,'+
+                    ' CFOP,CST,NacImp, CF,Imposto,IPI,ModoIPI,PIS,confins,modopis,modocofins,mva,peso,comissao,garantia,desconto,ativo,pesagem,'+
+                    ' fabricante,fornecedor,departamento,familia,grupo,subgrupo,prateleira,box,item,CurvaQtd,CurvaValor,IniCurva,FinCurva,'+
+                    ' dtcadastro,ultimacompra,ultimavenda,ultalteracao,ativov,aplicacao,especificacao,'+
+                    ' estoquedepois,estoqueAntes, divergencia, contado ,ctp from tbproduto';
+      end;
+
+var
+ini:tinifile;
+hora:integer;
+
+begin
+
+         criaestoquee;
+         estoqueprod;
+//        atualizacontas;
+        fdm.tbempresa.IndexFieldNames := 'emp';
+        fdm.tbconfig.close;
+        fdm.tbconfig.Open;
+
+        tipoempresa := fdm.tbconfig.FieldByName('tipoempresa').AsString;
+        if responsavel = 'VITALCRED' then cadcli :=cadclientev
+
+        else if responsavel = 'SINDICATO' then cadcli :='select chave, data,DtAdmi,tipocliente,CdEmp,NomeEmpresa,CodEmp,codigo,'+
+                         ' nomecurto,nome,cep,endereco,numero,complemento,'+
+                         ' bairro,municipio,uf,CNPJ,IE,CTP,ddd,fone '+
+                         ' fone2,fone3,fax,nascimento,contato,email,site,msn,profissao,sexo,estadocivil,conjuge, '+
+                         ' mensalidade, confederativo, assistencial, sindical, convmedico, odontologico, '+
+                         ' obs,obs1 '
+
+        else if tipoempresa = '2' then cadcli :='Select Chave, Data, Codigo ,Nome , Naturalidade, Nascimento , Sexo , '+
+                 ' Estadocivil, Cor, Peso, Instrucao, Responsavel, Indicado_por,  Cep ,Endereco , Numero,  '+
+                 ' Complemento , Bairro , Municipio, Municipion ,  Uf , Regiao ,  Cnpj , Ie , Ddd , Fone , Fone2,  '+
+                 ' Fone3 , Fax , Email , Msn , Skype,  Contato , Pai, Mae, Flag, Obs, obs1  From Tbcliente '
+
+        else cadcli := cadcliente;
+
+        if fileexists(ExtractFilePath(ParamStr(0)) + 'linknet.txt') then
+           servpath := ExtractFilePath(ParamStr(0))
+        else
+           servpath := fdm.tbconfig.fieldbyname('serv').AsString;
+
+        
+
+        dtpgto := strtodate('01/01/1900');
+        if tipoempresa = '' then tipoempresa := 'S';
+
+        responsavel := fdm.tbconfig.FieldByName('responsavel').AsString;
+
+        planocontas :=                fdm.tbconfig.FieldByName('planocontas').AsString = 'S';
+        Movimentodecontas1.Visible := planocontas;
+        Movimentobancrios1.Visible := Movimentodecontas1.Visible = false;
+        ransferirocaixa1.Visible := Movimentodecontas1.Visible;
+        Bancos1.Visible := not planocontas;
+        if not planocontas then Contas1.Caption := 'Cad/config contas'
+                           else Contas1.Caption := 'Plano de contas';
+
+
+        chofab := fdm.tbconfig['chaofab'] = 'S';
+        entsimp  := fdm.tbconfig.FieldByName('entsimp').AsString = 'S';
+
+        fdm.tbcaixagrupo.Close;
+        with fdm.tbcaixagrupo do begin
+             close;
+             SQL.Clear;
+
+             if fdm.tbconfig['fechamentocaixa'] <> 'MÚLTIPLO' then
+                sql.Add('select * from  tbcaixagrupo where (modo = "A" or modo = "ABERTO") '+sqlempresa(1,1,''))
+             else
+                SQL.Add('select * from  tbcaixagrupo where (modo = "A" or modo = "ABERTO") and '+
+                        ' (usuario = ' + quotedstr(inttostr(usuariolink))+
+                        ' or usuario = ' + quotedstr(usuario)+')'+sqlempresa(1,1,''));
+
+             Open;
+             //showmessage(fdm.tbcaixagrupo.fieldbyname('chave').AsString );
+        end;
+
+
+end;
+
+procedure Tfmenu.ConsultarCNPJIE1Click(Sender: TObject);
+begin
+
+     ShellExecute(Handle, 'open', PChar('http://www.sintegra.gov.br/'), nil, '', Sw_Show);
+
+end;
+
+procedure Tfmenu.Aniversariantes1Click(Sender: TObject);
+var
+dt,dt2,clifor,diames:string;
+begin
+
+        codloc := '1';
+        clifor := msgi('Exibir Aniversariantes:' + #13 + #13 +
+                    '1 = Clientes . . . . .'+#13+
+                    '2 = Funcionários ',2);
+
+        if not (strtoint(clifor) in[1..2]) then msg('#Opção inválida.',0);
+
+        if clifor = '1' then clifor :='tbcliente';
+        if clifor = '2' then clifor :='tbfuncionario';
+
+        codloc := '1';
+        diames := msgi('Aniversariantes do:' + #13 + #13 +
+                    '1 = Mês'+#13+
+                    '2 = Dia  ',2);
+
+        if not (strtoint(diames) in[1..2]) then msg('#Opção inválida.',0);
+
+
+
+        if diames = '1' then begin
+            codloc:=formatdatetime('mm',date);
+            dt := msgi('Digite o mês(número):',2);
+            if (strisfloat(dt)=false) or (strtofloat(dt)>12) then msg('#Este não é um mês válido!!!',0);
+
+            relatorio('','','nome',
+                      'select chave,DATE_FORMAT(nascimento,"%d/%m")as Dia,'+
+                      ' Codigo, Nome,NomeCurto,DDD, Fone, Email from '+clifor,
+                      '',
+                      ' and extract(month from  nascimento) = ' +
+                        quotedstr(dt) + ' order by nome',
+                      '',
+                      '','', '','','', '','','','','','', '','','','','','','',
+                      'tbcliente_ad',
+                      'Aniversariantes do mês '+dt ,clifor,0,0);
+
+        end else if diames = '2' then begin
+            dt := formatdatetime('mm', date);
+            dt2 := formatdatetime('dd', date);
+
+        relatorio('','','nome',
+                  'select chave,DATE_FORMAT(nascimento,"%d/%m")as Dia,'+
+                  ' Codigo, Nome,NomeCurto,DDD, Fone, Email from '+clifor,
+                  '', ' and extract(month from  nascimento) = ' +
+                  quotedstr(dt) + ' and extract(day from  nascimento) = ' +
+                  quotedstr(dt2) + ' order by nome',
+
+                 '',
+                 '','','','','', '','','','','','', '','','','','','','',
+                 'tbcliente_ad',
+                 'Aniversariantes de Hoje: '+datetostr(now) ,clifor,0,0);
+
+        end;
+
+end;
+
+procedure Tfmenu.Meuip1Click(Sender: TObject);
+begin
+    ShellExecute(Handle, 'open', 'http://www.meuip.com.br', nil, '', Sw_ShowNormal);
+end;
+
+procedure Tfmenu.AgendaFone1Click(Sender: TObject);
+const
+st:string ='select chave, nome, data, ddd, fone, fone2, fone3, fax, ramal, email, obs from tbfone';
+begin
+
+         cadp ('tbfone', st, '',
+              'nome','',
+              '','','',
+              '','','',
+              '','','',
+              'data',
+              '',
+              '',
+              '',
+              0,0);
+end;
+
+procedure Tfmenu.Sadaparaexplorer1Click(Sender: TObject);
+begin
+        ShellExecute(Handle, 'open', 'c:\', nil, '', Sw_Show);
+
+end;
+
+procedure Tfmenu.SadaparaDOS1Click(Sender: TObject);
+begin
+        ShellExecute(Handle, 'open', 'c:\windows\system32\cmd.exe', nil, '', Sw_Show);
+        ShellExecute(Handle, 'open', 'c:\winnt\system32\cmd.exe', nil, '', Sw_Show);
+        ShellExecute(Handle, 'open', 'c:\windows\command\command.com', nil, '', Sw_Show);
+        ShellExecute(Handle, 'open', 'c:\command.com', nil, '', Sw_Show);
+end;
+
+procedure Tfmenu.Backup1Click(Sender: TObject);
+begin
+        if responsavel = '562.668.395-04' then msg('Este é o programa da empresa "Comndos Informática"'+#13+'C O D I A D O ! ! !',0);
+        Acesso1('BackUp');
+        application.CreateForm(tfbackup, fbackup);
+        fbackup.Data := databasename;
+        fbackup.showmodal;
+end;
+
+procedure Tfmenu.Logar1Click(Sender: TObject);
+begin
+        senhaExecute(self);
+end;
+
+procedure Tfmenu.Cadastrarfiliais1Click(Sender: TObject);
+begin
+            cadp ('tbfiliais', 'select chave, nome, ip,banco, usuario, senha from tbfiliais', 'MANUTENÇÃO DE FILIAIS',
+                  'nome','ip',
+                  '','','',
+                  '','','',
+                  '','','',
+                  '',
+                  '',
+                  '',
+                  '',
+                  1,0);
+end;
+
+procedure Tfmenu.UsurioPermisses1Click(Sender: TObject);
+var
+list:tstringlist;
+promocao:string;
+begin
+
+         list := tstringlist.Create;
+
+            list.Add('...CADASTROS');
+            list.Add('');
+            list.Add('Cadastro');
+            list.Add('Cadastro Serviço');
+            list.Add('Cliente');
+            list.Add('Fornecedor');
+            list.Add('Funcionário');
+            list.Add('Produto');
+
+            list.Add('');
+            list.Add('');
+            list.Add('...DOCUMENTOS');
+            list.Add('');
+            list.Add('Recibo');
+
+            list.Add('');
+            list.Add('');
+            list.Add('...FINANCEIRO');
+            list.Add('');
+            list.Add('Banco');
+            list.Add('Caixa');
+            list.Add('Contas');
+            list.Add('Contas a Pagar');
+            list.Add('Contas a Receber');
+            list.Add('Financeiro');
+
+            list.Add('');
+            list.Add('');
+            list.Add('...MANUTENÇÃO');
+            list.Add('');
+            list.Add('BackUp');
+            list.Add('Configurações');
+            list.Add('Registro');
+
+            list.Add('');
+            list.Add('');
+            list.Add('...RELATÓRIOS');
+            list.Add('Relatório Usuario');
+            list.Add('');
+
+            list.Add('');
+            list.Add('');
+            list.Add('...UTILITARIOS');
+            list.Add('');
+            list.Add('Agenda de Telefones');
+            list.Add('Agenda Pessoal');
+
+
+
+        try
+        list.SaveToFile(copy(conf_local,1,2)+'/permissoes.txt');
+        except msg('Não consegue escrever em '+copy(conf_local,1,2),0);
+        end;
+
+        senhagerencial('Usuário','Alterar/Incluir usuário!','Alterar/Incluir usuário' );
+
+                
+        if responsavel='FABIO VITRINE' then promocao :='promocao,';
+
+        cadp ('tbusuario', 'select chave, nome, senha, varejo,atacado,valor3,'+promocao+'caixa from tbusuario', 'MANUTENÇÃO DE USUÁRIOS',
+              'nome','',
+              'varejo','','S,N',
+              'atacado','','S,N',
+              'valor3','','S,N',
+              '',
+              '',
+              '',
+              '',
+              2,0);
+
+
+end;
+
+procedure Tfmenu.Alterarasenha1Click(Sender: TObject);
+begin
+        periodo2('altusu','','','','','',213,198,0);
+end;
+
+procedure Tfmenu.Recibo1Click(Sender: TObject);
+const
+    cp :string = 'select chave,data,numero,valor,codigo,nome,endereco,referente,municipio,emitente,cnpj,enderecoemitente,flag from tbrecibo ';
+begin
+        cadg(cp,'nome', 11);
+
+
+end;
+
+procedure Tfmenu.ltimidiadoms1Click(Sender: TObject);
+var
+  st, st1: string;
+begin
+        codloc := formatdatetime('mm', date);
+        st := msgi('Digite o mês (número):', 2);
+
+        if st <> '' then  begin
+           codloc := formatdatetime('yyyy', date);
+           st1 := msgi('Digite o ano:', 2);
+
+          if st1 <> '' then begin
+          try
+            msg('Último Dia: ' + IntToStr(UltimodoMes(StrToInt(st), StrToInt(st1))),0);
+          except
+            on EConvertError do
+               msg('Um dos valores não é valido',0);
+          end;
+        end;
+    end;
+end;
+
+procedure Tfmenu.Calculadora1Click(Sender: TObject);
+begin
+        winexec('calc.exe', sw_show);
+end;
+
+procedure Tfmenu.Clculodecalendrio1Click(Sender: TObject);
+var
+  st1, st2, st3: string;
+begin
+        codloc := datetostr(now);
+
+        st1 := msgi('Cálculo de data: '+ #13+ #13+
+                'Este cálculo mostra qual dia do mês será de uma data há "X" dias.'+#13+
+                ' Digite a data inicial:',1);
+
+        if st1 <> '' then  begin
+
+           st2 := msgi('Cálculo de data:'+#13+ #13+'Da data digitada há quantos dias? '+#13+' Digite os dias:',2);
+
+           if st2 <> '' then begin
+              st3 := DateToStr(strtodate(st1) + strtofloat(st2));
+              msg('De ' + st1 + ' - há '+ st2 +' dias  - vai ser: '+#13+
+                  formatdatetime('dd/mm/yyyy', strtodate(st3)) +
+                  ' (' + formatdatetime('dddd', strtodate(st3)) + ')',0);
+           end;
+        end;
+
+end;
+
+procedure Tfmenu.abelas1Click(Sender: TObject);
+var
+myini : tinifile;
+mysqldir :string;
+begin
+        myini := TInifile.Create('my.ini');
+        mysqldir := myini.Readstring('mysqld', 'basedir', '');
+        MyIni.Free;
+
+        ShellExecute(0,nil, PChar(mysqldir + '\bin\mysqlcheck'), pchar('-r '+ databasename), nil, sw_show);
+
+        ShellExecute(0,nil, PChar(mysqldir + '\bin\mysqlcheck'), pchar('-r '+ databasename), nil, sw_show);
+
+end;
+
+procedure Tfmenu.ConectarLocal1Click(Sender: TObject);
+var
+ini:tinifile;
+                     
+begin
+
+        vf:=false;
+        periodo2('tabip','','','','','',144,365,0);
+
+        if vf then begin
+
+           fdm.conector.Disconnect;
+
+           try
+
+              fdm.conector.Connect;
+
+              fdm.conector.Connected := False;
+              conexaolocal := false;
+              ConectarLocal1.Enabled := false;
+              ConectaraumaFilial1.Enabled := true;
+              iprede := ip;
+              acesso;
+              confExecute(self);
+              servpath := ExtractFilePath(ParamStr(0));
+
+              filial := '         -   Conectado em '+iprede;
+              msg('Conectado em ' + iprede + '!',  0);
+              fdm.tbcaixagrupo.Close;
+              fdm.tbcaixagrupo.open;
+
+
+           except
+
+              msg('Não foi possível conectar a este endereço, verifique so o mesmo está correto!',0);
+              Ini := TInifile.Create(conf_local);
+              ip:= ini.Readstring('rede', 'host', 'localhost');
+              conexaolocal := True;
+              ini.Free;
+
+           end;
+        end;
+
+        //fdm.conector.Connected := False;
+        vf:=false;
+
+
+
+end;
+
+procedure Tfmenu.ConectaraumaFilial1Click(Sender: TObject);
+var
+ini:tinifile;
+begin
+    fdm.conector.Disconnect;
+
+    Ini := TInifile.Create(conf_local);
+    ip:= Ini.Readstring('rede', 'host', 'localhost');
+    conexaolocal := True;
+
+    ini.Free;
+
+    ConectarLocal1.Enabled := true;
+    ConectaraumaFilial1.Enabled := false;
+
+    acesso;
+    confExecute(self);
+    servpath := fdm.tbconfig.fieldbyname('serv').AsString;
+    filial := '';
+    fdm.tbcaixagrupo.Close;
+    fdm.tbcaixagrupo.open;
+    msg('Conexão Restaurada!',  0);
+    iprede :='';
+
+end;
+
+procedure Tfmenu.caixaExecute(Sender: TObject);
+begin
+        with fdm.Query1 do begin
+             close;
+             sql.Add('select chave, dinheiro, cheque, cartao');
+          //   open;
+        end;
+end;
+
+procedure Tfmenu.ContasaReceber1Click(Sender: TObject);
+begin
+        cadg('','nome', 9);
+end;
+
+procedure Tfmenu.Recebimentos1Click(Sender: TObject);
+begin
+        recpgto('tbreceber','0');
+end;
+
+procedure Tfmenu.Contasagar1Click(Sender: TObject);
+begin
+        cadg('','nome', 10);
+end;
+
+procedure Tfmenu.Pagamentos1Click(Sender: TObject);
+begin
+        recpgto('tbpagar','0');
+end;
+
+procedure Tfmenu.Situaodascontas1Click(Sender: TObject);
+begin
+        sitconta;
+end;
+
+procedure Tfmenu.Sair2Click(Sender: TObject);
+begin
+        close;
+end;
+
+procedure Tfmenu.AgendaPessoal1Click(Sender: TObject);
+begin
+      ag('P');
+end;
+
+procedure Tfmenu.Sair1Click(Sender: TObject);
+begin
+        msg('Desenvolvido por: '+#13+'Renival Menezes'+#13+
+            'Oséias'+#13+
+            'Willian'+#13+#13+
+            'Analista: '+#13+
+            'Luciano Dantas'+#13+ #13+
+
+            'Colaboradores:'+#13+#13+
+            'Clovis (Pontobr)'+#13+
+            'Osmar Oliveira'+#13+#13+
+
+            'Fone: ' + fone+#13+
+            'E-Mail: ' + email+#13+
+            'MSN: ' + msn,0);
+
+end;
+
+procedure Tfmenu.senhaExecute(Sender: TObject);
+begin
+        application.CreateForm(tfacesso,facesso);
+        facesso.showmodal;
+end;
+
+procedure Tfmenu.Configuraes1Click(Sender: TObject);
+begin
+        acesso1('configurações');
+        application.CreateForm(TFconfig,Fconfig);
+        Fconfig.showmodal;
+        confExecute(self);
+        fdm.tbconfig.close;        
+end;
+
+procedure Tfmenu.Dedoduro1Click(Sender: TObject);
+begin
+             relatorio('Relatório Usuario','data','Modulo',
+                                'select chave,data, horaacesso as Hora, '+
+
+                                'if (modulo = "0","Empresa", '+
+                                 'if (modulo = "1","Transf. Est", '+
+                                 ' if (modulo="2","Venda", '+
+                                 '  if (modulo="3","Caixa", '+
+                                 '   if (modulo="4","Cliente", '+
+                                 '    if (modulo="5","Produto", '+
+                                 '     if (modulo="6","Funcionario", '+
+                                 '      if (modulo="7","Fornecedor", '+
+                                 '       if (modulo="8","Entrada", '+
+                                 '        if (modulo="9","Cont Receb", '+
+                                 '         if (modulo="10","Cont Pagar", '+
+                                 '          if (modulo="11","Cont. Estoque", '+
+                                 '           if (modulo="12","Cont Pagar", '+
+                                 '            if (modulo="13","Backup", '+
+                                 '              if (modulo="17","Financeiro", '+
+                                 '               if (modulo="18","Serviço", '+
+                                 '                 if (modulo="29","NF", '+
+                                 '                   if (modulo="36","Plano Contas", '+
+
+                                 '		modulo)))))))))))))))))) as Modulo, '+
+
+                                'numero, '+
+
+                                'if (Alteracoes = "1","Inseriu", '+
+                                ' if (Alteracoes="2","Alterou", '+
+                                '  if (Alteracoes="3","Deletou", '+
+                                '   if (Alteracoes="4","Acessou", '+
+                                '    if (Alteracoes="5","Encerrou", '+
+                                '     if (Alteracoes="6","Estornou", '+
+                                'Alteracoes)))))) as Alteracoes, '+
+                                'link as codigo, "                " as nome from tbusuarioalteracoes ',
+
+                                       '',
+                                       '',
+                                       '',
+                                       '','','',' ','','','','','','', '','','','','','','',
+                                        '','tbusuarioalteracoes',
+                                        'Dedo Duro','tbusuarioalteracoes',0,2);
+
+end;
+
+procedure Tfmenu.Operaescomsenha1Click(Sender: TObject);
+begin
+             relatorio('Relatório Usuario','data','',
+                       ' select chave, modulo , data , hora , '+nomelink('usuario','chave', 'nome','tbusuario','Usuario')+' , motivo from tbsenha ',
+                         '',
+                         '',
+                         '',
+                         '','','',' ','','','','','','', '','','','','','','',
+                          '','tbsenha',
+                          'Operações com senha','tbsenha',0,0);
+
+end;
+
+procedure Tfmenu.Lancamentodecontas1Click(Sender: TObject);
+begin
+        gravabanco('','','', '',0,0);
+end;
+
+procedure Tfmenu.consultarcontas1Click(Sender: TObject);
+begin
+      Consultarcontac;
+end;
+
+procedure Tfmenu.Listagem1Click(Sender: TObject);
+var
+codigo:string;
+begin
+                  codigo := msgi('Digite (só números): O Código, ou o CNPJ/CPF ou o Fone, ou as iniciais do nome para pesquisa',0);
+                  listagem(achacp('nome',codigo),codigo,'',4,0);
+                  fechatg;
+
+end;
+
+procedure Tfmenu.Cadastro1Click(Sender: TObject);
+begin
+       acesso1('cliente');
+       application.CreateForm(tfclientelocaliza,fclientelocaliza);
+//       if textcombo = 'CONTATO' then fclientelocaliza.contato := true;
+       fclientelocaliza.showmodal;;
+
+end;
+
+procedure Tfmenu.Cadastro4Click(Sender: TObject);
+begin
+        cadg(cadfuncionario,'nome', 6);
+end;
+
+procedure Tfmenu.Listagem4Click(Sender: TObject);
+var
+codigo:string;
+begin
+                  codigo := msgi('Digite (só números): O Código, ou o CNPJ/CPF ou o Fone, ou as iniciais do nome para pesquisa',0);
+                  listagem(achacp('nome',codigo),codigo,'',6,0);
+                  fechatg;
+end;
+
+procedure Tfmenu.estacionExecute(Sender: TObject);
+begin
+          if estacionamento then begin
+             selecione('select count(chave)as qtd from tbmov where datasaida is null');
+             lestacionamento.Caption := sqlpub.fieldbyname('qtd').AsString + ' veículo(s) estacionado(s).';
+             sqlpub := nil;
+          end else lestacionamento.Caption :='';
+end;
+
+procedure Tfmenu.lemailfoneClick(Sender: TObject);
+begin
+  ShellExecute(Handle, 'open', PChar('mailto:' + email +  '?subject=' + 'Digite o Assunto'), nil, '', Sw_Show);
+end;
+
+procedure Tfmenu.Feriados1Click(Sender: TObject);
+begin
+        cadp ('tbdatacomemorativa', 'select chave,nome,dia,mes from tbdatacomemorativa', 'Feriados',
+              'nome','',
+              'dia','','1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31',
+              'mes','','1,2,3,4,5,6,7,8,9,10,11,12',
+              '','','',
+              '',
+              '',
+              '',
+              '',
+              3,0);
+
+end;
+
+procedure Tfmenu.Cep2Click(Sender: TObject);
+begin
+        cepibge(24,1);
+end;
+
+procedure Tfmenu.IBGE1Click(Sender: TObject);
+begin
+        cepibge(23,1);
+end;
+
+procedure Tfmenu.dcodExecute(Sender: TObject);
+var
+cod:string;
+begin
+        senhagerencial('Arrumar código','Alterar código dup!','Arrumar código' );
+        cod := msgi('Qual é o módulo? (4=tbcliente   5=tbproduto   6=tbfuncionario   7= tbfornecedor)',2);
+        if not (strtoint(cod) in [4..7]) then abort;
+        dupcodigo(strtoint(cod));
+end;
+
+procedure Tfmenu.Label3DblClick(Sender: TObject);
+begin
+pegaxml;
+end;
+
+procedure Tfmenu.Contas1Click(Sender: TObject);
+begin
+      cadplanocontas;
+end;
+
+procedure Tfmenu.Consultarconta1Click(Sender: TObject);
+begin
+      Consultarconta;
+end;
+
+
+
+procedure Tfmenu.Bancos1Click(Sender: TObject);
+begin
+         cadp ('tbnbanco', 'select chave, nome, numero from tbnbanco', '',
+              'nome','numero',
+              '','','',
+              '','','',
+              '','','',
+              '',
+              '',
+              '',
+              '',
+              2,0);
+end;
+
+procedure Tfmenu.Cadastro3Click(Sender: TObject);
+begin
+        cadg(cadfornecedor, 'nome', 7);
+end;
+
+procedure Tfmenu.Listagem3Click(Sender: TObject);
+var
+codigo:string;
+begin
+                  codigo := msgi('Digite (só números): O Código, ou o CNPJ/CPF ou o Fone, ou as iniciais do nome para pesquisa',0);
+                  listagem(achacp('nome',codigo),codigo,'',7,0);
+                  fechatg;
+
+end;
+
+procedure Tfmenu.produtoExecute(Sender: TObject);
+begin
+close;
+end;
+
+procedure Tfmenu.SpeedButton10Click(Sender: TObject);
+begin
+      AgendaPessoal1Click(self);
+end;
+
+procedure Tfmenu.SpeedButton11Click(Sender: TObject);
+begin
+        AgendaFone1Click(self);
+end;
+
+procedure Tfmenu.SpeedButton4Click(Sender: TObject);
+begin
+      Cadastro1Click(self);
+end;
+
+procedure Tfmenu.SpeedButton7Click(Sender: TObject);
+begin
+        cadg('','nome', 10);
+end;
+
+procedure Tfmenu.SpeedButton8Click(Sender: TObject);
+begin
+        cadg('','nome', 9);
+end;
+
+procedure Tfmenu.SpeedButton9Click(Sender: TObject);
+begin
+        cadg(cadfornecedor, 'nome', 7);
+end;
+
+procedure Tfmenu.ControleFinanceiro1Click(Sender: TObject);
+begin
+     acesso1('Financeiro');
+     application.CreateForm(tffinanceiro,ffinanceiro);
+     ffinanceiro.showmodal;
+end;
+
+procedure Tfmenu.SpeedButton6Click(Sender: TObject);
+begin
+        ControleFinanceiro1Click(self);
+end;
+
+procedure Tfmenu.Configfinanceiro1Click(Sender: TObject);
+begin
+              application.CreateForm(tfcontaconf,fcontaconf);
+              fcontaconf.showmodal;
+
+end;
+
+procedure Tfmenu.Contato1Click(Sender: TObject);
+begin
+
+       acesso1('cliente');
+       application.CreateForm(tfclientelocaliza,fclientelocaliza);
+       fclientelocaliza.contato := true;
+       fclientelocaliza.showmodal;;
+
+end;
+
+end.
+
+

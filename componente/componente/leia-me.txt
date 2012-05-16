@@ -1,0 +1,24 @@
+Para compilar o programa, é necessário a instalação dos componentes adicionais.
+Veja no diretório como_instalar, um documento, explicando como instalar estes.
+No delphi 6, é necessário também atualizar o drive de mysql, (dbexpmysql.dll).
+Copie esta biblioteca para o diretório bin do seu delphi, ou qualquer diretório que esteja no PATH, e edite o dbxdrivers.ini.
+Geralmente este arquivo está instalado em "C:\Arquivos de programas\Arquivos comuns\Borland Shared\DBExpress".
+
+No item [MYSQL], altere o LibraryName=dbexpmys.dll, para LibraryName=dbexpmysql.dll, como abaixo.
+
+[MYSQL]
+GetDriverFunc=getSQLDriverMYSQL
+LibraryName=dbexpmysql.dll
+VendorLib=LIBMYSQL.dll
+BlobSize=-1
+Database=DBNAME
+ErrorResourceFile=
+HostName=ServerName
+LocaleCode=0000
+Password=password
+User_Name=user
+
+Copie a biblioteca mybackup.dll para o system do seu windows.
+Esta biblioteca é usada nas rotinas de backup.
+
+

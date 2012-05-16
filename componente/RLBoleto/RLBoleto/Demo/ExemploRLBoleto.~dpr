@@ -1,0 +1,14 @@
+program ExemploRLBoleto;
+
+uses
+  Forms,
+  Unit1 in 'Unit1.pas' {Form1},
+  rlcob104 in 'C:\Documents and Settings\re\Desktop\manuais\rlcob104.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

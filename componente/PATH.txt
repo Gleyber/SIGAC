@@ -1,0 +1,3 @@
+c:\fonte\componente\RLBoleto\RLBoleto\Comp
+c:\fonte\componente\fortes\fortes versao 3.23\fortes
+c:\fonte\componente\componente

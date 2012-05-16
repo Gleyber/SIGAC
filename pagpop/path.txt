@@ -1,0 +1,26 @@
+D:\fonte delphi\modulos\NF\Cópia de nfe\Nfe_Componente\NFe_Comp\Demo\Msn pop
+D:\utilitarios\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build
+D:\utilitarios\ZEOSDBO\ZEOSDBO-6.6.1-beta\src\dbc
+D:\utilitarios\componente\componente
+D:\fonte delphi\sigac\cport-3.0
+D:\utilitarios\componente\dcpcrypt2\Hashes
+D:\utilitarios\componente\dcpcrypt2
+D:\utilitarios\componente\fortes\fortes versao 3.23\fortes
+D:\utilitarios\RLBoleto\RLBoleto\Comp
+D:\utilitarios\componente\sped
+D:\utilitarios\componente\ACBR\Fontes\ACBrCapicom
+D:\utilitarios\componente\ACBR\Fontes\ACBrDiversos
+D:\utilitarios\componente\ACBR\Exemplos\ACBrCEP
+D:\utilitarios\componente\ACBR\Fontes\ACBrTCP
+D:\utilitarios\componente\ACBR\Fontes\ACBrSerial
+D:\utilitarios\componente\ACBR\Fontes\ACBrDiversos\ACBrFalaWaves
+D:\utilitarios\componente\ACBR\Fontes\ACBrPAF
+D:\utilitarios\componente\ACBR\Fontes\ACBrSPED
+D:\utilitarios\componente\ACBR\Fontes\ACBrSintegra
+D:\utilitarios\componente\ACBR\Fontes\ACBrTEFD
+D:\utilitarios\componente\ACBR\Fontes\ACBrSPED\ACBrSPEDFiscal
+D:\utilitarios\componente\ACBR\Fontes\ACBrComum
+D:\utilitarios\componente\ACBR\Fontes\ACBrNFe2
+D:\utilitarios\componente\ACBR\Fontes\PCN2
+D:\utilitarios\componente\ACBR\Fontes\synalist
+D:\utilitarios\componente\ACBR\Pacotes\Delphi

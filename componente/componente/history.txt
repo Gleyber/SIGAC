@@ -1,0 +1,20 @@
+  Release history:
+
+  3/8/96 - Version 1.0
+     Release by Derek Stutsman of TToolIcon version 1.0
+
+  3/12/96 - Version 1.1
+
+     From this point, changes are made by Pete Ness
+
+     Component based on TComponent instead of TWinControl
+     Fixed so that icon shows when no ToolTip is specified
+     Renamed Component to TTrayIcon
+     Added property to allow design time viewing/hiding of task icon
+     Re-formatted most of the code for easier reading
+     Other misc. changes.
+
+  3/29/96 - Version 1.2
+     Add default window handling to allow closing when Win95 shutdown.
+     Previously, you had to manually close your application before closing
+     Windows 95.

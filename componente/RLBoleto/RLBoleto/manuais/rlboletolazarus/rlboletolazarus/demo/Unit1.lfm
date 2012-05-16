@@ -1,0 +1,443 @@
+object Form1: TForm1
+  Left = 271
+  Height = 411
+  Top = 198
+  Width = 566
+  BorderStyle = bsDialog
+  Caption = 'RLBoleto'
+  ClientHeight = 411
+  ClientWidth = 566
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnShow = FormShow
+  Position = poDesktopCenter
+  LCLVersion = '0.9.28.2'
+  object Bevel1: TBevel
+    Left = 4
+    Height = 71
+    Top = 336
+    Width = 555
+  end
+  object Label1: TLabel
+    Left = 4
+    Height = 14
+    Top = 6
+    Width = 35
+    Caption = 'Banco:'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 340
+    Height = 14
+    Top = 46
+    Width = 43
+    Caption = 'Agência:'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 472
+    Height = 14
+    Top = 46
+    Width = 80
+    Caption = 'Codigo Cedente:'
+    ParentColor = False
+  end
+  object Label5: TLabel
+    Left = 152
+    Height = 14
+    Top = 86
+    Width = 37
+    Caption = 'Carteira'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 193
+    Height = 14
+    Top = 86
+    Width = 46
+    Caption = 'Convênio'
+    ParentColor = False
+  end
+  object Label7: TLabel
+    Left = 4
+    Height = 14
+    Top = 46
+    Width = 79
+    Caption = 'Nome do Cliente'
+    ParentColor = False
+  end
+  object Label9: TLabel
+    Left = 494
+    Height = 14
+    Top = 8
+    Width = 57
+    Caption = 'Vencimento'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 4
+    Height = 14
+    Top = 86
+    Width = 47
+    Caption = 'Nr. Docto'
+    ParentColor = False
+  end
+  object Label10: TLabel
+    Left = 474
+    Height = 14
+    Top = 86
+    Width = 71
+    Caption = 'Nosso Numero'
+    ParentColor = False
+  end
+  object Label8: TLabel
+    Left = 474
+    Height = 14
+    Top = 128
+    Width = 25
+    Caption = 'Valor'
+    ParentColor = False
+  end
+  object Label11: TLabel
+    Left = 4
+    Height = 14
+    Top = 128
+    Width = 33
+    Caption = 'Instruções'
+    ParentColor = False
+  end
+  object Label12: TLabel
+    Left = 4
+    Height = 14
+    Top = 206
+    Width = 69
+    Caption = 'Nome Sacado'
+    ParentColor = False
+  end
+  object Label13: TLabel
+    Left = 373
+    Height = 14
+    Top = 206
+    Width = 59
+    Caption = 'CPF / CNPJ'
+    ParentColor = False
+  end
+  object Label14: TLabel
+    Left = 4
+    Height = 14
+    Top = 246
+    Width = 35
+    Caption = 'Endereço'
+    ParentColor = False
+  end
+  object Label15: TLabel
+    Left = 4
+    Height = 14
+    Top = 286
+    Width = 22
+    Caption = 'CEP'
+    ParentColor = False
+  end
+  object Label16: TLabel
+    Left = 76
+    Height = 14
+    Top = 286
+    Width = 34
+    Caption = 'Cidade'
+    ParentColor = False
+  end
+  object Label17: TLabel
+    Left = 195
+    Height = 14
+    Top = 286
+    Width = 15
+    Caption = 'UF'
+    ParentColor = False
+  end
+  object Label19: TLabel
+    Left = 256
+    Height = 14
+    Top = 361
+    Width = 103
+    Caption = 'Numero de Registros:'
+    ParentColor = False
+  end
+  object Button2: TButton
+    Left = 471
+    Height = 22
+    Top = 347
+    Width = 75
+    Caption = '&Boleto'
+    OnClick = Button2Click
+    TabOrder = 22
+  end
+  object ComboBox1: TComboBox
+    Left = 4
+    Height = 21
+    Top = 21
+    Width = 189
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ItemHeight = 13
+    ItemIndex = 5
+    Items.Strings = (
+      '001 - Banco do Brasil'
+      '033 - Santander Banespa'
+      '104 - Caixa Economica'
+      '237 - Banco Bradesco'
+      '275 - Banco Real'
+      '341 - Banco Itau'
+      '399 - Banco HSBC'
+      '409 - Banco Unicanco'
+      '748 - Sicred'
+      '756 - Bancoob'
+    )
+    ParentFont = False
+    Style = csDropDownList
+    TabOrder = 0
+    Text = '341 - Banco Itau'
+  end
+  object Edit1: TEdit
+    Left = 340
+    Height = 21
+    Top = 61
+    Width = 72
+    TabOrder = 3
+  end
+  object Edit2: TEdit
+    Left = 414
+    Height = 21
+    Top = 61
+    Width = 27
+    TabOrder = 4
+  end
+  object Edit5: TEdit
+    Left = 464
+    Height = 21
+    Top = 61
+    Width = 72
+    TabOrder = 5
+  end
+  object Edit6: TEdit
+    Left = 536
+    Height = 21
+    Top = 61
+    Width = 26
+    TabOrder = 6
+  end
+  object Edit7: TEdit
+    Left = 152
+    Height = 21
+    Top = 101
+    Width = 38
+    TabOrder = 8
+  end
+  object Edit8: TEdit
+    Left = 193
+    Height = 21
+    Top = 101
+    Width = 72
+    TabOrder = 9
+  end
+  object Edit9: TEdit
+    Left = 4
+    Height = 21
+    Top = 61
+    Width = 333
+    TabOrder = 2
+  end
+  object MaskEdit1: TMaskEdit
+    Left = 494
+    Height = 21
+    Top = 24
+    Width = 68
+    MaxLength = 10
+    TabOrder = 1
+    EditMask = '99/99/9999'
+    Text = '  /  /    '
+    SpaceChar = '_'
+  end
+  object Edit3: TEdit
+    Left = 4
+    Height = 21
+    Top = 101
+    Width = 72
+    TabOrder = 7
+  end
+  object Edit4: TEdit
+    Left = 474
+    Height = 21
+    Top = 101
+    Width = 88
+    TabOrder = 10
+    Text = '522'
+  end
+  object Edit10: TEdit
+    Left = 474
+    Height = 21
+    Top = 144
+    Width = 88
+    TabOrder = 12
+    Text = '0'
+  end
+  object Memo1: TMemo
+    Left = 4
+    Height = 46
+    Top = 144
+    Width = 463
+    Lines.Strings = (
+      'N?o receber ap?s vencimento'
+    )
+    TabOrder = 11
+  end
+  object Edit11: TEdit
+    Left = 4
+    Height = 21
+    Top = 221
+    Width = 366
+    TabOrder = 13
+    Text = 'Maria Pereira'
+  end
+  object ComboBox2: TComboBox
+    Left = 373
+    Height = 21
+    Top = 220
+    Width = 52
+    ItemHeight = 13
+    ItemIndex = 0
+    Items.Strings = (
+      'CPF'
+      'CNPJ'
+    )
+    Style = csDropDownList
+    TabOrder = 14
+    Text = 'CPF'
+  end
+  object Edit12: TEdit
+    Left = 428
+    Height = 21
+    Top = 219
+    Width = 133
+    TabOrder = 15
+    Text = '11111111111'
+  end
+  object Edit13: TEdit
+    Left = 4
+    Height = 21
+    Top = 261
+    Width = 555
+    TabOrder = 16
+    Text = 'Av. Brasil, N. 35'
+  end
+  object Edit14: TEdit
+    Left = 4
+    Height = 21
+    Top = 301
+    Width = 70
+    TabOrder = 17
+    Text = '01000000'
+  end
+  object Edit15: TEdit
+    Left = 76
+    Height = 21
+    Top = 301
+    Width = 117
+    TabOrder = 18
+    Text = 'S?o Paulo'
+  end
+  object Edit16: TEdit
+    Left = 196
+    Height = 21
+    Top = 301
+    Width = 24
+    TabOrder = 19
+    Text = 'SP'
+  end
+  object CheckBox1: TCheckBox
+    Left = 365
+    Height = 17
+    Top = 339
+    Width = 42
+    Caption = 'Tela:'
+    Checked = True
+    State = cbChecked
+    TabOrder = 20
+  end
+  object MaskEdit2: TMaskEdit
+    Left = 365
+    Height = 21
+    Top = 357
+    Width = 33
+    MaxLength = 4
+    TabOrder = 21
+    EditMask = '9999'
+    Text = '1   '
+    SpaceChar = '_'
+  end
+  object Button1: TButton
+    Left = 471
+    Height = 22
+    Top = 375
+    Width = 75
+    Caption = '&Remessa'
+    OnClick = Button1Click
+    TabOrder = 23
+  end
+  object RLBTitulo1: TRLBTitulo
+    PrintDialog = True
+    TipoOcorrencia = toRemessaRegistrar
+    LocalPagamento = 'PAGÁVEL EM QUALQUER BANCO ATÉ O VENCIMENTO'
+    Cedente.TipoInscricao = tiPessoaFisica
+    Sacado.TipoInscricao = tiPessoaFisica
+    AceiteDocumento = adNao
+    EspecieDocumento = edDuplicataMercantil
+    DataProcessamento = 0
+    DataDocumento = 0
+    DataVencimento = 0
+    DataOcorrencia = 0
+    DataCredito = 0
+    DataAbatimento = 0
+    DataDesconto = 0
+    DataMoraJuros = 0
+    DataProtesto = 0
+    DataBaixa = 0
+    ValorDocumento = 0
+    ValorDespesaCobranca = 0
+    ValorAbatimento = 0
+    ValorDesconto = 0
+    ValorMoraJuros = 0
+    ValorIOF = 0
+    ValorOutrasDespesas = 0
+    ValorOutrosCreditos = 0
+    ValorRecebido = 0
+    EmissaoBoleto = ebClienteEmite
+    LayoutNN = lnC7_N10
+    Versao = '1.1.5'
+    left = 235
+    top = 16
+  end
+  object RLPDFFilter1: TRLPDFFilter
+    DocumentInfo.Creator = 'FortesReport v3.23 \251 Copyright © 1999-2004 Fortes Informática'
+    DocumentInfo.ModDate = 0
+    ViewerOptions = []
+    FontEncoding = feNoEncoding
+    DisplayName = 'Documento PDF'
+    left = 272
+    top = 16
+  end
+  object RLSaveDialogSetup1: TRLSaveDialogSetup
+    BackgroundMode = False
+    Filter = RLPDFFilter1
+    left = 312
+    top = 16
+  end
+  object RLBRemessa1: TRLBRemessa
+    NumeroArquivo = 0
+    DataArquivo = 0
+    LayoutArquivo = laCNAB400
+    TipoMovimento = tmRetorno
+    left = 200
+    top = 16
+  end
+end

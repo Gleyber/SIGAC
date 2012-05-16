@@ -1,0 +1,8 @@
+*.dcu
+*.ini
+*.ddp
+*.~*
+*.*~
+*.lnk
+backups
+logos

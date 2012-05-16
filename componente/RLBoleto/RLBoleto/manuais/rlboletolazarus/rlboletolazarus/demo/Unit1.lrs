@@ -1,0 +1,104 @@
+LazarusResources.Add('TForm1','FORMDATA',[
+  'TPF0'#6'TForm1'#5'Form1'#4'Left'#3#15#1#6'Height'#3#155#1#3'Top'#3#198#0#5'W'
+  +'idth'#3'6'#2#11'BorderStyle'#7#8'bsDialog'#7'Caption'#6#8'RLBoleto'#12'Clie'
+  +'ntHeight'#3#155#1#11'ClientWidth'#3'6'#2#11'Font.Height'#2#245#9'Font.Name'
+  +#6#13'MS Sans Serif'#6'OnShow'#7#8'FormShow'#8'Position'#7#15'poDesktopCente'
+  +'r'#10'LCLVersion'#6#8'0.9.28.2'#0#6'TBevel'#6'Bevel1'#4'Left'#2#4#6'Height'
+  +#2'G'#3'Top'#3'P'#1#5'Width'#3'+'#2#0#0#6'TLabel'#6'Label1'#4'Left'#2#4#6'He'
+  +'ight'#2#14#3'Top'#2#6#5'Width'#2'#'#7'Caption'#6#6'Banco:'#11'ParentColor'#8
+  +#0#0#6'TLabel'#6'Label2'#4'Left'#3'T'#1#6'Height'#2#14#3'Top'#2'.'#5'Width'#2
+  +'+'#7'Caption'#6#8'Ag'#234'ncia:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label4'#4
+  +'Left'#3#216#1#6'Height'#2#14#3'Top'#2'.'#5'Width'#2'P'#7'Caption'#6#15'Codi'
+  +'go Cedente:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#3#152#0#6'He'
+  +'ight'#2#14#3'Top'#2'V'#5'Width'#2'%'#7'Caption'#6#8'Carteira'#11'ParentColo'
+  +'r'#8#0#0#6'TLabel'#6'Label6'#4'Left'#3#193#0#6'Height'#2#14#3'Top'#2'V'#5'W'
+  +'idth'#2'.'#7'Caption'#6#8'Conv'#234'nio'#11'ParentColor'#8#0#0#6'TLabel'#6
+  +'Label7'#4'Left'#2#4#6'Height'#2#14#3'Top'#2'.'#5'Width'#2'O'#7'Caption'#6#15
+  +'Nome do Cliente'#11'ParentColor'#8#0#0#6'TLabel'#6'Label9'#4'Left'#3#238#1#6
+  +'Height'#2#14#3'Top'#2#8#5'Width'#2'9'#7'Caption'#6#10'Vencimento'#11'Parent'
+  +'Color'#8#0#0#6'TLabel'#6'Label3'#4'Left'#2#4#6'Height'#2#14#3'Top'#2'V'#5'W'
+  +'idth'#2'/'#7'Caption'#6#9'Nr. Docto'#11'ParentColor'#8#0#0#6'TLabel'#7'Labe'
+  +'l10'#4'Left'#3#218#1#6'Height'#2#14#3'Top'#2'V'#5'Width'#2'G'#7'Caption'#6
+  +#12'Nosso Numero'#11'ParentColor'#8#0#0#6'TLabel'#6'Label8'#4'Left'#3#218#1#6
+  +'Height'#2#14#3'Top'#3#128#0#5'Width'#2#25#7'Caption'#6#5'Valor'#11'ParentCo'
+  +'lor'#8#0#0#6'TLabel'#7'Label11'#4'Left'#2#4#6'Height'#2#14#3'Top'#3#128#0#5
+  +'Width'#2'!'#7'Caption'#6#10'Instru'#231#245'es'#11'ParentColor'#8#0#0#6'TLa'
+  +'bel'#7'Label12'#4'Left'#2#4#6'Height'#2#14#3'Top'#3#206#0#5'Width'#2'E'#7'C'
+  +'aption'#6#11'Nome Sacado'#11'ParentColor'#8#0#0#6'TLabel'#7'Label13'#4'Left'
+  +#3'u'#1#6'Height'#2#14#3'Top'#3#206#0#5'Width'#2';'#7'Caption'#6#10'CPF / CN'
+  +'PJ'#11'ParentColor'#8#0#0#6'TLabel'#7'Label14'#4'Left'#2#4#6'Height'#2#14#3
+  +'Top'#3#246#0#5'Width'#2'#'#7'Caption'#6#8'Endere'#231'o'#11'ParentColor'#8#0
+  +#0#6'TLabel'#7'Label15'#4'Left'#2#4#6'Height'#2#14#3'Top'#3#30#1#5'Width'#2
+  +#22#7'Caption'#6#3'CEP'#11'ParentColor'#8#0#0#6'TLabel'#7'Label16'#4'Left'#2
+  +'L'#6'Height'#2#14#3'Top'#3#30#1#5'Width'#2'"'#7'Caption'#6#6'Cidade'#11'Par'
+  +'entColor'#8#0#0#6'TLabel'#7'Label17'#4'Left'#3#195#0#6'Height'#2#14#3'Top'#3
+  +#30#1#5'Width'#2#15#7'Caption'#6#2'UF'#11'ParentColor'#8#0#0#6'TLabel'#7'Lab'
+  +'el19'#4'Left'#3#0#1#6'Height'#2#14#3'Top'#3'i'#1#5'Width'#2'g'#7'Caption'#6
+  +#20'Numero de Registros:'#11'ParentColor'#8#0#0#7'TButton'#7'Button2'#4'Left'
+  +#3#215#1#6'Height'#2#22#3'Top'#3'['#1#5'Width'#2'K'#7'Caption'#6#7'&Boleto'#7
+  +'OnClick'#7#12'Button2Click'#8'TabOrder'#2#22#0#0#9'TComboBox'#9'ComboBox1'#4
+  +'Left'#2#4#6'Height'#2#21#3'Top'#2#21#5'Width'#3#189#0#11'Font.Height'#2#245
+  +#9'Font.Name'#6#13'MS Sans Serif'#10'Font.Style'#11#6'fsBold'#0#10'ItemHeigh'
+  +'t'#2#13#9'ItemIndex'#2#5#13'Items.Strings'#1#6#21'001 - Banco do Brasil'#6
+  +#23'033 - Santander Banespa'#6#21'104 - Caixa Economica'#6#20'237 - Banco Br'
+  +'adesco'#6#16'275 - Banco Real'#6#16'341 - Banco Itau'#6#16'399 - Banco HSBC'
+  +#6#20'409 - Banco Unicanco'#6#12'748 - Sicred'#6#13'756 - Bancoob'#0#10'Pare'
+  +'ntFont'#8#5'Style'#7#14'csDropDownList'#8'TabOrder'#2#0#4'Text'#6#16'341 - '
+  +'Banco Itau'#0#0#5'TEdit'#5'Edit1'#4'Left'#3'T'#1#6'Height'#2#21#3'Top'#2'='
+  +#5'Width'#2'H'#8'TabOrder'#2#3#0#0#5'TEdit'#5'Edit2'#4'Left'#3#158#1#6'Heigh'
+  +'t'#2#21#3'Top'#2'='#5'Width'#2#27#8'TabOrder'#2#4#0#0#5'TEdit'#5'Edit5'#4'L'
+  +'eft'#3#208#1#6'Height'#2#21#3'Top'#2'='#5'Width'#2'H'#8'TabOrder'#2#5#0#0#5
+  +'TEdit'#5'Edit6'#4'Left'#3#24#2#6'Height'#2#21#3'Top'#2'='#5'Width'#2#26#8'T'
+  +'abOrder'#2#6#0#0#5'TEdit'#5'Edit7'#4'Left'#3#152#0#6'Height'#2#21#3'Top'#2
+  +'e'#5'Width'#2'&'#8'TabOrder'#2#8#0#0#5'TEdit'#5'Edit8'#4'Left'#3#193#0#6'He'
+  +'ight'#2#21#3'Top'#2'e'#5'Width'#2'H'#8'TabOrder'#2#9#0#0#5'TEdit'#5'Edit9'#4
+  +'Left'#2#4#6'Height'#2#21#3'Top'#2'='#5'Width'#3'M'#1#8'TabOrder'#2#2#0#0#9
+  +'TMaskEdit'#9'MaskEdit1'#4'Left'#3#238#1#6'Height'#2#21#3'Top'#2#24#5'Width'
+  +#2'D'#9'MaxLength'#2#10#8'TabOrder'#2#1#8'EditMask'#6#10'99/99/9999'#4'Text'
+  +#6#10'  /  /    '#9'SpaceChar'#6#1'_'#0#0#5'TEdit'#5'Edit3'#4'Left'#2#4#6'He'
+  +'ight'#2#21#3'Top'#2'e'#5'Width'#2'H'#8'TabOrder'#2#7#0#0#5'TEdit'#5'Edit4'#4
+  +'Left'#3#218#1#6'Height'#2#21#3'Top'#2'e'#5'Width'#2'X'#8'TabOrder'#2#10#4'T'
+  +'ext'#6#3'522'#0#0#5'TEdit'#6'Edit10'#4'Left'#3#218#1#6'Height'#2#21#3'Top'#3
+  +#144#0#5'Width'#2'X'#8'TabOrder'#2#12#4'Text'#6#1'0'#0#0#5'TMemo'#5'Memo1'#4
+  +'Left'#2#4#6'Height'#2'.'#3'Top'#3#144#0#5'Width'#3#207#1#13'Lines.Strings'#1
+  +#6#27'N?o receber ap?s vencimento'#0#8'TabOrder'#2#11#0#0#5'TEdit'#6'Edit11'
+  +#4'Left'#2#4#6'Height'#2#21#3'Top'#3#221#0#5'Width'#3'n'#1#8'TabOrder'#2#13#4
+  ,'Text'#6#13'Maria Pereira'#0#0#9'TComboBox'#9'ComboBox2'#4'Left'#3'u'#1#6'He'
+  +'ight'#2#21#3'Top'#3#220#0#5'Width'#2'4'#10'ItemHeight'#2#13#9'ItemIndex'#2#0
+  +#13'Items.Strings'#1#6#3'CPF'#6#4'CNPJ'#0#5'Style'#7#14'csDropDownList'#8'Ta'
+  +'bOrder'#2#14#4'Text'#6#3'CPF'#0#0#5'TEdit'#6'Edit12'#4'Left'#3#172#1#6'Heig'
+  +'ht'#2#21#3'Top'#3#219#0#5'Width'#3#133#0#8'TabOrder'#2#15#4'Text'#6#11'1111'
+  +'1111111'#0#0#5'TEdit'#6'Edit13'#4'Left'#2#4#6'Height'#2#21#3'Top'#3#5#1#5'W'
+  +'idth'#3'+'#2#8'TabOrder'#2#16#4'Text'#6#17'Av. Brasil, N. 35'#0#0#5'TEdit'#6
+  +'Edit14'#4'Left'#2#4#6'Height'#2#21#3'Top'#3'-'#1#5'Width'#2'F'#8'TabOrder'#2
+  +#17#4'Text'#6#8'01000000'#0#0#5'TEdit'#6'Edit15'#4'Left'#2'L'#6'Height'#2#21
+  +#3'Top'#3'-'#1#5'Width'#2'u'#8'TabOrder'#2#18#4'Text'#6#9'S?o Paulo'#0#0#5'T'
+  +'Edit'#6'Edit16'#4'Left'#3#196#0#6'Height'#2#21#3'Top'#3'-'#1#5'Width'#2#24#8
+  +'TabOrder'#2#19#4'Text'#6#2'SP'#0#0#9'TCheckBox'#9'CheckBox1'#4'Left'#3'm'#1
+  +#6'Height'#2#17#3'Top'#3'S'#1#5'Width'#2'*'#7'Caption'#6#5'Tela:'#7'Checked'
+  +#9#5'State'#7#9'cbChecked'#8'TabOrder'#2#20#0#0#9'TMaskEdit'#9'MaskEdit2'#4
+  +'Left'#3'm'#1#6'Height'#2#21#3'Top'#3'e'#1#5'Width'#2'!'#9'MaxLength'#2#4#8
+  +'TabOrder'#2#21#8'EditMask'#6#4'9999'#4'Text'#6#4'1   '#9'SpaceChar'#6#1'_'#0
+  +#0#7'TButton'#7'Button1'#4'Left'#3#215#1#6'Height'#2#22#3'Top'#3'w'#1#5'Widt'
+  +'h'#2'K'#7'Caption'#6#8'&Remessa'#7'OnClick'#7#12'Button1Click'#8'TabOrder'#2
+  +#23#0#0#10'TRLBTitulo'#10'RLBTitulo1'#11'PrintDialog'#9#14'TipoOcorrencia'#7
+  +#18'toRemessaRegistrar'#14'LocalPagamento'#6'*PAG'#193'VEL EM QUALQUER BANCO'
+  +' AT'#201' O VENCIMENTO'#21'Cedente.TipoInscricao'#7#14'tiPessoaFisica'#20'S'
+  +'acado.TipoInscricao'#7#14'tiPessoaFisica'#15'AceiteDocumento'#7#5'adNao'#16
+  +'EspecieDocumento'#7#20'edDuplicataMercantil'#17'DataProcessamento'#2#0#13'D'
+  +'ataDocumento'#2#0#14'DataVencimento'#2#0#14'DataOcorrencia'#2#0#11'DataCred'
+  +'ito'#2#0#14'DataAbatimento'#2#0#12'DataDesconto'#2#0#13'DataMoraJuros'#2#0
+  +#12'DataProtesto'#2#0#9'DataBaixa'#2#0#14'ValorDocumento'#2#0#20'ValorDespes'
+  +'aCobranca'#2#0#15'ValorAbatimento'#2#0#13'ValorDesconto'#2#0#14'ValorMoraJu'
+  +'ros'#2#0#8'ValorIOF'#2#0#19'ValorOutrasDespesas'#2#0#19'ValorOutrosCreditos'
+  +#2#0#13'ValorRecebido'#2#0#13'EmissaoBoleto'#7#14'ebClienteEmite'#8'LayoutNN'
+  +#7#8'lnC7_N10'#6'Versao'#6#5'1.1.5'#4'left'#3#235#0#3'top'#2#16#0#0#12'TRLPD'
+  +'FFilter'#12'RLPDFFilter1'#20'DocumentInfo.Creator'#6'@FortesReport v3.23 \2'
+  +'51 Copyright '#169' 1999-2004 Fortes Inform'#225'tica'#20'DocumentInfo.ModD'
+  +'ate'#2#0#13'ViewerOptions'#11#0#12'FontEncoding'#7#12'feNoEncoding'#11'Disp'
+  +'layName'#6#13'Documento PDF'#4'left'#3#16#1#3'top'#2#16#0#0#18'TRLSaveDialo'
+  +'gSetup'#18'RLSaveDialogSetup1'#14'BackgroundMode'#8#6'Filter'#7#12'RLPDFFil'
+  +'ter1'#4'left'#3'8'#1#3'top'#2#16#0#0#11'TRLBRemessa'#11'RLBRemessa1'#13'Num'
+  +'eroArquivo'#2#0#11'DataArquivo'#2#0#13'LayoutArquivo'#7#9'laCNAB400'#13'Tip'
+  +'oMovimento'#7#9'tmRetorno'#4'left'#3#200#0#3'top'#2#16#0#0#0
+]);

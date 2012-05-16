@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Package Version="3">
+    <PathDelim Value="\"/>
+    <Name Value="RLBoleto_laz"/>
+    <CompilerOptions>
+      <Version Value="8"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+      <Other>
+        <CompilerPath Value="$(CompPath)"/>
+      </Other>
+    </CompilerOptions>
+    <Files Count="16">
+      <Item1>
+        <Filename Value="RLBoleto.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="RLBoleto"/>
+      </Item1>
+      <Item2>
+        <Filename Value="RLCob033.pas"/>
+        <UnitName Value="RLCob033"/>
+      </Item2>
+      <Item3>
+        <Filename Value="RLCob104.pas"/>
+        <UnitName Value="RLCob104"/>
+      </Item3>
+      <Item4>
+        <Filename Value="RLCob237.pas"/>
+        <UnitName Value="RLCob237"/>
+      </Item4>
+      <Item5>
+        <Filename Value="RLCob275.pas"/>
+        <UnitName Value="RLCob275"/>
+      </Item5>
+      <Item6>
+        <Filename Value="RLCob341.pas"/>
+        <UnitName Value="RLCob341"/>
+      </Item6>
+      <Item7>
+        <Filename Value="RLCob356.pas"/>
+        <UnitName Value="RLCob356"/>
+      </Item7>
+      <Item8>
+        <Filename Value="RLCob399.pas"/>
+        <UnitName Value="RLCob399"/>
+      </Item8>
+      <Item9>
+        <Filename Value="RLCob409.pas"/>
+        <UnitName Value="RLCob409"/>
+      </Item9>
+      <Item10>
+        <Filename Value="RLCob479.pas"/>
+        <UnitName Value="RLCob479"/>
+      </Item10>
+      <Item11>
+        <Filename Value="RLCob748.pas"/>
+        <UnitName Value="RLCob748"/>
+      </Item11>
+      <Item12>
+        <Filename Value="BoletoLayout.lfm"/>
+        <Type Value="LFM"/>
+      </Item12>
+      <Item13>
+        <Filename Value="BoletoLayout.lrs"/>
+        <Type Value="LRS"/>
+      </Item13>
+      <Item14>
+        <Filename Value="BoletoLayout.pas"/>
+        <UnitName Value="BoletoLayout"/>
+      </Item14>
+      <Item15>
+        <Filename Value="RLCob000.pas"/>
+        <UnitName Value="RLCob000"/>
+      </Item15>
+      <Item16>
+        <Filename Value="RLCob001.pas"/>
+        <UnitName Value="RLCob001"/>
+      </Item16>
+    </Files>
+    <Type Value="RunAndDesignTime"/>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="fortes324forlaz"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

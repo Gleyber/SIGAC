@@ -1,0 +1,38 @@
+Codigo Usado Pela Impressoras matricial
+Inicializa = #27#64; // Inicializa a Impressora
+Justifica = #27#97#51; // Justifica o Texto a Ser impresso
+Draft = #27#120#0; // Aciona Modo Draft
+Imediato = #27#105#1; // Aciona Modo Imediato
+Caracter = #27#77; // Aciona Modo Caracter Rápido.
+Centro = #27#97#49; // Centraliza a Impressão
+Esquerda = #27#97#48; // Posiciona na Margem Esquerda
+MEsquerda = #27#108#5; // Define a Margem Esquerda
+MDireita = #27#81+#78; // Define a Margem Direita
+Tab1 = #27#68#32; // Define a Tabulação 1 = 32;
+Tab2 = #27#68#41#50; // Define a Tabulação 2 = 50;
+Tab3 = #27#68#27; // Define a Tabulação 3 = 27;
+Tab4 = #27#68#37; // Define a Tabulação 4 = 37;
+Tab5 = #27#68#45; // Define a Tabulação 5 = 45;
+Tab6 = #27#68#10; // Define a Tabulação 6 = 10;
+Tab7 = #27#68#46; // Define a Tabulação 7 = 46;
+Tab8 = #27#68#20; // Define a Tabulação 8 = 20;
+Normal = #20; // Define Caracter 20 Tamanho Normal;
+Condensado = #15; // Define Caracter 15 Modo Condensado;
+Expandido = #14; // Define Caracter 14 Modo Expandido;
+CNegrito = #27#71; // Define Caracter Negrito;
+SNegrito = #27#72; // Define Caracter Não Negrito;
+CSublinha = #27#49;
+SSublinha = #27#48;
+Ass = #27#9; // Tabulação Assume a Posição;
+Saltar = #27#102#49#5; // Nº de Linhas a Saltar;
+TabEXP0 = #27#68#0;
+TabEXP1 = #27#68#7;
+TabEXP2 = #27#68#38;
+TabEXP3 = #27#68#49;
+TabEXP4 = #27#68#44;
+TabEXP5 = #27#68#25;
+TabEXP6 = #27#68#20;
+12cpiOn=#27#77
+12cpiOff=#27#80
+8LppOn=#27#48
+6LppOn=#27#50
