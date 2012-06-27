@@ -90,12 +90,12 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=
 [Directories]
-OutputDir=
-UnitOutputDir=
+OutputDir=C:\Fonte\pagpop
+UnitOutputDir=C:\Fonte\DCU
 PackageDLLOutputDir=
 PackageDCPOutputDir=
-SearchPath=
-Packages=vcl;rtl;dbrtl;adortl;vcldb;vclx;bdertl;vcldbx;ibxpress;dsnap;cds;bdecds;teeui;teedb;tee;dss;visualclx;visualdbclx;dsnapcrba;dsnapcon;VclSmp;vclshlctrls;vclie;xmlrtl;inet;inetdbbde;inetdbxpress;inetdb;nmfast;webdsnap;websnap;dbexpress;dbxcds;indy;dclOffice2k;varios_Comp;RLibWinD6vcl;ZComponent;ZParseSql;ZCore;ZDbc;ZPlain;libRLBoleto
+SearchPath=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build;C:\Fonte\Componente\fortes\fortes versao 3.23\fortes;C:\Fonte\Componente\dcpcrypt2\Hashes;C:\Fonte\Componente\dcpcrypt2;C:\Fonte\Componente\RLBoleto\RLBoleto\Comp;C:\Fonte\Componente\AcBr\Lib\Delphi;C:\Fonte\Componente\comport411\Lib;C:\Fonte\Componente\comport411\DCU
+Packages=vcl;rtl;dbrtl;adortl;vcldb;vclx;bdertl;vcldbx;ibxpress;dsnap;cds;bdecds;teeui;teedb;tee;dss;visualclx;visualdbclx;dsnapcrba;dsnapcon;VclSmp;vclshlctrls;vclie;xmlrtl;inet;inetdbbde;inetdbxpress;inetdb;nmfast;webdsnap;websnap;dbexpress;dbxcds;indy;dclOffice2k;varios_Comp;RLibWinD6vcl;ZComponent;ZParseSql;ZCore;ZDbc;ZPlain;libRLBoleto;PCN2
 Conditionals=
 DebugSourceDirs=
 UsePackages=0
@@ -134,3 +134,24 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
+[HistoryLists\hlUnitAliases]
+Count=1
+Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
+[HistoryLists\hlSearchPath]
+Count=9
+Item0=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build;C:\Fonte\Componente\fortes\fortes versao 3.23\fortes;C:\Fonte\Componente\dcpcrypt2\Hashes;C:\Fonte\Componente\dcpcrypt2;C:\Fonte\Componente\RLBoleto\RLBoleto\Comp;C:\Fonte\Componente\AcBr\Lib\Delphi;C:\Fonte\Componente\comport411\Lib;C:\Fonte\Componente\comport411\DCU
+Item1=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build;C:\Fonte\Componente\fortes\fortes versao 3.23\fortes;C:\Fonte\Componente\dcpcrypt2\Hashes;C:\Fonte\Componente\dcpcrypt2;C:\Fonte\Componente\RLBoleto\RLBoleto\Comp;C:\Fonte\Componente\AcBr\Lib\Delphi;C:\Fonte\Componente\comport411\Lib
+Item2=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build;C:\Fonte\Componente\fortes\fortes versao 3.23\fortes;C:\Fonte\Componente\dcpcrypt2\Hashes;C:\Fonte\Componente\dcpcrypt2;C:\Fonte\Componente\RLBoleto\RLBoleto\Comp;C:\Fonte\Componente\AcBr\Lib\Delphi
+Item3=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build;C:\Fonte\Componente\fortes\fortes versao 3.23\fortes;C:\Fonte\Componente\dcpcrypt2\Hashes;C:\Fonte\Componente\dcpcrypt2;C:\Fonte\Componente\RLBoleto\RLBoleto\Comp
+Item4=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build;C:\Fonte\Componente\fortes\fortes versao 3.23\fortes;C:\Fonte\Componente\dcpcrypt2\Hashes;C:\Fonte\Componente\dcpcrypt2
+Item5=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build;C:\Fonte\Componente\fortes\fortes versao 3.23\fortes;C:\Fonte\Componente\dcpcrypt2\Hashes
+Item6=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build;C:\Fonte\Componente\fortes\fortes versao 3.23\fortes
+Item7=C:\Fonte\Componente\componente;C:\Fonte\Componente\ZEOSDBO\ZEOSDBO-6.6.1-beta\packages\delphi7\build
+Item8=C:\Fonte\Componente\componente
+[HistoryLists\hlUnitOutputDirectory]
+Count=1
+Item0=C:\Fonte\DCU
+[HistoryLists\hlOutputDirectorry]
+Count=2
+Item0=C:\Fonte\pagpop
+Item1=C:\Fonte\Bin

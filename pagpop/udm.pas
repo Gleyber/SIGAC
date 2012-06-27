@@ -214,6 +214,9 @@ type
     pnet2: TDataSetProvider;
     tbentradacaixaemp: TIntegerField;
     nfe: TACBrNFe;
+    sqlBanco: TZQuery;
+    dspBanco: TDataSetProvider;
+    cdsBanco: TClientDataSet;
 
 
 

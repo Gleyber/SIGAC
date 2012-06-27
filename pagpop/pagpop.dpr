@@ -148,6 +148,12 @@ begin
 
         Ini := TInifile.Create(conf_local);
         IniHost := Ini.ReadString('Rede', 'Host', '');
+        if Not Ini.SectionExists('Web') then
+        begin
+          Ini.WriteString('Web', 'ipnet', 'mysql.vitalcred.com.br');
+          Ini.WriteString('Web', 'databasenet', 'odontocred1');
+          Ini.WriteString('Web', 'usernet', 'odontoc_soft');
+        end;
         Ini.Free;
 
         myini := TInifile.Create('my.ini');
@@ -164,6 +170,9 @@ begin
             ini := TIniFile.Create(conf_local);
             Ini.WriteString('Rede', 'Host', serv);
             IniHost := Serv;
+            Ini.WriteString('Web', 'ipnet', 'mysql.vitalcred.com.br');
+            Ini.WriteString('Web', 'databasenet', 'odontocred1');
+            Ini.WriteString('Web', 'usernet', 'odontoc_soft');
             Ini.Free;
         end;
       end;

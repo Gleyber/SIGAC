@@ -37,7 +37,6 @@ uses
   uagendapessoal in '..\modulos\agenda\uagendapessoal.pas' {fagendapessoal},
   uagenda in '..\modulos\agenda\uagenda.pas' {fagenda},
   uconfig in '..\modulos\uconfig.pas' {fconfig},
-  ufatura in '..\modulos\ufatura.pas' {ffatura},
   mapimail in '..\modulos\mapimail.pas',
   uimpressora in '..\modulos\uimpressora.pas' {fimpressora},
   usistema2 in '..\modulos\usistema2.pas' {fsistema2},
@@ -98,6 +97,12 @@ begin
 
         Ini := TInifile.Create(CONF_GLOBAL);
         databasename:= Ini.Readstring('databasename', 'databasename', '');
+        if Not Ini.SectionExists('Web') then
+        begin
+          Ini.WriteString('mysqld', 'ipnet', 'mysql.vitalcred.com.br');
+          Ini.WriteString('mysqld', 'databasenet', 'odontocred1');
+          Ini.WriteString('mysqld', 'usernet', 'odontoc_soft');
+        end;
         ini.Free;
 
         if databasename = '' then databasename:='sigac';

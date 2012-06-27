@@ -9,7 +9,7 @@ uses
   DBCtrls, dbcgrids, Grids, DBClient,PRINTERS, RLReport;
 
                           
-                                                          
+
   var
   prod,estoqueM:string;
 

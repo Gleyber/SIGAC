@@ -1,6 +1,6 @@
 object fclientevalor1: Tfclientevalor1
-  Left = 4
-  Top = 28
+  Left = 244
+  Top = 212
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'CADASTRO DE CLIENTES'

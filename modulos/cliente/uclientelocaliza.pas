@@ -1440,6 +1440,8 @@ end;
 var
 tipo,cpf,rg,nascimento,datai,codigo,cap,descricao:string;
 cnpj :WideString;
+bExisteRegistro : Boolean; // Gleyber - 23/06/2012 - Work item 8
+sCPF            : string;  // Gleyber - 23/06/2012 - Work item 8
 begin
 
         ipnet:='';
@@ -1471,9 +1473,11 @@ begin
         cnpj :='';
         with fdm.snet do begin
              sql.Clear;
-             sql.add('select * from tab_clientes where (cpf is not null and cpf<>"" '+
-                     ' and cpf <>"000.000.000-00" and cpf <>"00.000.000/0000-00"'+
-                     ' and cpf <>"00000000000" and cpf <>"00000000000000") order by cod_user ');
+             sql.add('select c.*, b.nome as nome_banco '+
+                     ' from tab_clientes c left join tab_bancos b on (c.numero_banco = b.numero) '+
+                     ' where (c.cpf is not null and c.cpf<>"" '+
+                     ' and c.cpf <>"000.000.000-00" and cpf <>"00.000.000/0000-00"'+
+                     ' and c.cpf <>"00000000000" and cpf <>"00000000000000") order by c.cod_user ');
              fdm.tbnet.open;
              comvital;
              //debugstr(fdm.snet);
@@ -1493,7 +1497,8 @@ begin
 
 
              if (not sqlpub2.Locate('cnpj',fdm.tbnet.fieldbyname('cnpj').AsString,[])) and
-                (not sqlpub2.Locate('cnpj',fdm.tbnet.fieldbyname('cpf').AsString,[])) then begin
+                (not sqlpub2.Locate('cnpj',fdm.tbnet.fieldbyname('cpf').AsString,[])) then
+             begin
 
                 if fdm.tbnet['tipo']='2' then tipo :='J'
                                           else tipo :='F';
@@ -1517,77 +1522,121 @@ begin
                      comvital;
                 end;
 
-               // memo1.lines.add(sqlpub2.fieldbyname('cnpj').AsString);
-                selecione('insert into tbcliente( '+
-                                'transportadora'+
-                                ', filial'+
-                                ', np'+
-                                ',pontos'+
-                                ',fisjur'+
-                                ',nome'+
-                                ',codigogp'+
-                                ',cnpj'+
-                                ',ie '+
-                                ',nascimento '+
-                                ',data'+
-                                ',dtvenda'+
-                                ',statu'+
-                                ',CRO'+
-                                ',nomecurto'+
-                                ',endereco '+
-                                ',complemento'+
-                                ',bairro '+
-                                ',municipio'+
-                                ',uf'+
-                                ',cep'+
-                                ',fone'+
-                                ',fone2'+
-                                ',fone3'+
-                                ',email'+
-                                ',vendedor'+
-                                ',vinculo,codigo) values('+
+                // Gleyber - 23/06/2012 - Work item 8 - Início
+                sCPF := QuotedStr(fdm.tbnet.fieldbyname('cpf').AsString);
+                selecione('SELECT 1 '+
+                          'FROM TBCLIENTE '+
+                          'WHERE REPLACE(REPLACE(REPLACE(REPLACE(CNPJ,''.'',''''),''-'',''''),''/'',''''),'' '','''')  = '+
+                            'REPLACE(REPLACE(REPLACE(REPLACE('+sCPF+',''.'',''''),''-'',''''),''/'',''''),'' '','''')');
+
+                bExisteRegistro := Not sqlpub.IsEmpty;
+
+                // memo1.lines.add(sqlpub2.fieldbyname('cnpj').AsString);
+                if not bExisteRegistro then
+                begin
+                // Gleyber - 23/06/2012 - Work item 8 - Fim
+                 selecione('insert into tbcliente( '+
+                                 'transportadora'+
+                                 ', filial'+
+                                 ', np'+
+                                 ',pontos'+
+                                 ',fisjur'+
+                                 ',nome'+
+                                 ',codigogp'+
+                                 ',cnpj'+
+                                 ',ie '+
+                                 ',nascimento '+
+                                 ',data'+
+                                 ',dtvenda'+
+                                 ',statu'+
+                                 ',CRO'+
+                                 ',nomecurto'+
+                                 ',endereco '+
+                                 ',complemento'+
+                                 ',bairro '+
+                                 ',municipio'+
+                                 ',uf'+
+                                 ',cep'+
+                                 ',fone'+
+                                 ',fone2'+
+                                 ',fone3'+
+                                 ',email'+
+                                 ',vendedor'+
+                                 ',vinculo'+
+                                 ',codigo'+
+                                 // Gleyber - 19/06/2012 - Work Item #44 - Início
+                                 ',TITULAR'+
+                                 ',CNPJCONTA'+
+                                 ',TPCONTA'+
+                                 ',NBANCO'+
+                                 ',BANCO'+
+                                 ',CONTA'+
+                                 ',AGENCIA'+
+                                 ',TIPOCLIENTE'+
+                                 // Gleyber - 19/06/2012 - Work Item #44 - Fim
+                                 ') values('+
 
 
-                                  quotedstr(fdm.tbnet.fieldbyname('usuario').AsString)+
-                              ','+quotedstr(fdm.tbnet.fieldbyname('senha').AsString)+
-                              ',"A"'+
-                              ',1'+
-                              ','+quotedstr(tipo)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('nome').AsString)+
-                              ','+ quotedstr(inttostr(fdm.tbnet.fieldbyname('codigogrupo').asinteger))+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('cpf').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('rg').AsString)+
-                              nascimento+
-                              datai+
-                              datai+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('crea').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('numero_crea').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('razao').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('endereco').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('complemento').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('bairro').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('cidade').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('estado').AsString)+
-                              ','+ quotedstr(formatnumeric(fdm.tbnet.fieldbyname('cep').AsString))+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('telefone1').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('telefone2').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('celular').AsString)+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('email').AsString)+
-                              ',"SITE"'+
-                              ','+ quotedstr(fdm.tbnet.fieldbyname('tipo_user').AsString)+
-                              ','+ quotedstr(codigo) + ')');
+                                   quotedstr(fdm.tbnet.fieldbyname('usuario').AsString)+
+                               ','+quotedstr(fdm.tbnet.fieldbyname('senha').AsString)+
+                               ',"I"'+ // Gleyber - 21/06/2012 - Work Item #7 ',"A"'+
+                               ',1'+
+                               ','+quotedstr(tipo)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('nome').AsString)+
+                               ','+ quotedstr(inttostr(fdm.tbnet.fieldbyname('codigogrupo').asinteger))+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('cpf').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('rg').AsString)+
+                               nascimento+
+                               datai+
+                               datai+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('crea').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('numero_crea').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('razao').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('endereco').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('complemento').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('bairro').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('cidade').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('estado').AsString)+
+                               ','+ quotedstr(formatnumeric(fdm.tbnet.fieldbyname('cep').AsString))+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('telefone1').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('telefone2').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('celular').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('email').AsString)+
+                               ',"SITE"'+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('tipo_user').AsString)+
+                               ','+ quotedstr(codigo) +
+                               // Gleyber - 19/06/2012 - Work Item #44 - Início
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('TITULAR').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('CPFCNPJ_CONTA').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('TIPO_CONTA').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('NUMERO_BANCO').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('NOME_BANCO').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('CONTA').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('AGENCIA').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('PROFISSAO').AsString)+
+                               // Gleyber - 19/06/2012 - Work Item #44 - Início
+                               ')');
+                end;
+             end;
 
+                  // Gleyber - 23/06/2012 - Work item 8 - Início
+                  if not bExisteRegistro then
+                  begin
+                  // Gleyber - 23/06/2012 - Work item 8 - Fim
+
+                    selecione('select descricao from tbconffin where tp = 10 and codigo = '+ inttostr(fdm.tbnet.fieldbyname('codigogrupo').asinteger));
+                    descricao := sqlpub.fieldbyname('descricao').asstring;
+                    selecione('update tbcliente set gp  = ' + quotedstr(descricao)+
+                              ' where codigo = '+quotedstr(codigo));
+
+                    //sqlpub2 := nil;
+                    caption := '..... ATUALIZANDO DO SITE ... ESPERE...      ' +
+                                      inttostr(fdm.tbnet.RecNo) +'    DE    '+  inttostr(fdm.tbnet.RecordCount);
+
+                    update;
                   end;
-                  selecione('select descricao from tbconffin where tp = 10 and codigo = '+ inttostr(fdm.tbnet.fieldbyname('codigogrupo').asinteger));
-                  descricao := sqlpub.fieldbyname('descricao').asstring;
-                  selecione('update tbcliente set gp  = ' + quotedstr(descricao)+
-                            ' where codigo = '+quotedstr(codigo));
+                  // Gleyber - 23/06/2012 - Work item 8 - Fim
 
-                  //sqlpub2 := nil;
-                  caption := '..... ATUALIZANDO DO SITE ... ESPERE...      ' +
-                                    inttostr(fdm.tbnet.RecNo) +'    DE    '+  inttostr(fdm.tbnet.RecordCount);
-
-                  update;
                   fdm.tbnet.Cancel;
                   //sqlpub.Cancel;
                   fdm.tbnet.Next;
@@ -1666,7 +1715,21 @@ begin
                    fdm.tbnet2['cpf'] := formatacpf_cnpj(FormatNumeric(fdm.tbnet2.fieldbyname('cpf').AsString));
                    fdm.tbnet2.Post;
 
+                   // Gleyber - 23/06/2012 - Work item 8 - Início
+                   sCPF := QuotedStr(tabela.fieldbyname('cnpj').AsString);
 
+                   fdm.sqlBanco.SQL.Clear;
+                   fdm.sqlBanco.SQL.Add('select 1 '+
+                           'from tab_clientes '+
+                           'where replace(replace(replace(replace(cpf,''.'',''''),''-'',''''),''/'',''''),'' '','''')  = '+
+                           'replace(replace(replace(replace('+sCPF+',''.'',''''),''-'',''''),''/'',''''),'' '','''')');
+
+                   fdm.sqlBanco.Open;
+
+                   bExisteRegistro := Not fdm.cdsBanco.IsEmpty;
+
+                   if not bExisteRegistro then
+                  // Gleyber - 23/06/2012 - Work item 8 - Fim
                    if not fdm.tbnet2.Locate('cpf',tabela.fieldbyname('cnpj').AsString,[]) then
 
 
@@ -1697,8 +1760,17 @@ begin
                                 ',celular'+
                                 ',email'+
                                 ',tipo_user'+
-                                ',cod_user ) values('+
-
+                                ',cod_user'+
+                                // Gleyber - 19/06/2012 - Work Item #44 - Início
+                                ',TITULAR'+
+                                ',CPFCNPJ_CONTA'+
+                                ',TIPO_CONTA'+
+                                ',NUMERO_BANCO'+
+                                ',CONTA'+
+                                ',AGENCIA'+
+                                ',PROFISSAO'+
+                                // Gleyber - 19/06/2012 - Work Item #44 - Início
+                                ') values('+
                               '  now()'+
                               ', now()'+
                               ','+ quotedstr(tabela.fieldbyname('transportadora').AsString)+
@@ -1726,7 +1798,18 @@ begin
                               ','+ quotedstr(tabela.fieldbyname('fone3').AsString)+
                               ','+ quotedstr(tabela.fieldbyname('email').AsString)+
                               ','+ quotedstr(tabela.fieldbyname('vinculo').AsString)+
-                              ','+ quotedstr(tabela.fieldbyname('codigo').AsString) + ')')
+                              ','+ quotedstr(tabela.fieldbyname('codigo').AsString) +
+                              // Gleyber - 19/06/2012 - Work Item #44 - Início
+                              ','+ quotedstr(tabela.fieldbyname('TITULAR').AsString)+
+                              ','+ quotedstr(tabela.fieldbyname('CNPJCONTA').AsString)+
+                              ','+ quotedstr(tabela.fieldbyname('TPCONTA').AsString)+
+                              ','+ quotedstr(tabela.fieldbyname('NBANCO').AsString)+
+                              ','+ quotedstr(tabela.fieldbyname('CONTA').AsString)+
+                              ','+ quotedstr(tabela.fieldbyname('AGENCIA').AsString)+
+                              ','+ quotedstr(tabela.fieldbyname('TIPOCLIENTE').AsString)+
+                              // Gleyber - 19/06/2012 - Work Item #44 - Fim
+
+                              ')')
                    else
                       sql.Add('update tab_clientes set '+
                                 ' data_alteracao = now() '+
@@ -1752,6 +1835,14 @@ begin
                                 ',email='+ quotedstr(tabela.fieldbyname('email').AsString)+
                                 ',tipo_user='+ quotedstr(tabela.fieldbyname('vinculo').AsString)+
                                 ',cod_user= '+ quotedstr(tabela.fieldbyname('codigo').AsString)+
+                                // Gleyber - 19/06/2012 - Work Item #44 - Início
+                                ',TITULAR= '+ quotedstr(tabela.fieldbyname('TITULAR').AsString)+
+                                ',CPFCNPJ_CONTA= '+ quotedstr(tabela.fieldbyname('CNPJCONTA').AsString)+
+                                ',TIPO_CONTA= '+ quotedstr(tabela.fieldbyname('TPCONTA').AsString)+
+                                ',NUMERO_BANCO= '+ quotedstr(tabela.fieldbyname('NBANCO').AsString)+
+                                ',CONTA= '+ quotedstr(tabela.fieldbyname('CONTA').AsString)+
+                                ',AGENCIA= '+ quotedstr(tabela.fieldbyname('AGENCIA').AsString)+
+                                // Gleyber - 19/06/2012 - Work Item #44 - Início
                                 '  where cpf ='+quotedstr(tabela.fieldbyname('cnpj').AsString)+
                                 ' or cpf = '+quotedstr(formatnumeric(tabela.fieldbyname('cnpj').AsString)));
                                 //debugstr(fdm.snet);
