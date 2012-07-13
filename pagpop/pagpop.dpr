@@ -57,11 +57,12 @@ uses
   ufinanceiro in '..\modulos\pagar_receber\ufinanceiro.pas' {ffinanceiro},
   ufinanceirovalor in '..\modulos\pagar_receber\ufinanceirovalor.pas' {ffinanceirovalor},
   uclientelocaliza in '..\modulos\cliente\uclientelocaliza.pas' {fclientelocaliza},
-  uclientevalor1 in '..\modulos\cliente\uclientevalor1.pas' {fclientevalor1};
+  uclientevalor1 in '..\modulos\cliente\uclientevalor1.pas' {fclientevalor1},
+  uConnect in '..\modulos\uConnect.pas',
+  dmTestConnect in '..\modulos\dmTestConnect.pas' {dtmTestConnect: TDataModule},
+  FDadosAdicionaisOBS in 'FDadosAdicionaisOBS.pas' {FrmDadosAdicionaisOBS};
 
 {$R *.res}
-
-
 
 procedure VerDlls;
 
@@ -85,149 +86,149 @@ var
 var
   System: array [0..144] of char;
 
-begin    
-        GetWindowsDirectory(System, 144);
+begin
+  GetWindowsDirectory(System, 144);
 
-        CONF_GLOBAL:= ExtractFilePath(ParamStr(0)) + 'imagem\sigacnet.ini';
+  CONF_GLOBAL:= ExtractFilePath(ParamStr(0)) + 'imagem\sigacnet.ini';
 
-        if lowercase(copy(System,1,2)) <> 'c:' then
-           conf_local := copy(System,1,2)+'\sigacnet.ini'
-        else
-           conf_local := 'c:\sigacnet.ini';
+  if lowercase(copy(System,1,2)) <> 'c:' then
+    conf_local := copy(System,1,2)+'\sigacnet.ini'
+  else
+    conf_local := 'c:\sigacnet.ini';
 
-        Ini := TInifile.Create(CONF_GLOBAL);
-        databasename:= Ini.Readstring('databasename', 'databasename', '');
-        ini.Free;
+  Ini          := TInifile.Create(CONF_GLOBAL);
+  databasename := Ini.Readstring('databasename', 'databasename', '');
+  // Gleyber - 10/07/2012 - Início
+  if ini.Readstring('mysqld', 'ipnet', '') = '' then
+    Ini.WriteString('mysqld', 'ipnet', 'mysql.vitalcred.com.br');
+  if ini.Readstring('mysqld', 'databasenet', '') = '' then
+    Ini.WriteString('mysqld', 'databasenet', 'odontocred1');
+  if ini.Readstring('mysqld', 'usernet', '') = '' then
+    Ini.WriteString('mysqld', 'usernet', 'odontoc_soft');
+  if ini.Readstring('mysqld', 'pwdnet', '') = '' then
+  Ini.WriteString('mysqld', 'pwdnet', 'soft1423');
+  // Gleyber - 10/07/2012 - Fim
+  ini.Free;
 
-        if databasename = '' then databasename:='sigac';
+  if databasename = '' then
+    databasename := 'sigac';
 
-        Application.Title := 'PagPop';
-        ini := TInifile.Create('my.ini');
-        mysqldir := ini.Readstring('mysqld', 'basedir', 'c:\mysql');
-        ini.Free;
+  Application.Title := 'PagPop';
+  ini               := TInifile.Create('my.ini');
+  mysqldir          := ini.Readstring('mysqld', 'basedir', 'c:\mysql');
+  ini.Free;
 
-        if not DirectoryExists('c:\windows') then ForceDirectories('c:\windows');
+  if not DirectoryExists('c:\windows') then
+    ForceDirectories('c:\windows');
 
-        if FileExists(mysqldir+'\libs.dat') then
-           if not FileExists(ExtractFilePath(ParamStr(0)) + 'imagem\libs.dat') then
-              copyfile(pchar(mysqldir+'\libs.dat'),PChar(extractfilepath(ParamStr(0)) + '\imagem\libs.dat'), False);
+  if FileExists(mysqldir+'\libs.dat') then
+    if not FileExists(ExtractFilePath(ParamStr(0)) + 'imagem\libs.dat') then
+      copyfile(pchar(mysqldir+'\libs.dat'),PChar(extractfilepath(ParamStr(0)) + '\imagem\libs.dat'), False);
 
-        GetSystemDirectory(System, 144);
+  GetSystemDirectory(System, 144);
 
-        if (not FileExists(string(System) + '\dbexpmysql.dll')) or
-           (not FileExists(string(System) + '\libmysql50.dll')) or
-           (not FileExists(string(System) + '\mybackup.dll')) or
-           (not FileExists(string(System) + '\midas.dll')) then
+  if (not FileExists(string(System) + '\dbexpmysql.dll')) or
+     (not FileExists(string(System) + '\libmysql50.dll')) or
+     (not FileExists(string(System) + '\mybackup.dll')) or
+     (not FileExists(string(System) + '\midas.dll')) then
 
-            if FileExists(ExtractFilePath(ParamStr(0)) + 'imagem\libs.dat') then begin
-               repairdlls(string(System) + '\');
-               sleep(1000);
-            end;
+  if FileExists(ExtractFilePath(ParamStr(0)) + 'imagem\libs.dat') then
+  begin
+    repairdlls(string(System) + '\');
+    sleep(1000);
+  end;
 
-       //se na achar as dlls
+  // Se não achar as dlls
+  if (not FileExists(string(System) + '\libmysql50.dll')) then
+  begin
+    msg('Não foram encontradas em '+string(System)+' do windows as DLLs: '+#13+#13+
+        'libmysql50.dll, dbexpmysql.dll, mybackup.dll, midas.dll.'+#13+ #13+
+        'Contate a central: '+#13+
+        'Fone  : (16) 3975-2014 - '+#13+
+        'E-Mail : contato@bitpamp.com.br '+#13+
+        'MSN   : contato@bitpamp.com.br ',0);
+    vf:=true;
+    application.Terminate;
+  end
+  else
+  begin
+    Dir   := ExtractFilePath(ParamStr(0));
 
-       if (not FileExists(string(System) + '\libmysql50.dll')) then begin
-          msg('Não foram encontradas em '+string(System)+' do windows as DLLs: '+#13+#13+
-                                       'libmysql50.dll, dbexpmysql.dll, mybackup.dll, midas.dll.'+#13+ #13+
-                                       'Contate a central: '+
-                                        #13+'Fone  : (16) 3975-2014 - '+
-                                        #13+'E-Mail : contato@bitpamp.com.br '+
-                                        #13+'MSN   : contato@bitpamp.com.br ',0);
-          vf:=true;
-          application.Terminate;
+    GetWindowsDirectory(windir, 144);
+    GetTempPath(144, tmpdir);
 
-       end else begin
+    myadm   := FindWindow('TForm1', 'WinMySQLAdmin 1.4');
+    Serv    := '';
+    Ini     := TInifile.Create(conf_local);
+    IniHost := Ini.ReadString('Rede', 'Host', '');
+    Ini.Free;
 
+    myini    := TInifile.Create('my.ini');
+    mysqldir := myini.Readstring('mysqld', 'basedir', 'C:/mysql');
 
-        Dir := ExtractFilePath(ParamStr(0));
-        GetWindowsDirectory(windir, 144);
-        GetTempPath(144, tmpdir);
-        myadm := FindWindow('TForm1', 'WinMySQLAdmin 1.4');
+    MyIni.Free;
 
-        Serv := '';
+    if Dir[2] = '\' then
+    begin //se o segundo caracter do path for '\' então e' rede
+      Count := 3;
 
-        Ini := TInifile.Create(conf_local);
-        IniHost := Ini.ReadString('Rede', 'Host', '');
-        if Not Ini.SectionExists('Web') then
-        begin
-          Ini.WriteString('Web', 'ipnet', 'mysql.vitalcred.com.br');
-          Ini.WriteString('Web', 'databasenet', 'odontocred1');
-          Ini.WriteString('Web', 'usernet', 'odontoc_soft');
-        end;
+      while Dir[Count] <> '\' do
+        Inc(Count);
+
+      Serv := Copy(Dir, 3, Count - 3);
+
+      if not FileExists(conf_local) then
+      begin // Verificar se existe o arquivo
+        ini := TIniFile.Create(conf_local);
+        Ini.WriteString('Rede', 'Host', serv);
+        IniHost := Serv;
         Ini.Free;
-
-        myini := TInifile.Create('my.ini');
-        mysqldir := myini.Readstring('mysqld', 'basedir', 'C:/mysql');
-        MyIni.Free;
-
-        if Dir[2] = '\' then begin //se o segundo caracter do path for '\' então e' rede
-
-        Count := 3;
-        while Dir[Count] <> '\' do Inc(Count);
-        Serv := Copy(Dir, 3, Count - 3);
-
-        if not FileExists(conf_local) then begin//verificar se existe o arquivo
-            ini := TIniFile.Create(conf_local);
-            Ini.WriteString('Rede', 'Host', serv);
-            IniHost := Serv;
-            Ini.WriteString('Web', 'ipnet', 'mysql.vitalcred.com.br');
-            Ini.WriteString('Web', 'databasenet', 'odontocred1');
-            Ini.WriteString('Web', 'usernet', 'odontoc_soft');
-            Ini.Free;
-        end;
       end;
+    end;
 
+    // Se nao for atalho, se for o my está no servidor
+    if Serv = '' then
+    begin
+      if not fileexists (ExtractFilePath(ParamStr(0)) + 'cliente.txt') then
+      begin
+        if myadm = 0 then
+          WinExec(PChar(mysqldir + '\bin\winmysqladmin.exe'), Sw_hide);
 
-      //se nao for atalho, se for o my está no servidor
-      if Serv = '' then begin
-         if not fileexists (ExtractFilePath(ParamStr(0)) + 'cliente.txt') then begin
-
-           if myadm = 0 then
-              WinExec(PChar(mysqldir + '\bin\winmysqladmin.exe'), Sw_hide);
-
-           ShellExecute(0,nil, PChar(mysqldir + '\bin\mysqld-nt.exe'), ' - start ', nil, sw_hide);
-
-         end;
+        ShellExecute(0,nil, PChar(mysqldir + '\bin\mysqld-nt.exe'), ' - start ', nil, sw_hide);
       end;
+    end;
 
+    // Seta variáveis
+    ThousandSeparator := '.'; // Separador de milhares
+    DecimalSeparator  := ','; // Ponto decimal
+    ShortDateFormat   := 'dd/mm/yyyy'; // Formato de data
+    DateSeparator     := '/'; // Separador de data
+    TimeSeparator     := ':'; // Separador de hora
 
-
-
-        //Seta variáveis
-        ThousandSeparator := '.'; // Separador de milhares
-        DecimalSeparator  := ','; // Ponto decimal
-        ShortDateFormat   := 'dd/mm/yyyy'; // Formato de data
-        DateSeparator     := '/'; // Separador de data
-        TimeSeparator     := ':'; // Separador de hora
-
-        // Nome dos meses por extenso
-        LongMonthNames[1]  := 'JANEIRO';
-        LongMonthNames[2]  := 'FEVEREIRO';
-        LongMonthNames[3]  := 'MARÇO';
-        LongMonthNames[4]  := 'ABRIL';
-        LongMonthNames[5]  := 'MAIO';
-        LongMonthNames[6]  := 'JUNHO';
-        LongMonthNames[7]  := 'JULHO';
-        LongMonthNames[8]  := 'AGOSTO';
-        LongMonthNames[9]  := 'SETEMBRO';
-        LongMonthNames[10] := 'OUTUBRO';
-        LongMonthNames[11] := 'NOVEMBRO';
-        LongMonthNames[12] := 'DEZEMBRO';
-      end;
-
-
+    // Nome dos meses por extenso
+    LongMonthNames[1]  := 'JANEIRO';
+    LongMonthNames[2]  := 'FEVEREIRO';
+    LongMonthNames[3]  := 'MARÇO';
+    LongMonthNames[4]  := 'ABRIL';
+    LongMonthNames[5]  := 'MAIO';
+    LongMonthNames[6]  := 'JUNHO';
+    LongMonthNames[7]  := 'JULHO';
+    LongMonthNames[8]  := 'AGOSTO';
+    LongMonthNames[9]  := 'SETEMBRO';
+    LongMonthNames[10] := 'OUTUBRO';
+    LongMonthNames[11] := 'NOVEMBRO';
+    LongMonthNames[12] := 'DEZEMBRO';
+  end;
 end;
 
-
-
-
 begin
-        VerDlls;
+  VerDlls;
 
-        if not vf then begin
-            Application.CreateForm(Tfmenu, fmenu);
+  if not vf then
+  begin
+    Application.CreateForm(Tfmenu, fmenu);
+  Application.CreateForm(TdtmTestConnect, dtmTestConnect);
   Application.Initialize;
-            Application.Run;
-        end;
-
+    Application.Run;
+  end;
 end.

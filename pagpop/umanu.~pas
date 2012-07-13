@@ -254,23 +254,24 @@ implementation
 
 procedure tfmenu.materiaprima(cod:string;alt:boolean);
 begin
-close;end;
-
+  close;
+end;
 
 procedure tfmenu.acesso;
 begin
-        vf:=false;
-        application.CreateForm(tfacesso,facesso);
-        facesso.showmodal;
+  vf:=false;
+  application.CreateForm(tfacesso,facesso);
+  facesso.showmodal;
 
-        if vf then begin
-           application.Terminate;
-           close;
-           abort;
-        end;
+  if vf then
+  begin
+    application.Terminate;
+    close;
+    abort;
+  end;
 
-
-        if ip <> '' then filial := '         -   Conectado em '+ip;
+  if ip <> '' then
+    filial := '         -   Conectado em '+ip;
 end;
 
 procedure tfmenu.relsindicato(criterio:string);
@@ -1003,7 +1004,7 @@ end;
 
 procedure Tfmenu.Configuraes1Click(Sender: TObject);
 begin
-        acesso('configurações');
+        acesso1('configurações');
         application.CreateForm(TFconfig,Fconfig);
         Fconfig.showmodal;
         confExecute(self);

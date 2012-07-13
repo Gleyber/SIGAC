@@ -1864,7 +1864,7 @@ object fperiodo2: Tfperiodo2
       object DBCtrlGrid1: TDBCtrlGrid
         Left = 0
         Top = 0
-        Width = 368
+        Width = 369
         Height = 204
         Align = alTop
         ColCount = 2

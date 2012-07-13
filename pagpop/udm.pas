@@ -344,7 +344,7 @@ begin
                   'select chave, numero, data, hora, historico, documento, '+
                         'if(tipo = "DI", "DINHEIRO",'+
                           'if(tipo = "CA", "CARTAO",'+
-                           'if(tipo = "CH", "CHEQUE", '+
+                           'if(tipo = "CH, "CHEQUE", '+
                              'if(tipo = "TR", "TRANSFERENCIA",'+
                                'if(tipo = "DO", "DOC",tipo))))) as Modalidade,dtcompensacao,'+
 
@@ -3138,7 +3138,7 @@ begin
         Ini := TInifile.Create(conf_local);
         user := Ini.Readstring('Rede', 'user', 'root');
         if ip='' then ip := Ini.Readstring('Rede', 'Host', 'localhost');
-        Password := Ini.Readstring('Rede', 'Password', '');
+        Password := EnDecrypt( Ini.Readstring('Rede', 'Password', ''));
 
 
         ini.free;
@@ -3214,7 +3214,7 @@ begin
         conectnet.HostName := ipnet;
         conectnet.Database := databasenet;
         conectnet.User := Usernet;
-        conectnet.Password := Passwordnet;
+        conectnet.Password := EnDecrypt(Passwordnet);
 end;
 
 procedure Tfdm.conectempBeforeConnect(Sender: TObject);

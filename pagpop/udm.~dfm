@@ -1,8 +1,8 @@
 object fdm: Tfdm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 1
-  Top = 1
+  Left = 273
+  Top = 8
   Height = 568
   Width = 798
   object dsempresa: TDataSource
@@ -903,5 +903,23 @@ object fdm: Tfdm
     Configuracoes.Arquivos.PathDPEC = 'C:\Nfe\DPEC'
     Left = 388
     Top = 200
+  end
+  object sqlBanco: TZQuery
+    Connection = conectnet
+    Params = <>
+    Left = 656
+    Top = 376
+  end
+  object dspBanco: TDataSetProvider
+    DataSet = sqlBanco
+    Left = 656
+    Top = 422
+  end
+  object cdsBanco: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspBanco'
+    Left = 656
+    Top = 470
   end
 end

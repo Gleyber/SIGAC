@@ -254,23 +254,24 @@ implementation
 
 procedure tfmenu.materiaprima(cod:string;alt:boolean);
 begin
-close;end;
-
+  close;
+end;
 
 procedure tfmenu.acesso;
 begin
-        vf:=false;
-        application.CreateForm(tfacesso,facesso);
-        facesso.showmodal;
+  vf:=false;
+  application.CreateForm(tfacesso,facesso);
+  facesso.showmodal;
 
-        if vf then begin
-           application.Terminate;
-           close;
-           abort;
-        end;
+  if vf then
+  begin
+    application.Terminate;
+    close;
+    abort;
+  end;
 
-
-        if ip <> '' then filial := '         -   Conectado em '+ip;
+  if ip <> '' then
+    filial := '         -   Conectado em '+ip;
 end;
 
 procedure tfmenu.relsindicato(criterio:string);
@@ -954,7 +955,7 @@ end;
 
 procedure Tfmenu.Contasagar1Click(Sender: TObject);
 begin
-        cadg('','nome', 10);
+        cadg('','nome',  10);
 end;
 
 procedure Tfmenu.Pagamentos1Click(Sender: TObject);

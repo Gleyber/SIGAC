@@ -214,6 +214,9 @@ type
     pnet2: TDataSetProvider;
     tbentradacaixaemp: TIntegerField;
     nfe: TACBrNFe;
+    sqlBanco: TZQuery;
+    dspBanco: TDataSetProvider;
+    cdsBanco: TClientDataSet;
 
 
 
@@ -341,7 +344,7 @@ begin
                   'select chave, numero, data, hora, historico, documento, '+
                         'if(tipo = "DI", "DINHEIRO",'+
                           'if(tipo = "CA", "CARTAO",'+
-                           'if(tipo = "CH", "CHEQUE", '+
+                           'if(tipo = "CH, "CHEQUE", '+
                              'if(tipo = "TR", "TRANSFERENCIA",'+
                                'if(tipo = "DO", "DOC",tipo))))) as Modalidade,dtcompensacao,'+
 
@@ -3135,7 +3138,7 @@ begin
         Ini := TInifile.Create(conf_local);
         user := Ini.Readstring('Rede', 'user', 'root');
         if ip='' then ip := Ini.Readstring('Rede', 'Host', 'localhost');
-        Password := Ini.Readstring('Rede', 'Password', '');
+        Password := EnDecrypt( Ini.Readstring('Rede', 'Password', ''));
 
 
         ini.free;
