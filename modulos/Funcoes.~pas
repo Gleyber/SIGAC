@@ -8859,7 +8859,6 @@ begin
 
   sqlpub:= tzquery.Create(application);
 
-
   with sqlpub do
   begin
        Connection := fdm.conector;

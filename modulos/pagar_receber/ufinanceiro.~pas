@@ -1911,7 +1911,8 @@ var
     //        //formatdatetime('dd-mm-yyyy',strtodate(vencimento))+'	'+
     //        fdm.Query1.fieldbyname('vrmensalidade').AsString);
     Writeln(fArq,fdm.Query1.fieldbyname('nome').AsString+'	'+
-            vencimento+'	'+
+            //vencimento+'	'+
+            formatdatetime('dd-mm-yyyy',strtodate(vencimento))+'	'+
             fdm.Query1.fieldbyname('vrmensalidade').AsString);
     // Gleyber - 04/07/2012 - Fim
   end;

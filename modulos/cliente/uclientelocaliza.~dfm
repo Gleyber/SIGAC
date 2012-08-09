@@ -1144,7 +1144,7 @@ object fclientelocaliza: Tfclientelocaliza
     Height = 28
     Align = alTop
     Color = 16056319
-    Columns = 4
+    Columns = 5
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -1155,7 +1155,8 @@ object fclientelocaliza: Tfclientelocaliza
       'Ativos'
       'Inativos'
       'Cancelados'
-      'Todos')
+      'Todos'
+      'Duplica'#231#227'o For'#231'ada')
     ParentColor = False
     ParentFont = False
     TabOrder = 3
@@ -1225,7 +1226,7 @@ object fclientelocaliza: Tfclientelocaliza
     Filter = 'JPG|*.JPG'
     InitialDir = 'C:\'
     Left = 480
-    Top = 248
+    Top = 244
   end
   object tabela: TClientDataSet
     Aggregates = <>
@@ -1280,9 +1281,19 @@ object fclientelocaliza: Tfclientelocaliza
       Visible = False
       OnClick = MensalidadesVencidas1Click
     end
+    object N4: TMenuItem
+      Caption = '-'
+    end
     object Atualizarosite1: TMenuItem
       Caption = 'Atualizar o Site'
       OnClick = Atualizarosite1Click
+    end
+    object Verificarinconsistnciaentrebaselocal1: TMenuItem
+      Caption = 'Verificar inconsist'#234'ncia entre bases'
+      OnClick = Verificarinconsistnciaentrebaselocal1Click
+    end
+    object N5: TMenuItem
+      Caption = '-'
     end
     object AtualizarUsurio1: TMenuItem
       Caption = 'Atualizar Usu'#225'rio'
@@ -1324,7 +1335,7 @@ object fclientelocaliza: Tfclientelocaliza
   end
   object pgrupo: TDataSetProvider
     DataSet = sgrupo
-    Left = 142
+    Left = 158
     Top = 402
   end
   object tbgrupo: TClientDataSet
@@ -1335,12 +1346,12 @@ object fclientelocaliza: Tfclientelocaliza
     PacketRecords = 0
     Params = <>
     ProviderName = 'pgrupo'
-    Left = 206
+    Left = 222
     Top = 402
   end
   object dsgrupo: TDataSource
     DataSet = tbgrupo
-    Left = 334
+    Left = 350
     Top = 402
   end
   object sqlcli: TZQuery
@@ -1349,14 +1360,14 @@ object fclientelocaliza: Tfclientelocaliza
       'select * from tbcliente')
     Params = <>
     Left = 256
-    Top = 248
+    Top = 244
   end
   object sgrupo: TZQuery
     Connection = fdm.conector
     SQL.Strings = (
       'SELECT * FROM tbmaquina')
     Params = <>
-    Left = 272
-    Top = 408
+    Left = 288
+    Top = 402
   end
 end

@@ -626,6 +626,7 @@ object fclientevalor1: Tfclientevalor1
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
+    OnClick = SpeedButton3Click
   end
   object Label28: TLabel
     Left = 379

@@ -102,6 +102,9 @@ type
     atuabase: TAction;
     N3: TMenuItem;
     CNPJduplicados1: TMenuItem;
+    Verificarinconsistnciaentrebaselocal1: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
 
     procedure filcli(i:integer);
 
@@ -157,6 +160,7 @@ type
     procedure Filtrarclientescommovimentodeumperodo1Click(Sender: TObject);
     procedure atuabaseExecute(Sender: TObject);
     procedure CNPJduplicados1Click(Sender: TObject);
+    procedure Verificarinconsistnciaentrebaselocal1Click(Sender: TObject);
   private
   PN,PA,PD,PC,chave:string;
     { Private declarations }
@@ -172,7 +176,8 @@ var
 implementation
 
 uses  udm, funcoes, umanu,  uconsumotexto,
-   uimp, ufiltrocad,UvalidaIE, uclientevalor1;
+   uimp, ufiltrocad,UvalidaIE, uclientevalor1, uConnect, Math,
+  FInconsistencia;
 
 {$R *.dfm}
 
@@ -333,7 +338,9 @@ begin
            else if rativo.ItemIndex = 1 then
               ativo := ' and np= "I" '
            else if rativo.ItemIndex = 2 then
-              ativo := ' and np= "C" ';
+              ativo := ' and np= "C" '
+           else if rativo.ItemIndex = 4 then
+              ativo := ' and cargo="DUP" ';
 
 
   filtro := '';
@@ -631,6 +638,7 @@ begin
                 vitalcredExecute(self) ;
 
                 Atualizarosite1.Visible  := responsavel = 'VITALCRED' ;
+                Verificarinconsistnciaentrebaselocal1.Visible := Atualizarosite1.Visible;
                 AtualizarUsurio1.Visible  := responsavel = 'VITALCRED' ;
                 rativo.Visible  := responsavel = 'VITALCRED' ;
 //                MensalidadesVencidas1.Visible   := responsavel = 'VITALCRED' ;
@@ -1430,18 +1438,24 @@ procedure Tfclientelocaliza.Atualizarosite1Click(Sender: TObject);
 
 procedure comvital;
 begin
-        fdm.conectnet.Disconnect;
-        ipnet := 'mysql.vitalcred.com.br';
-        databasenet := 'odontocred1';
-        Usernet := 'odontoc_soft';
-        Passwordnet := 'soft1423';
+  TestCryptoIni;
+
+  fdm.conectnet.Disconnect;
+  ipnet       :=  sWebHost;     // 'mysql.vitalcred.com.br';
+  databasenet :=  sWebDb;       // 'odontocred1';
+  Usernet     :=  sWebUser;     // 'odontoc_soft';
+  Passwordnet :=  sWebPwd;      // 'soft1423';
 end;
 
 var
-tipo,cpf,rg,nascimento,datai,codigo,cap,descricao:string;
-cnpj :WideString;
-bExisteRegistro : Boolean; // Gleyber - 23/06/2012 - Work item 8
-sCPF            : string;  // Gleyber - 23/06/2012 - Work item 8
+  tipo,cpf,rg,nascimento,datai,codigo,cap,descricao:string;
+  cnpj :WideString;
+  bExisteRegistro : Boolean; // Gleyber - 23/06/2012 - Work item 8
+  sCPF            : string;  // Gleyber - 23/06/2012 - Work item 8
+  iCont           : Integer;
+  sSql            : string;
+  sCodigoGP       : string;
+  sDescCodGP      : string;
 begin
 
         ipnet:='';
@@ -1484,8 +1498,10 @@ begin
              //abort;
         end;
 
+        iCont := 0;
         fdm.tbnet.First;
-        while not fdm.tbnet.Eof do begin
+        while not fdm.tbnet.Eof do
+        begin
 
             fdm.tbnet.edit;
             fdm.tbnet['cnpj'] := formatacpf_cnpj(FormatNumeric(fdm.tbnet.fieldbyname('cnpj').AsString));
@@ -1495,6 +1511,10 @@ begin
             sqlpub2['cnpj']       := formatacpf_cnpj(FormatNumeric(sqlpub2.fieldbyname('cnpj').AsString));
             //sqlpub2['cnpjconta']  := formatacpf_cnpj(FormatNumeric(sqlpub2.fieldbyname('cnpjconta').AsString));
 
+
+             // Gleyber - 23/06/2012 - Work item 8 - Fim
+             if Not fdm.conector.InTransaction then      // Se não houver transação startada
+               fdm.conector.StartTransaction;            // Inicia nesse ponto
 
              if (not sqlpub2.Locate('cnpj',fdm.tbnet.fieldbyname('cnpj').AsString,[])) and
                 (not sqlpub2.Locate('cnpj',fdm.tbnet.fieldbyname('cpf').AsString,[])) then
@@ -1511,6 +1531,12 @@ begin
                    datai := ','+quotedstr(formatdatetime('yyyy-mm-dd',strtodate(copy(fdm.tbnet.fieldbyname('data_insercao').AsString ,1,10))))
                 else datai := ',null';
 
+                // Detalhamento para capturar corretamente o código - Início
+                sCodigoGP  := fdm.tbnet.fieldbyname('codigogrupo').AsString;
+                selecione('select descricao from tbconffin where tp = 10 and codigo = '+sCodigoGP);
+                sDescCodGP := sqlpub.fieldbyname('descricao').AsString;
+                // Detalhamento para capturar corretamente o código - Fim
+
                 selecione('select max(codigo)as codigo from tbcliente');
                 codigo := inttostr(sqlpub.fieldbyname('codigo').AsInteger + 1);
                 with fdm.snet2 do begin
@@ -1519,12 +1545,12 @@ begin
                      //debugstr(fdm.snet2);
                      try execsql;
                      except end;
-                     comvital;
+                     //comvital;
                 end;
 
                 // Gleyber - 23/06/2012 - Work item 8 - Início
                 sCPF := QuotedStr(fdm.tbnet.fieldbyname('cpf').AsString);
-                selecione('SELECT 1 '+
+                selecione('SELECT * '+
                           'FROM TBCLIENTE '+
                           'WHERE REPLACE(REPLACE(REPLACE(REPLACE(CNPJ,''.'',''''),''-'',''''),''/'',''''),'' '','''')  = '+
                             'REPLACE(REPLACE(REPLACE(REPLACE('+sCPF+',''.'',''''),''-'',''''),''/'',''''),'' '','''')');
@@ -1534,8 +1560,7 @@ begin
                 // memo1.lines.add(sqlpub2.fieldbyname('cnpj').AsString);
                 if not bExisteRegistro then
                 begin
-                // Gleyber - 23/06/2012 - Work item 8 - Fim
-                 selecione('insert into tbcliente( '+
+                  sSql := 'insert into tbcliente( '+
                                  'transportadora'+
                                  ', filial'+
                                  ', np'+
@@ -1543,6 +1568,7 @@ begin
                                  ',fisjur'+
                                  ',nome'+
                                  ',codigogp'+
+                                 ',gp'+
                                  ',cnpj'+
                                  ',ie '+
                                  ',nascimento '+
@@ -1572,83 +1598,81 @@ begin
                                  ',BANCO'+
                                  ',CONTA'+
                                  ',AGENCIA'+
-                                 ',TIPOCLIENTE'+
+                                 ',TIPOCLIENTE';
                                  // Gleyber - 19/06/2012 - Work Item #44 - Fim
-                                 ') values('+
-
-
-                                   quotedstr(fdm.tbnet.fieldbyname('usuario').AsString)+
-                               ','+quotedstr(fdm.tbnet.fieldbyname('senha').AsString)+
-                               ',"I"'+ // Gleyber - 21/06/2012 - Work Item #7 ',"A"'+
-                               ',1'+
-                               ','+quotedstr(tipo)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('nome').AsString)+
-                               ','+ quotedstr(inttostr(fdm.tbnet.fieldbyname('codigogrupo').asinteger))+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('cpf').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('rg').AsString)+
-                               nascimento+
-                               datai+
-                               datai+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('crea').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('numero_crea').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('razao').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('endereco').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('complemento').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('bairro').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('cidade').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('estado').AsString)+
-                               ','+ quotedstr(formatnumeric(fdm.tbnet.fieldbyname('cep').AsString))+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('telefone1').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('telefone2').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('celular').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('email').AsString)+
-                               ',"SITE"'+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('tipo_user').AsString)+
-                               ','+ quotedstr(codigo) +
+                  sSql := sSql + ') values('+
+                                   quotedstr(fdm.tbnet.fieldbyname('usuario').AsString)+                          // transportadora
+                               ','+quotedstr(fdm.tbnet.fieldbyname('senha').AsString)+                            // filial
+                               ',"I"'+ // Gleyber - 21/06/2012 - Work Item #7 ',"A"'+                             // np
+                               ',1'+                                                                              // pontos
+                               ','+quotedstr(tipo)+                                                               // fisjur
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('nome').AsString)+                            // nome
+                               ','+ sCodigoGP+                                                                    // codigogp
+                               ','+ QuotedStr(sDescCodGP)+                                                        // gp
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('cpf').AsString)+                             // cnpj
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('rg').AsString)+                              // ie
+                               nascimento+                                                                        // nascimento
+                               datai+                                                                             // data
+                               datai+                                                                             // dtvenda
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('crea').AsString)+                            // statu
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('numero_crea').AsString)+                     // CRO
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('razao').AsString)+                           // nomecurto
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('endereco').AsString)+                        // endereco
+                               ','+ quotedstr(Copy(fdm.tbnet.fieldbyname('complemento').AsString,1,10))+          // complemento
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('bairro').AsString)+                          // Bairro
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('cidade').AsString)+                          // municipio
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('estado').AsString)+                          // uf
+                               ','+ quotedstr(formatnumeric(fdm.tbnet.fieldbyname('cep').AsString))+              // cep
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('telefone1').AsString)+                       // fone
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('telefone2').AsString)+                       // fone2
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('celular').AsString)+                         // fone3
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('email').AsString)+                           // email
+                               ',"SITE"'+                                                                         // vendedor
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('tipo_user').AsString)+                       // vinculo
+                               ','+ quotedstr(codigo) +                                                           // codigo
                                // Gleyber - 19/06/2012 - Work Item #44 - Início
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('TITULAR').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('CPFCNPJ_CONTA').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('TIPO_CONTA').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('NUMERO_BANCO').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('NOME_BANCO').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('CONTA').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('AGENCIA').AsString)+
-                               ','+ quotedstr(fdm.tbnet.fieldbyname('PROFISSAO').AsString)+
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('TITULAR').AsString)+                         // Titular
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('CPFCNPJ_CONTA').AsString)+                   // CNPJConta
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('TIPO_CONTA').AsString)+                      // TpConta
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('NUMERO_BANCO').AsString)+                    // NBanco
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('NOME_BANCO').AsString)+                      // Banco
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('CONTA').AsString)+                           // Conta
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('AGENCIA').AsString)+                         // Agencia
+                               ','+ quotedstr(fdm.tbnet.fieldbyname('PROFISSAO').AsString);                       // TipoCliente
                                // Gleyber - 19/06/2012 - Work Item #44 - Início
-                               ')');
+                 sSql := sSql + ')';
+                 Try
+                   selecione(sSql);
+                 except
+                   sqlpub.SQL.SaveToFile('c:\erro.sql');
+
+                   if fdm.conector.InTransaction then
+                     fdm.conector.Rollback;
+                   Application.MessageBox('Erro na inserção do registro. Verificar arquivo de erro.',
+                                          'Atenção', 0 + MB_ICONWARNING);
+                   Exit;
+                 end;
+
                 end;
              end;
 
-                  // Gleyber - 23/06/2012 - Work item 8 - Início
-                  if not bExisteRegistro then
-                  begin
-                  // Gleyber - 23/06/2012 - Work item 8 - Fim
+             Inc(iCont);
 
-                    selecione('select descricao from tbconffin where tp = 10 and codigo = '+ inttostr(fdm.tbnet.fieldbyname('codigogrupo').asinteger));
-                    descricao := sqlpub.fieldbyname('descricao').asstring;
-                    selecione('update tbcliente set gp  = ' + quotedstr(descricao)+
-                              ' where codigo = '+quotedstr(codigo));
+             if iCont = 1000 then
+             begin
+               fdm.conector.Commit;
+               iCont := 0;
+             end;
+            // Gleyber - 23/06/2012 - Work item 8 - Fim
 
-                    //sqlpub2 := nil;
-                    caption := '..... ATUALIZANDO DO SITE ... ESPERE...      ' +
-                                      inttostr(fdm.tbnet.RecNo) +'    DE    '+  inttostr(fdm.tbnet.RecordCount);
-
-                    update;
-                  end;
-                  // Gleyber - 23/06/2012 - Work item 8 - Fim
-
-                  fdm.tbnet.Cancel;
-                  //sqlpub.Cancel;
-                  fdm.tbnet.Next;
-              end;
+              fdm.tbnet.Cancel;
+              //sqlpub.Cancel;
+              fdm.tbnet.Next;
+          end;
 
 
-
-
-
-
-
-
+        caption := 'Fechando conexões...';
+        update;
 
         tabela.close;
         fdm.conector.Disconnect;
@@ -1659,6 +1683,9 @@ begin
         fdm.snet2.Close;
         fdm.snet.Close;
         comvital;
+
+        Caption := 'Pesquisando tabela de clientes local...';
+        Update;
 
         with fdm.snet2 do begin
              sql.Clear;
@@ -1674,6 +1701,8 @@ begin
                  //abort;
 
         //Atualiza do banco local para o site
+
+        Caption := 'Pesquisando tabela de clientes web...';
         sqlcli.SQL.Clear;
         sqlcli.SQL.Add('select * from tbcliente where flagsite is not null');
         tabela.Close;
@@ -1682,8 +1711,11 @@ begin
 
        // showmessage(inttostr(tabela.RecordCount));
 
+        iCont := 0;
+
         tabela.First;
-        while not tabela.Eof do begin
+        while not tabela.Eof do
+        begin
 
 
               if tabela['fisjur']='J' then
@@ -1719,10 +1751,10 @@ begin
                    sCPF := QuotedStr(tabela.fieldbyname('cnpj').AsString);
 
                    fdm.sqlBanco.SQL.Clear;
-                   fdm.sqlBanco.SQL.Add('SELECT 1 '+
-                           'FROM TAB_CLIENTES '+
-                           'WHERE REPLACE(REPLACE(REPLACE(REPLACE(CPF,''.'',''''),''-'',''''),''/'',''''),'' '','''')  = '+
-                           'REPLACE(REPLACE(REPLACE(REPLACE('+sCPF+',''.'',''''),''-'',''''),''/'',''''),'' '','''')');
+                   fdm.sqlBanco.SQL.Add('select 1 '+
+                           'from tab_clientes '+
+                           'where replace(replace(replace(replace(cpf,''.'',''''),''-'',''''),''/'',''''),'' '','''')  = '+
+                           'replace(replace(replace(replace('+sCPF+',''.'',''''),''-'',''''),''/'',''''),'' '','''')');
 
                    fdm.sqlBanco.Open;
 
@@ -1777,7 +1809,7 @@ begin
                               ','+quotedstr(tabela.fieldbyname('filial').AsString)+
                               ','+quotedstr(tipo)+
                               ','+ quotedstr(tabela.fieldbyname('nome').AsString)+
-                              ','+ quotedstr(inttostr(tabela.fieldbyname('codigogp').asinteger))+
+                              ','+ tabela.fieldbyname('codigogp').AsString+
                               ','+ quotedstr(cpf)+
                               ','+ quotedstr(rg)+
                               nascimento+
@@ -1815,7 +1847,7 @@ begin
                                 ' data_alteracao = now() '+
                                 ',tipo='+ quotedstr(tipo)+
                                 ',nome='+ quotedstr(tabela.fieldbyname('nome').AsString)+
-                                ',codigogrupo='+ quotedstr(inttostr(tabela.fieldbyname('codigogp').Asinteger))+
+                                ',codigogrupo='+ tabela.fieldbyname('codigogp').AsString+
                                 ',cpf='+ quotedstr(cpf)+
                                 ',rg ='+ quotedstr(rg)+
                                 ',crea ='+ quotedstr(tabela.fieldbyname('statu').AsString)+
@@ -1843,8 +1875,8 @@ begin
                                 ',CONTA= '+ quotedstr(tabela.fieldbyname('CONTA').AsString)+
                                 ',AGENCIA= '+ quotedstr(tabela.fieldbyname('AGENCIA').AsString)+
                                 // Gleyber - 19/06/2012 - Work Item #44 - Início
-                                '  where cpf ='+quotedstr(tabela.fieldbyname('cnpj').AsString)+
-                                ' or cpf = '+quotedstr(formatnumeric(tabela.fieldbyname('cnpj').AsString)));
+                                '  where cod_user ='+tabela.fieldbyname('codigo').AsString+
+                                '    and nome = '+quotedstr(formatnumeric(tabela.fieldbyname('nome').AsString)));
                                 //debugstr(fdm.snet);
                    try
                      execsql;
@@ -1865,9 +1897,16 @@ begin
                              quotedstr(tabela.fieldbyname('chave').AsString));
                    comvital;
               end;
-              caption := '..... ATUALIZANDO PARA O SITE ... ESPERE...      ' +
+              caption := '..... ATUALIZANDO BASE LOCAL ... ESPERE...      ' +
                          inttostr(tabela.RecNo) +'    DE    '+  inttostr(tabela.RecordCount);
               update;
+
+              if iCont = 1000 then
+              begin
+                fdm.conector.Commit;
+                iCont := 0;
+              end;
+
               tabela.Next;
         end;
 
@@ -1916,71 +1955,108 @@ begin
 end;
 
 procedure Tfclientelocaliza.AtualizarUsurio1Click(Sender: TObject);
+  procedure comvital;
+  begin
+    TestCryptoIni;
+
+    fdm.conectnet.Disconnect;
+    ipnet       :=  sWebHost;     // 'mysql.vitalcred.com.br';
+    databasenet :=  sWebDb;       // 'odontocred1';
+    Usernet     :=  sWebUser;     // 'odontoc_soft';
+    Passwordnet :=  sWebPwd;      // 'soft1423';
+  end;
+
+  var
+    cap : string;
 begin
+  cap := caption;
 
-        fdm.conectnet.Disconnect;
-        ipnet := 'mysql.vitalcred.com.br';
-        databasenet := 'odontocred1';
-        Usernet := 'odontoc_soft';
-        Passwordnet := 'soft1423';
+  comvital;
 
-        try
-           fdm.conectnet.Connect;
-           ipnet:='';
-           databasenet := 'sigac';
-        except
-             Application.MessageBox('Não foi possível conectar ao banco de dados do site, verifique se a internet está OK.',
-                                    'Atenção', 0 + MB_ICONWARNING);
-             fdm.conectnet.Disconnect;
-             abort;
+  fdm.conectnet.Disconnect;
+
+  try
+    fdm.conectnet.Connect;
+    ipnet:='';
+    databasenet := 'sigac';
+  except
+    Application.MessageBox('Não foi possível conectar ao banco de dados do site, verifique se a internet está OK.',
+                           'Atenção', 0 + MB_ICONWARNING);
+    fdm.conectnet.Disconnect;
+    abort;
+  end;
+
+  caption := 'Abrindo base de clientes local para análise.';
+  Update;
+
+  sqlcli.SQL.Clear;
+  sqlcli.SQL.Add('select * from tbcliente order by transportadora');
+  tabela.Close;
+  tabela.Open;
+
+  formatarexecute(self);
+
+  comvital;
+
+  caption := 'Abrindo base de clientes web para análise.';
+  Update;
+
+  with fdm.snet do begin
+       sql.Clear;
+       sql.Add('select usuario, senha, cod_user from tab_clientes  where flag is not null order by usuario ');
+       open;
+  end;
+
+  tabela.DisableControls;
+  tabela.First;
+  fdm.conector.Disconnect;
+  while not tabela.Eof do begin
+
+        if fdm.snet.Locate('cod_user',tabela.fieldbyname('codigo').AsString,[]) then
+        begin
+
+           if (tabela['transportadora'] <> fdm.snet['usuario']) or
+              (tabela['filial'] <> fdm.snet['senha']) then
+           begin
+              fdm.conector.Connect;
+              selecione('update tbcliente set '+
+                        ' transportadora = ' + quotedstr(fdm.snet.fieldbyname('usuario').AsString)+
+                        ' ,filial = ' + quotedstr(fdm.snet.fieldbyname('senha').AsString)+
+                        ' where chave = ' + quotedstr(tabela.fieldbyname('chave').AsString));
+              fdm.conector.Disconnect;
+           end;
         end;
+        caption := 'ATUALIZANDO USUÁRIO! POR FAVOR, AGUARDE! REGISTRO ' +
+                   inttostr(tabela.RecNo) +' DE '+  inttostr(tabela.RecordCount);
+        update;
+
+        tabela.Next;
+  end;
+  tabela.First;
+  tabela.EnableControls;
+
+  fdm.conectnet.Disconnect;
+
+  fdm.conectnet.Connect;
+
+  caption := 'Atualizando dados da base web.';
+  Update;
+
+  with fdm.snet do begin
+       close;
+       sql.Clear;
+       sql.Add('update tab_clientes set flag = null');
+       execsql;
+  end;
 
 
-        sqlcli.SQL.Clear;
-        sqlcli.SQL.Add('select * from tbcliente order by transportadora');
-        tabela.Close;
-        tabela.Open;
-        formatarexecute(self);
+  fdm.conectnet.Disconnect;
+  fdm.snet.Close;
+  tabela.Refresh;
+  caption := cap;
+  showmessage('Atualizado!!!');
 
-
-        with fdm.snet do begin
-             sql.Clear;
-             sql.Add('select usuario, senha, cod_user from tab_clientes  where flag is not null order by usuario ');
-             open;
-        end;
-
-        tabela.First;
-        while not tabela.Eof do begin
-
-              if fdm.snet.Locate('cod_user',tabela.fieldbyname('codigo').AsString,[]) then begin
-
-                 if (tabela['transportadora'] <> fdm.snet['usuario']) or
-                    (tabela['filial'] <> fdm.snet['senha']) then
-
-                    selecione('update tbcliente set '+
-                              ' transportadora = ' + quotedstr(fdm.snet.fieldbyname('usuario').AsString)+
-                              ' ,filial = ' + quotedstr(fdm.snet.fieldbyname('senha').AsString)+
-                              ' where chave = ' + quotedstr(tabela.fieldbyname('chave').AsString));
-                 end;
-
-              tabela.Next;
-        end;
-
-
-        with fdm.snet do begin
-             close;
-             sql.Clear;
-             sql.Add('update tab_clientes set flag = null');
-             execsql;
-        end;
-
-
-        fdm.conectnet.Disconnect;
-        fdm.snet.Close;
-        tabela.Refresh;
-        showmessage('Atualizado!!!');
-
-        ativanet('','','','');
+  ativanet('','','','');
 
 end;
 
@@ -2286,6 +2362,17 @@ begin
     if st <> '' then msg('Duplicados'+#13+#13+st,0)
                 else msg('Não há duplicados.',0);
 
+end;
+
+procedure Tfclientelocaliza.Verificarinconsistnciaentrebaselocal1Click(
+  Sender: TObject);
+begin
+  try
+    FrmInconsistencia := TFrmInconsistencia.Create(Self);
+    FrmInconsistencia.ShowModal;
+  finally
+    FrmInconsistencia.Free;
+  end;
 end;
 
 end.

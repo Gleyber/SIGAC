@@ -177,6 +177,7 @@ type
     procedure Label6Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Label8Click(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
   private
         contato:string;
    { Private declarations }
@@ -204,7 +205,7 @@ var
 
 implementation
 uses funcoes,  udm, umanu, uclientelocaliza,
-   UvalidaIE, uconsumotexto;
+   UvalidaIE, uconsumotexto, FDadosAdicionaisOBS;
 {$R *.dfm}
 
 
@@ -382,6 +383,15 @@ begin
 
      fclientelocaliza.tabela.edit;
      fclientelocaliza.tabela['codigogp'] := gp.fieldbyname('codigo').AsInteger;
+
+     if fclientelocaliza.tabela['cargo'] = 'DUP' then
+     begin
+       if MessageDlg('O problema de DUPLICAÇÃO FORÇADA foi resolvido nesta gravação?',mtConfirmation,mbYesNoCancel,0) = mrYes then
+       begin
+         fclientelocaliza.tabela.Edit;
+         fclientelocaliza.tabela['cargo'].clear;
+       end;
+     end;
 
      valcnpj(ecnpj,fclientelocaliza.tabela,nil,'cnpj');
 
@@ -810,6 +820,15 @@ begin
               2,0);
 
          combosExecute(self);
+end;
+
+procedure Tfclientevalor1.SpeedButton3Click(Sender: TObject);
+begin
+  FrmDadosAdicionaisOBS := TFrmDadosAdicionaisOBS.Create(Self);
+  FrmDadosAdicionaisOBS.dbmObs.DataSource := fclientelocaliza.ds;
+  FrmDadosAdicionaisOBS.dbmObs.DataField  := 'obs1';
+  FrmDadosAdicionaisOBS.ShowModal;
+  FrmDadosAdicionaisOBS.Free;
 end;
 
 end.
