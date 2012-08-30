@@ -8,7 +8,7 @@ uses
   ActnList,  DB, DBClient, RLParser,  RLDraftFilter, RLFilters, Menus, RLPDFFilter, RLHTMLFilter,
   RLRichFilter, RLXLSFilter, ExtDlgs,RLReport,mask, ZConnection,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, DBGrids,shellapi,
-  Provider,ExtCtrls,math, RLBoleto, ACBrNFe,pcnConversao;
+  Provider,ExtCtrls,math, RLBoleto, ACBrNFe,pcnConversao, ComObj;
 
 const
     direitos: string ='S.I.G.A.C Desenvolvimento de Sistemas Comerciais';
@@ -213,10 +213,21 @@ type
     tbnet2: TClientDataSet;
     pnet2: TDataSetProvider;
     tbentradacaixaemp: TIntegerField;
-    nfe: TACBrNFe;
     sqlBanco: TZQuery;
     dspBanco: TDataSetProvider;
     cdsBanco: TClientDataSet;
+    cdsLanc: TClientDataSet;
+    cdsLancNome: TStringField;
+    cdsLancVencto: TDateField;
+    cdsLancValor: TFloatField;
+    nfe: TACBrNFe;
+    sqlPub: TZQuery;
+    sqlWeb: TZQuery;
+    dspWeb: TDataSetProvider;
+    cdsWeb: TClientDataSet;
+    sqlLocal: TZQuery;
+    dspLocal: TDataSetProvider;
+    cdsLocal: TClientDataSet;
 
 
 
@@ -254,7 +265,7 @@ type
     dt1,dt2:tdate;
 
       { Public declarations }
-
+    procedure ExportaMensalidadesExcel;
   end;
 
 var
@@ -3138,7 +3149,7 @@ begin
         Ini := TInifile.Create(conf_local);
         user := Ini.Readstring('Rede', 'user', 'root');
         if ip='' then ip := Ini.Readstring('Rede', 'Host', 'localhost');
-        Password := EnDecrypt( Ini.Readstring('Rede', 'Password', ''));
+        Password := Crypt('D', Ini.Readstring('Rede', 'Password', ''));
 
 
         ini.free;
@@ -3203,7 +3214,7 @@ procedure Tfdm.sqextBeforeConnect(Sender: TObject);
 begin
         sqext.HostName := ipext;
         sqext.Database := databasename;
-        sqext.User := User;
+        sqext.User     := User;
         sqext.Password := Password;
 
 end;
@@ -3213,8 +3224,8 @@ begin
 
         conectnet.HostName := ipnet;
         conectnet.Database := databasenet;
-        conectnet.User := Usernet;
-        conectnet.Password := EnDecrypt(Passwordnet);
+        conectnet.User     := Usernet;
+        conectnet.Password := Passwordnet;
 end;
 
 procedure Tfdm.conectempBeforeConnect(Sender: TObject);
@@ -3222,7 +3233,7 @@ begin
 
         conectemp.HostName := ip;
         conectemp.Database := databasename;
-        conectemp.User := User;
+        conectemp.User     := User;
         conectemp.Password := Password;
 
 end;
@@ -3231,7 +3242,7 @@ procedure Tfdm.dbcepBeforeConnect(Sender: TObject);
 begin
         dbcep.HostName := ip;
         dbcep.Database := 'cep';
-        dbcep.User := User;
+        dbcep.User     := User;
         dbcep.Password := Password;
 
 end;
@@ -3241,7 +3252,7 @@ procedure Tfdm.conectorBeforeConnect(Sender: TObject);
 begin                         
         conector.HostName := ip;
         conector.Database := databasename;
-        conector.User := User;
+        conector.User     := User;
         conector.Password := Password;
 end;
 
@@ -4036,7 +4047,7 @@ begin
     tbei.close;
     tbei.createdataset;
     tbei.open;
-    Nfe.NotasFiscais.Clear;
+    //Nfe.NotasFiscais.Clear;
 
     codloc :='';
     st := msgi('Importar a nota do:'+#13+#13+
@@ -4317,6 +4328,40 @@ begin
            apagar;
            abort;
         end;
+end;
+
+procedure Tfdm.ExportaMensalidadesExcel;
+var
+linha, coluna: integer;
+planilha: variant;
+valorCampo: string;
+begin
+   planilha:= CreateOleObject('Excel.Application');
+   planilha.Workbooks.add(1);
+   planilha.Cells.Select;
+   planilha.Selection.NumberFormat := '@';
+   planilha.caption:= 'Exportação de dados para o excel';
+   planilha.visible:= true;
+   cdsLanc.First;
+
+   for linha:= 0 to cdsLanc.RecordCount-1 do
+   begin
+      for coluna:= 1 to cdsLanc.FieldCount do
+      begin
+         valorCampo:= cdsLanc.Fields[coluna-1].AsString;
+         planilha.cells[linha+2,coluna]:= valorCampo;
+      end;
+     cdsLanc.Next;
+   end;
+
+   for coluna:=1 to cdsLanc.FieldCount do
+   begin
+      valorCampo:= cdsLanc.Fields[coluna-1].DisplayLabel;
+      planilha.cells[1,coluna]:= valorCampo;
+   end;
+   planilha.columns.AutoFit;
+
+   planilha.WorkBooks[1].SaveAs('c:\lanc.xls');
 end;
 
 end.

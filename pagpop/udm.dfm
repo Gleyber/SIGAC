@@ -3,8 +3,8 @@ object fdm: Tfdm
   OnCreate = DataModuleCreate
   Left = 273
   Top = 8
-  Height = 568
-  Width = 798
+  Height = 643
+  Width = 868
   object dsempresa: TDataSource
     DataSet = tbempresa
     Left = 395
@@ -221,19 +221,19 @@ object fdm: Tfdm
   object pquery1: TDataSetProvider
     DataSet = Query1
     Left = 52
-    Top = 86
+    Top = 126
   end
   object tbquery1: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pquery1'
     Left = 8
-    Top = 134
+    Top = 174
   end
   object dsquery1: TDataSource
     DataSet = tbquery1
     Left = 52
-    Top = 126
+    Top = 166
   end
   object tbmov: TClientDataSet
     Aggregates = <>
@@ -359,14 +359,15 @@ object fdm: Tfdm
     Top = 436
   end
   object conector: TZConnection
-    Protocol = 'mysql'
+    Protocol = 'mysql-5'
     HostName = 'localhost'
     Port = 3306
     Database = 'sigac'
     User = 'root'
+    Password = 'g0808a'
     AutoCommit = False
     BeforeConnect = conectorBeforeConnect
-    Left = 148
+    Left = 133
     Top = 12
   end
   object sg: TZQuery
@@ -386,8 +387,8 @@ object fdm: Tfdm
   object Query1: TZQuery
     Connection = conector
     Params = <>
-    Left = 8
-    Top = 80
+    Left = 12
+    Top = 120
   end
   object queryext: TZQuery
     Connection = conector
@@ -406,7 +407,7 @@ object fdm: Tfdm
         'ecalc  , qtd-qtd as mva  , descricao as cfop  , descricao as cod' +
         'igobarras  from tbpedidoitem where link = '#39'1'#39)
     Params = <>
-    Left = 24
+    Left = 26
     Top = 424
   end
   object Query2: TZQuery
@@ -418,31 +419,31 @@ object fdm: Tfdm
     Top = 192
   end
   object conectnet: TZConnection
-    Protocol = 'mysql'
+    Protocol = 'mysql-5'
     HostName = 'localhost'
     Port = 3306
     Database = 'sigac'
     User = 'root'
     AutoCommit = False
     BeforeConnect = conectnetBeforeConnect
-    Left = 92
+    Left = 74
     Top = 12
   end
   object snet: TZQuery
     Connection = conectnet
     Params = <>
-    Left = 144
-    Top = 88
+    Left = 18
+    Top = 64
   end
   object sqext: TZConnection
-    Protocol = 'mysql'
+    Protocol = 'mysql-5'
     HostName = 'localhost'
     Port = 3306
     Database = 'sigac'
     User = 'root'
     AutoCommit = False
     BeforeConnect = sqextBeforeConnect
-    Left = 196
+    Left = 191
     Top = 12
   end
   object DsIndEcf: TDataSource
@@ -497,14 +498,14 @@ object fdm: Tfdm
     Top = 352
   end
   object conectemp: TZConnection
-    Protocol = 'mysql'
+    Protocol = 'mysql-5'
     HostName = 'localhost'
     Port = 3306
     Database = 'sigac'
     User = 'root'
     AutoCommit = False
     BeforeConnect = conectempBeforeConnect
-    Left = 252
+    Left = 250
     Top = 12
   end
   object tbecfitem: TZQuery
@@ -523,14 +524,14 @@ object fdm: Tfdm
     User = 'root'
     AutoCommit = False
     BeforeConnect = dbcepBeforeConnect
-    Left = 36
+    Left = 16
     Top = 12
   end
   object cep: TZQuery
     Connection = dbcep
     Params = <>
     Left = 96
-    Top = 88
+    Top = 128
   end
   object dsuso: TDataSource
     DataSet = tbuso
@@ -578,8 +579,8 @@ object fdm: Tfdm
     SQL.Strings = (
       'select * from tbconfig')
     Params = <>
-    Left = 336
-    Top = 120
+    Left = 338
+    Top = 108
   end
   object psintegra: TDataSetProvider
     DataSet = sSintegra
@@ -649,66 +650,66 @@ object fdm: Tfdm
   object snet2: TZQuery
     Connection = conectnet
     Params = <>
-    Left = 136
-    Top = 192
+    Left = 368
+    Top = 64
   end
   object pnet: TDataSetProvider
     DataSet = snet
-    Left = 140
-    Top = 118
+    Left = 76
+    Top = 64
   end
   object tbnet: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pnet'
-    Left = 176
-    Top = 118
+    Left = 134
+    Top = 64
   end
   object Expressao: TRLExpressionParser
-    Left = 580
-    Top = 14
+    Left = 660
+    Top = 12
   end
   object RLExpressionParser1: TRLExpressionParser
-    Left = 704
-    Top = 14
+    Left = 778
+    Top = 12
   end
   object SaveDialog: TSaveDialog
-    Left = 468
-    Top = 14
+    Left = 543
+    Top = 12
   end
   object PDF: TRLPDFFilter
     DocumentInfo.Creator = 'FortesReport v3.19 \251 Copyright '#169' 1999-2004 Fortes Inform'#225'tica'
     ViewerOptions = []
     FontEncoding = feNoEncoding
     DisplayName = 'Documento PDF'
-    Left = 420
-    Top = 14
+    Left = 484
+    Top = 12
   end
   object html: TRLHTMLFilter
     DocumentStyle = dsCSS2
     DisplayName = 'P'#225'gina da Web'
-    Left = 376
-    Top = 14
+    Left = 426
+    Top = 12
   end
   object word: TRLRichFilter
     DisplayName = 'Formato RichText'
-    Left = 344
-    Top = 14
+    Left = 367
+    Top = 12
   end
   object excel: TRLXLSFilter
     DisplayName = 'Planilha Excel'
-    Left = 308
-    Top = 14
+    Left = 309
+    Top = 12
   end
   object OpenDialog: TOpenDialog
     InitialDir = 'C:\'
-    Left = 528
+    Left = 602
     Top = 12
   end
   object filtro: TRLDraftFilter
     DisplayName = 'Impressora Matricial'
-    Left = 632
-    Top = 16
+    Left = 719
+    Top = 12
   end
   object RLBTitulo1: TRLBTitulo
     BoletoLayout = blCarne
@@ -722,15 +723,15 @@ object fdm: Tfdm
     EmissaoBoleto = ebClienteEmite
     LayoutNN = lnN17
     Versao = '1.1.5'
-    Left = 691
-    Top = 72
+    Left = 781
+    Top = 178
   end
   object RLBRemessa1: TRLBRemessa
     NumeroArquivo = 0
     LayoutArquivo = laCNAB240
     TipoMovimento = tmRetorno
-    Left = 624
-    Top = 80
+    Left = 714
+    Top = 186
   end
   object tbei: TClientDataSet
     Aggregates = <>
@@ -879,30 +880,13 @@ object fdm: Tfdm
     Aggregates = <>
     Params = <>
     ProviderName = 'pnet2'
-    Left = 144
-    Top = 262
+    Left = 484
+    Top = 64
   end
   object pnet2: TDataSetProvider
     DataSet = snet2
-    Left = 108
-    Top = 262
-  end
-  object nfe: TACBrNFe
-    Configuracoes.Geral.PathSalvar = 'C:\Program Files\Borland\Delphi7\Bin\'
-    Configuracoes.WebServices.UF = 'RS'
-    Configuracoes.WebServices.AguardarConsultaRet = 0
-    Configuracoes.WebServices.IntervaloTentativas = 0
-    Configuracoes.WebServices.AjustaAguardaConsultaRet = False
-    Configuracoes.Arquivos.Salvar = True
-    Configuracoes.Arquivos.PastaMensal = True
-    Configuracoes.Arquivos.AdicionarLiteral = True
-    Configuracoes.Arquivos.EmissaoPathNFe = True
-    Configuracoes.Arquivos.PathNFe = 'C:\Nfe\Enviadas'
-    Configuracoes.Arquivos.PathCan = 'C:\Nfe\Cancelar'
-    Configuracoes.Arquivos.PathInu = 'C:\Nfe\Inutilizar'
-    Configuracoes.Arquivos.PathDPEC = 'C:\Nfe\DPEC'
-    Left = 388
-    Top = 200
+    Left = 426
+    Top = 64
   end
   object sqlBanco: TZQuery
     Connection = conectnet
@@ -921,5 +905,104 @@ object fdm: Tfdm
     ProviderName = 'dspBanco'
     Left = 656
     Top = 470
+  end
+  object cdsLanc: TClientDataSet
+    Aggregates = <>
+    AutoCalcFields = False
+    Params = <>
+    Left = 344
+    Top = 462
+    object cdsLancNome: TStringField
+      FieldName = 'Nome'
+      Size = 40
+    end
+    object cdsLancVencto: TDateField
+      FieldName = 'Vencto'
+    end
+    object cdsLancValor: TFloatField
+      FieldName = 'Valor'
+    end
+  end
+  object sqlPub: TZQuery
+    Connection = conector
+    Params = <>
+    Left = 200
+    Top = 192
+  end
+  object sqlWeb: TZQuery
+    Connection = conectnet
+    SQL.Strings = (
+      
+        'select od.usuario, od.senha, od.nome, od.codigogrupo, gp.descric' +
+        'ao, od.cpf, od.rg, '
+      '       case when od.tipo = 1'
+      '       then '#39'F'#39
+      '       else '#39'J'#39' end as tipo,'
+      
+        '       DATE(od.data_nascimento) as nascimento, DATE(od.data_inse' +
+        'rcao) as data,'
+      
+        '       DATE(od.data_insercao) as datavenda, od.crea, od.numero_c' +
+        'rea,'
+      
+        '       od.razao, od.endereco, od.complemento, od.bairro, od.cida' +
+        'de, od.estado, replace(od.cep, '#39'-'#39', '#39#39') as cep,'
+      
+        '       od.telefone1, od.telefone2, od.celular, od.email, od.tipo' +
+        '_user, od.cod_user , od.titular,'
+      
+        '       od.cpfcnpj_conta, od.tipo_conta, od.numero_banco, ba.nome' +
+        ', od.agencia, od.conta, od.profissao'
+      'FROM tab_clientes od'
+      '  LEFT JOIN tab_bancos ba ON od.numero_banco = ba.numero'
+      '  LEFT JOIN tbconfig gp ON od.codigogrupo = gp.codigogrupo')
+    Params = <>
+    Left = 193
+    Top = 64
+  end
+  object dspWeb: TDataSetProvider
+    DataSet = sqlWeb
+    Left = 251
+    Top = 64
+  end
+  object cdsWeb: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspWeb'
+    Left = 309
+    Top = 64
+  end
+  object sqlLocal: TZQuery
+    Connection = conector
+    SQL.Strings = (
+      
+        'select transportadora,  filial,  np,  pontos,  fisjur,  nome,  c' +
+        'odigogp,  gp,  cnpj,'
+      
+        '       ie,  nascimento,  data,  dtvenda,  statu,  CRO,  nomecurt' +
+        'o,  endereco,  complemento,'
+      
+        '       bairro,   municipio,  uf,  cep,  fone,  fone2,  fone3,  e' +
+        'mail,  vendedor,  vinculo,'
+      
+        '       codigo,  titular,  cnpjconta,  tpconta,  nbanco,  banco, ' +
+        ' agencia,  conta,  tipocliente'
+      'from tbcliente'
+      ' ')
+    Params = <>
+    Left = 543
+    Top = 64
+  end
+  object dspLocal: TDataSetProvider
+    DataSet = sqlLocal
+    Left = 601
+    Top = 64
+  end
+  object cdsLocal: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspLocal'
+    Left = 660
+    Top = 66
   end
 end

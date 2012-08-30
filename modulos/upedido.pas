@@ -7904,7 +7904,7 @@ begin
 
           fdm.query1.close;
           fdm.query1.sql.clear;
-          fdm.query1.sql.add('select Chave, nome as Descricao, saldo as Valor from tbcliente limit -100,0');
+          fdm.query1.sql.add('select Chave, nome as Descricao, saldo as Valor from tbcliente limit 0');
           fdm.tbquery1.close;
           fdm.tbquery1.open;
 
@@ -8009,7 +8009,7 @@ begin
           fdm.query1.sql.clear;
 
           fdm.query1.sql.add('select chave, campo1 as ' + campo1_cap + ', '+
-                           campo2+' as '+campo2_cap+'  , nome as SERVICO, DATA from tbpedido limit -1, 0');
+                           campo2+' as '+campo2_cap+'  , nome as SERVICO, DATA from tbpedido limit 0');
 
           fdm.tbquery1.close;
           fdm.tbquery1.open;

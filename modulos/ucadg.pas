@@ -5306,7 +5306,7 @@ begin
           with fdm.Query1 do begin
                sql.Clear;
                sql.Add('select codigo,codigooriginal,ncmsh,descricao,vrunit,fabricante,fornecedor,departamento,'+
-                       'familia,grupo,subgrupo,garantia from tbproduto limit -1,-1');
+                       'familia,grupo,subgrupo,garantia from tbproduto limit 0');
           end;
           fdm.tbquery1.Close;
           fdm.tbquery1.Open;

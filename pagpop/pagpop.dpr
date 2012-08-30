@@ -60,7 +60,9 @@ uses
   uclientevalor1 in '..\modulos\cliente\uclientevalor1.pas' {fclientevalor1},
   uConnect in '..\modulos\uConnect.pas',
   dmTestConnect in '..\modulos\dmTestConnect.pas' {dtmTestConnect: TDataModule},
-  FDadosAdicionaisOBS in 'FDadosAdicionaisOBS.pas' {FrmDadosAdicionaisOBS};
+  FDadosAdicionaisOBS in 'FDadosAdicionaisOBS.pas' {FrmDadosAdicionaisOBS},
+  FInconsistencia in 'FInconsistencia.pas' {FrmInconsistencia},
+  FAtualizacao in 'FAtualizacao.pas' {FrmAtualizacao};
 
 {$R *.res}
 
@@ -96,6 +98,16 @@ begin
   else
     conf_local := 'c:\sigacnet.ini';
 
+  // Gleyber - 14/07/2012 - Início
+  if FileExists(conf_local) then
+  begin
+    ini := TIniFile.Create(conf_local);
+    if ini.Readstring('Rede', 'Password', 'NAO') = 'NAO' then
+      ini.WriteString('Rede', 'Password',  Crypt('C',''));
+    Ini.Free;
+  end;
+// Gleyber - 14/07/2012 - Fim
+
   Ini          := TInifile.Create(CONF_GLOBAL);
   databasename := Ini.Readstring('databasename', 'databasename', '');
   // Gleyber - 10/07/2012 - Início
@@ -106,7 +118,7 @@ begin
   if ini.Readstring('mysqld', 'usernet', '') = '' then
     Ini.WriteString('mysqld', 'usernet', 'odontoc_soft');
   if ini.Readstring('mysqld', 'pwdnet', '') = '' then
-  Ini.WriteString('mysqld', 'pwdnet', 'soft1423');
+    Ini.WriteString('mysqld', 'pwdnet',  Crypt('C','soft1423'));
   // Gleyber - 10/07/2012 - Fim
   ini.Free;
 
@@ -181,6 +193,8 @@ begin
       begin // Verificar se existe o arquivo
         ini := TIniFile.Create(conf_local);
         Ini.WriteString('Rede', 'Host', serv);
+        if ini.Readstring('Rede', 'Password', '') = '' then
+          Ini.WriteString('Rede', 'Password',  Crypt('C','g0808a'));
         IniHost := Serv;
         Ini.Free;
       end;

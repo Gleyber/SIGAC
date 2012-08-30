@@ -24,7 +24,7 @@ object fperiodo2: Tfperiodo2
     Top = 0
     Width = 615
     Height = 293
-    ActivePage = Tababrecaixa
+    ActivePage = vitalcred1
     Align = alClient
     TabOrder = 0
     object Tababrecaixa: TTabSheet

@@ -1600,7 +1600,7 @@ begin
                    if taxa = '' then taxa := '15';
 
                    sql.Clear;
-                   sql.Add('select taxa as A, taxa as B, taxa as C, taxa as D, taxa as E from tbconffin limit -1,-1');
+                   sql.Add('select taxa as A, taxa as B, taxa as C, taxa as D, taxa as E from tbconffin limit 0');
                    fdm.tbquery1.Close;
                    fdm.tbquery1.Open;
               end;

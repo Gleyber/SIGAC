@@ -22,8 +22,8 @@ object ffinanceiro: Tffinanceiro
   object DBGrid1: TDBGrid
     Left = 0
     Top = 146
-    Width = 790
-    Height = 364
+    Width = 782
+    Height = 360
     Align = alClient
     Color = clWhite
     DataSource = ds
@@ -369,7 +369,7 @@ object ffinanceiro: Tffinanceiro
   object panel2: TPanel
     Left = 0
     Top = 95
-    Width = 790
+    Width = 782
     Height = 51
     Align = alTop
     BevelInner = bvLowered
@@ -411,7 +411,7 @@ object ffinanceiro: Tffinanceiro
     object Label9: TLabel
       Left = 576
       Top = 18
-      Width = 52
+      Width = 51
       Height = 16
       Alignment = taCenter
       Caption = 'Total Bc'
@@ -460,7 +460,7 @@ object ffinanceiro: Tffinanceiro
     object Label1: TLabel
       Left = 684
       Top = 18
-      Width = 91
+      Width = 90
       Height = 16
       Alignment = taCenter
       Caption = 'Total Empresa'
@@ -528,8 +528,8 @@ object ffinanceiro: Tffinanceiro
   end
   object Panel3: TPanel
     Left = 0
-    Top = 510
-    Width = 790
+    Top = 506
+    Width = 782
     Height = 24
     Align = alBottom
     BevelInner = bvLowered
@@ -625,8 +625,8 @@ object ffinanceiro: Tffinanceiro
     Font.Name = 'Arial'
     Font.Style = []
     PageSetup.PaperSize = fpCustom
-    PageSetup.PaperWidth = 210
-    PageSetup.PaperHeight = 140
+    PageSetup.PaperWidth = 210.000000000000000000
+    PageSetup.PaperHeight = 140.000000000000000000
     Transparent = False
     BeforePrint = qpromissoriaBeforePrint
     object RLBand1: TRLBand
@@ -1226,7 +1226,7 @@ object ffinanceiro: Tffinanceiro
   object panel1: TPanel
     Left = 0
     Top = 0
-    Width = 790
+    Width = 782
     Height = 41
     Align = alTop
     BevelInner = bvLowered
@@ -1413,7 +1413,7 @@ object ffinanceiro: Tffinanceiro
   object Panel4: TPanel
     Left = 0
     Top = 41
-    Width = 790
+    Width = 782
     Height = 54
     Align = alTop
     BevelInner = bvLowered
@@ -1446,7 +1446,7 @@ object ffinanceiro: Tffinanceiro
     object rtipo: TRadioGroup
       Left = 2
       Top = 2
-      Width = 786
+      Width = 778
       Height = 32
       Align = alTop
       Caption = 'Exibir'

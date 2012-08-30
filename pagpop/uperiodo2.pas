@@ -385,7 +385,7 @@ var
 
 implementation
 
-uses udm,funcoes, umanu, upedido, ufinanceirovalor;
+uses udm,funcoes, umanu, upedido, ufinanceirovalor, uConnect;
 
 {$R *.dfm}
 
@@ -1290,6 +1290,8 @@ begin
                        ' and '+ quotedstr(formatdatetime('yyyy-mm-dd', strtodate(controle2)))+ '<= dtvencimento '+
                        ' group by documento order by documento');
 
+                SQL.SaveToFile('c:\QueryComErro.sql');
+
                 fdm.tbquery2.Filtered := false;
                 fdm.tbquery2.Close;
                 fdm.tbquery2.open;
@@ -1330,11 +1332,12 @@ begin
          dtini:= formatdatetime('yyyy-mm-dd',strtodate(mvital1.Text))+' 00:00';
          dtfin:= formatdatetime('yyyy-mm-dd',strtodate(mvital2.Text))+' 23:59';
 
+         TestCryptoIni;
          fdm.conectnet.Disconnect;
-         ipnet := 'mysql.vitalcred.com.br';
-         databasenet := 'odontocred1';
-         Usernet := 'odontoc_soft';
-         Passwordnet := 'soft1423';
+//         ipnet := 'mysql.vitalcred.com.br';
+//         databasenet := 'odontocred1';
+//         Usernet := 'odontoc_soft';
+//         Passwordnet := 'soft1423';
 
 
          case rgvital.ItemIndex of
@@ -2305,7 +2308,7 @@ begin
           //debugstr(qpedidop);
           open;
 
-           selecione('select * from tbsintegra limit -1,0');
+           selecione('select * from tbsintegra limit 0');
            while not qpedidop.eof do begin
 
                  ecfcompl.Locate('ecf_numeroserie', qpedidop.fieldbyname('num_serie_ECF').AsString,[]);

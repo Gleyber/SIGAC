@@ -1284,8 +1284,13 @@ object fclientelocaliza: Tfclientelocaliza
     object N4: TMenuItem
       Caption = '-'
     end
+    object mnuPainelAtualiza: TMenuItem
+      Caption = '&Painel de Atualiza'#231#227'o'
+      OnClick = mnuPainelAtualizaClick
+    end
     object Atualizarosite1: TMenuItem
       Caption = 'Atualizar o Site'
+      Visible = False
       OnClick = Atualizarosite1Click
     end
     object Verificarinconsistnciaentrebaselocal1: TMenuItem
@@ -1297,6 +1302,7 @@ object fclientelocaliza: Tfclientelocaliza
     end
     object AtualizarUsurio1: TMenuItem
       Caption = 'Atualizar Usu'#225'rio'
+      Visible = False
       OnClick = AtualizarUsurio1Click
     end
     object Deletados1: TMenuItem

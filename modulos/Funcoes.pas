@@ -133,6 +133,7 @@ procedure livrofiscal(dtval:tdate);
 procedure criacoluna(grade:tdbgrid; nome,cap:string;tm:integer);
 procedure imptb(ntb:tclientdataset;ds:tdatasource; tb,tit:string; visualiza:boolean);
 procedure selecione (script:string);
+procedure selecioneNet(script:string);
 procedure FazQuery(script:string);
 procedure selecione2 (script:string);
 procedure reltb(tabela:tclientdataset;titulo,ecabeca,
@@ -1117,7 +1118,7 @@ begin
 
           with fdm.Query1 do begin
                sql.Clear;
-               sql.Add('select chave,descricao,vrvenda as valor from tbproduto limit -10,0');
+               sql.Add('select chave,descricao,vrvenda as valor from tbproduto limit 0');
                fdm.tbquery1.Close;
                fdm.tbquery1.Open;
           end;
@@ -2987,7 +2988,7 @@ procedure uteisferi(fl:integer);
 
             with fdm.Query1 do begin
                  sql.Clear;
-                 sql.Add('select chave, codigo as dia, descricao as DiaSemana from tbconta limit -1,-1');
+                 sql.Add('select chave, codigo as dia, descricao as DiaSemana from tbconta limit 0');
                  fdm.tbquery1.close;
                  fdm.tbquery1.Open;
             end;
@@ -8866,6 +8867,35 @@ begin
        SQL.Clear;
        SQL.Add(script);
       //debugstr(sqlpub);
+      if (lowercase(copy(script,1,6)) = 'select') or
+         (lowercase(copy(script,1,4)) = 'show') then
+         sqlpub.open
+      else begin
+         sqlpub.execsql;
+        sqlpub:=nil;
+      end;
+
+  end;
+end;
+
+procedure selecioneNet(script:string);
+begin
+  Try
+    if  sqlpub <> nil then
+      FreeAndNil(sqlpub);
+  except
+  // quando for chamado da primeira vez
+  // não existe ainda a query
+  end;
+
+  sqlpub:= tzquery.Create(application);
+
+
+  with sqlpub do
+  begin
+       Connection := fdm.conectnet;
+       SQL.Clear;
+       SQL.Add(script);
       if (lowercase(copy(script,1,6)) = 'select') or
          (lowercase(copy(script,1,4)) = 'show') then
          sqlpub.open

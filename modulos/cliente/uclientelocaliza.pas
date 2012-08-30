@@ -105,6 +105,7 @@ type
     Verificarinconsistnciaentrebaselocal1: TMenuItem;
     N4: TMenuItem;
     N5: TMenuItem;
+    mnuPainelAtualiza: TMenuItem;
 
     procedure filcli(i:integer);
 
@@ -161,6 +162,7 @@ type
     procedure atuabaseExecute(Sender: TObject);
     procedure CNPJduplicados1Click(Sender: TObject);
     procedure Verificarinconsistnciaentrebaselocal1Click(Sender: TObject);
+    procedure mnuPainelAtualizaClick(Sender: TObject);
   private
   PN,PA,PD,PC,chave:string;
     { Private declarations }
@@ -177,7 +179,7 @@ implementation
 
 uses  udm, funcoes, umanu,  uconsumotexto,
    uimp, ufiltrocad,UvalidaIE, uclientevalor1, uConnect, Math,
-  FInconsistencia;
+  FInconsistencia, FAtualizacao;
 
 {$R *.dfm}
 
@@ -637,9 +639,9 @@ begin
              if responsavel = 'VITALCRED' then
                 vitalcredExecute(self) ;
 
-                Atualizarosite1.Visible  := responsavel = 'VITALCRED' ;
+//                Atualizarosite1.Visible  := responsavel = 'VITALCRED' ;
                 Verificarinconsistnciaentrebaselocal1.Visible := Atualizarosite1.Visible;
-                AtualizarUsurio1.Visible  := responsavel = 'VITALCRED' ;
+//                AtualizarUsurio1.Visible  := responsavel = 'VITALCRED' ;
                 rativo.Visible  := responsavel = 'VITALCRED' ;
 //                MensalidadesVencidas1.Visible   := responsavel = 'VITALCRED' ;
 //                ReceberMensalidades1.Visible   := responsavel = 'VITALCRED' ;
@@ -2373,6 +2375,16 @@ begin
   finally
     FrmInconsistencia.Free;
   end;
+end;
+
+procedure Tfclientelocaliza.mnuPainelAtualizaClick(Sender: TObject);
+begin
+   FrmAtualizacao := TFrmAtualizacao.Create(Self);
+   try
+     FrmAtualizacao.ShowModal;
+   finally
+     FrmAtualizacao.Free;
+   end;
 end;
 
 end.

@@ -5,14 +5,14 @@ object dtmTestConnect: TdtmTestConnect
   Height = 150
   Width = 215
   object cnWeb: TZConnection
-    Protocol = 'mysql'
+    Protocol = 'mysql-5'
     Port = 3306
     AutoCommit = False
     Left = 92
     Top = 12
   end
   object cnLocal: TZConnection
-    Protocol = 'mysql'
+    Protocol = 'mysql-5'
     HostName = 'localhost'
     Port = 3306
     Database = 'sigac'
