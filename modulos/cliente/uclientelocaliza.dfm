@@ -1,6 +1,6 @@
 object fclientelocaliza: Tfclientelocaliza
-  Left = 271
-  Top = 145
+  Left = 65
+  Top = 54
   Width = 798
   Height = 568
   Caption = 'LISTAGEM/CADASTRO DE CLIENTES'
@@ -20,8 +20,8 @@ object fclientelocaliza: Tfclientelocaliza
   object DBGrid1: TDBGrid
     Left = 0
     Top = 147
-    Width = 782
-    Height = 335
+    Width = 790
+    Height = 346
     Align = alClient
     Color = clWhite
     DataSource = ds
@@ -413,7 +413,7 @@ object fclientelocaliza: Tfclientelocaliza
   object panel2: TPanel
     Left = 0
     Top = 0
-    Width = 782
+    Width = 790
     Height = 119
     Align = alTop
     BevelInner = bvLowered
@@ -756,8 +756,8 @@ object fclientelocaliza: Tfclientelocaliza
   end
   object prodape: TPanel
     Left = 0
-    Top = 482
-    Width = 782
+    Top = 493
+    Width = 790
     Height = 48
     Align = alBottom
     BevelInner = bvLowered
@@ -1140,7 +1140,7 @@ object fclientelocaliza: Tfclientelocaliza
   object rativo: TRadioGroup
     Left = 0
     Top = 119
-    Width = 782
+    Width = 790
     Height = 28
     Align = alTop
     Color = 16056319

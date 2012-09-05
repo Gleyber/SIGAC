@@ -178,8 +178,7 @@ var
 implementation
 
 uses  udm, funcoes, umanu,  uconsumotexto,
-   uimp, ufiltrocad,UvalidaIE, uclientevalor1, uConnect, Math,
-  FInconsistencia, FAtualizacao;
+   uimp, ufiltrocad,UvalidaIE, uclientevalor1, uConnect, Math, FAtualizacao;
 
 {$R *.dfm}
 
@@ -2370,10 +2369,10 @@ procedure Tfclientelocaliza.Verificarinconsistnciaentrebaselocal1Click(
   Sender: TObject);
 begin
   try
-    FrmInconsistencia := TFrmInconsistencia.Create(Self);
-    FrmInconsistencia.ShowModal;
+//    FrmInconsistencia := TFrmInconsistencia.Create(Self);
+//    FrmInconsistencia.ShowModal;
   finally
-    FrmInconsistencia.Free;
+  //  FrmInconsistencia.Free;
   end;
 end;
 

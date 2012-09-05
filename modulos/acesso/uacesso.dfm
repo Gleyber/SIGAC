@@ -165,7 +165,6 @@ object Facesso: TFacesso
     Port = 3306
     Database = 'sigac'
     User = 'root'
-    AutoCommit = False
     BeforeConnect = conectorBeforeConnect
     Left = 164
     Top = 60

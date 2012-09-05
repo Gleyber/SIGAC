@@ -220,7 +220,6 @@ type
     cdsLancNome: TStringField;
     cdsLancVencto: TDateField;
     cdsLancValor: TFloatField;
-    nfe: TACBrNFe;
     sqlPub: TZQuery;
     sqlWeb: TZQuery;
     dspWeb: TDataSetProvider;
@@ -228,6 +227,7 @@ type
     sqlLocal: TZQuery;
     dspLocal: TDataSetProvider;
     cdsLocal: TClientDataSet;
+    qryAtualiza: TZQuery;
 
 
 
@@ -4039,7 +4039,7 @@ var
   cods,st:string;
 
 begin
-
+            {
     tbe.close;
     tbe.createdataset;
     tbe.open;
@@ -4208,7 +4208,7 @@ begin
 
      end;
 
-     end;
+     end;    }
 
 end;
 

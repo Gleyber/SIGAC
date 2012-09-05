@@ -159,7 +159,7 @@ begin
   try
     case nLocal of
       0 : iniL.WriteString('Rede'  , 'Password', sLocalPwdC);
-      1 : iniW.WriteString('mysqld', 'pwdnet'  , sWebPwdC);
+//      1 : iniW.WriteString('mysqld', 'pwdnet'  , sWebPwdC);
     end;
   finally
     iniL.Free;

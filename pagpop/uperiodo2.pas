@@ -1334,6 +1334,12 @@ begin
 
          TestCryptoIni;
          fdm.conectnet.Disconnect;
+
+         ipnet       := sWebHost;
+         databasenet := sWebDb ;
+         Usernet     := sWebUser;
+         Passwordnet := sWebPwd;
+
 //         ipnet := 'mysql.vitalcred.com.br';
 //         databasenet := 'odontocred1';
 //         Usernet := 'odontoc_soft';

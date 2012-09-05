@@ -1,6 +1,6 @@
 object fmenu: Tfmenu
-  Left = 250
-  Top = 127
+  Left = 48
+  Top = 0
   Width = 1032
   Height = 732
   Caption = 'Fmenu'
@@ -178,8 +178,8 @@ object fmenu: Tfmenu
   end
   object prodape: TPanel
     Left = 0
-    Top = 635
-    Width = 1016
+    Top = 647
+    Width = 1024
     Height = 39
     Align = alBottom
     BevelOuter = bvNone

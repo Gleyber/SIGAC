@@ -7,7 +7,6 @@ object dtmTestConnect: TdtmTestConnect
   object cnWeb: TZConnection
     Protocol = 'mysql-5'
     Port = 3306
-    AutoCommit = False
     Left = 92
     Top = 12
   end
@@ -17,7 +16,6 @@ object dtmTestConnect: TdtmTestConnect
     Port = 3306
     Database = 'sigac'
     User = 'root'
-    AutoCommit = False
     Left = 20
     Top = 12
   end

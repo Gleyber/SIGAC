@@ -61,7 +61,6 @@ uses
   uConnect in '..\modulos\uConnect.pas',
   dmTestConnect in '..\modulos\dmTestConnect.pas' {dtmTestConnect: TDataModule},
   FDadosAdicionaisOBS in 'FDadosAdicionaisOBS.pas' {FrmDadosAdicionaisOBS},
-  FInconsistencia in 'FInconsistencia.pas' {FrmInconsistencia},
   FAtualizacao in 'FAtualizacao.pas' {FrmAtualizacao};
 
 {$R *.res}
@@ -117,8 +116,8 @@ begin
     Ini.WriteString('mysqld', 'databasenet', 'odontocred1');
   if ini.Readstring('mysqld', 'usernet', '') = '' then
     Ini.WriteString('mysqld', 'usernet', 'odontoc_soft');
-  if ini.Readstring('mysqld', 'pwdnet', '') = '' then
-    Ini.WriteString('mysqld', 'pwdnet',  Crypt('C','soft1423'));
+
+//  if ini.Readstring('mysqld', 'pwdnet', '') = '' then      Ini.WriteString('mysqld', 'pwdnet',  Crypt('C','soft1423'));
   // Gleyber - 10/07/2012 - Fim
   ini.Free;
 

@@ -1,23 +1,22 @@
 [Closed Files]
-File_0=SourceModule,'C:\Fonte\modulos\usistema.pas',0,1,1,1,1,1,0
-File_1=SourceModule,'C:\Fonte\modulos\pagar_receber\ufinanceirovalor.pas',0,1,1,76,13,1,0
-File_2=SourceModule,'C:\Fonte\modulos\upedido.pas',0,1,4442,84,4459,1,0
-File_3=SourceModule,'C:\Fonte\modulos\pagar_receber\vitalvelho\ufinanceiro.pas',0,1,1308,112,1325,0,0
-File_4=SourceModule,'C:\Fonte\modulos\dmTestConnect.pas',0,1,1,15,21,1,0
-File_5=SourceModule,'C:\Users\Gleyber\Desktop\teste.pas',0,1,213,5,223,1,0
-File_6=SourceModule,'C:\Fonte\pagpop\FInconsist.pas',0,1,107,1,119,1,0
-File_7=SourceModule,'C:\Fonte\pagpop\FInconsistencia.dfm',0,1,1,1,1,0,0
-File_8=SourceModule,'C:\Fonte\Componente\AcBr\Fontes\synalist\ssl_openssl_lib.pas',0,1,1732,1,1751,0,0
+File_0=SourceModule,'C:\Fonte\modulos\cliente\uclientevalor1.pas',0,1,375,1,397,1,0
+File_1=SourceModule,'C:\Users\Gleyber\Documents\GitHub\sigac\pagpop\udm.pas',0,1,210,1,225,1,0
+File_2=SourceModule,'C:\Fonte\modulos\usistema.pas',0,1,1,1,1,1,0
+File_3=SourceModule,'C:\Fonte\modulos\pagar_receber\ufinanceirovalor.pas',0,1,1,76,13,1,0
+File_4=SourceModule,'C:\Fonte\modulos\upedido.pas',0,1,4442,84,4459,1,0
+File_5=SourceModule,'C:\Fonte\modulos\pagar_receber\vitalvelho\ufinanceiro.pas',0,1,1308,112,1325,0,0
+File_6=SourceModule,'C:\Users\Gleyber\Desktop\teste.pas',0,1,213,5,223,1,0
+File_7=SourceModule,'C:\Fonte\pagpop\FInconsist.pas',0,1,107,1,119,1,0
 
 [Modules]
 Module0=C:\Fonte\modulos\pagar_receber\ufinanceiro.pas
 Module1=C:\Fonte\pagpop\uperiodo2.pas
-Module2=C:\Fonte\pagpop\FAtualizacao.pas
-Module3=C:\Fonte\pagpop\udm.pas
-Module4=C:\Fonte\modulos\udlg.pas
-Module5=C:\Fonte\pagpop\FInconsistencia.pas
-Module6=C:\Fonte\modulos\cliente\uclientevalor1.pas
-Module7=C:\Fonte\modulos\cliente\uclientelocaliza.pas
+Module2=C:\Fonte\modulos\cliente\uclientelocaliza.pas
+Module3=C:\Fonte\pagpop\FAtualizacao.pas
+Module4=C:\Fonte\pagpop\udm.pas
+Module5=C:\Fonte\modulos\dmTestConnect.pas
+Module6=C:\Fonte\modulos\udlg.pas
+Module7=C:\Fonte\pagpop\FInconsistencia.pas
 Module8=C:\Fonte\modulos\usistema2.pas
 Module9=C:\Fonte\modulos\uConnect.pas
 Module10=C:\Fonte\modulos\Funcoes.pas
@@ -37,14 +36,24 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
+[C:\Fonte\modulos\cliente\uclientelocaliza.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
 [C:\Fonte\pagpop\FAtualizacao.pas]
 ModuleType=SourceModule
-FormState=0
+FormState=1
 FormOnTop=0
 
 [C:\Fonte\pagpop\udm.pas]
 ModuleType=SourceModule
-FormState=0
+FormState=1
+FormOnTop=0
+
+[C:\Fonte\modulos\dmTestConnect.pas]
+ModuleType=SourceModule
+FormState=1
 FormOnTop=0
 
 [C:\Fonte\modulos\udlg.pas]
@@ -53,16 +62,6 @@ FormState=0
 FormOnTop=0
 
 [C:\Fonte\pagpop\FInconsistencia.pas]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
-[C:\Fonte\modulos\cliente\uclientevalor1.pas]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
-[C:\Fonte\modulos\cliente\uclientelocaliza.pas]
 ModuleType=SourceModule
 FormState=0
 FormOnTop=0
@@ -141,8 +140,8 @@ BottomPanelData=00000400010000000B0000004D65737361676556696577000000000000000000
 
 [View0]
 Module=C:\Fonte\pagpop\pagpop.dpr
-CursorX=3
-CursorY=244
+CursorX=1
+CursorY=238
 TopLine=226
 LeftCol=1
 
@@ -177,36 +176,36 @@ LeftCol=1
 [View5]
 Module=C:\Fonte\modulos\Funcoes.pas
 CursorX=1
-CursorY=3616
-TopLine=3626
+CursorY=8883
+TopLine=8869
 LeftCol=1
 
 [View6]
 Module=C:\Fonte\modulos\uConnect.pas
-CursorX=26
-CursorY=24
+CursorX=23
+CursorY=9
 TopLine=4
 LeftCol=1
 
 [View7]
+Module=C:\Fonte\modulos\dmTestConnect.pas
+CursorX=44
+CursorY=21
+TopLine=1
+LeftCol=1
+
+[View8]
 Module=C:\Fonte\modulos\usistema2.pas
 CursorX=1
 CursorY=666
 TopLine=658
 LeftCol=1
 
-[View8]
-Module=C:\Fonte\modulos\cliente\uclientelocaliza.pas
-CursorX=57
-CursorY=1649
-TopLine=1635
-LeftCol=1
-
 [View9]
-Module=C:\Fonte\modulos\cliente\uclientevalor1.pas
-CursorX=1
-CursorY=397
-TopLine=375
+Module=C:\Fonte\modulos\cliente\uclientelocaliza.pas
+CursorX=71
+CursorY=1709
+TopLine=1701
 LeftCol=1
 
 [View10]
@@ -218,23 +217,23 @@ LeftCol=1
 
 [View11]
 Module=C:\Fonte\modulos\udlg.pas
-CursorX=1
-CursorY=235
-TopLine=15
+CursorX=10
+CursorY=30
+TopLine=22
 LeftCol=1
 
 [View12]
-Module=C:\Fonte\pagpop\udm.pas
-CursorX=39
-CursorY=3227
-TopLine=3222
+Module=C:\Fonte\pagpop\FAtualizacao.pas
+CursorX=1
+CursorY=337
+TopLine=335
 LeftCol=1
 
 [View13]
-Module=C:\Fonte\pagpop\FAtualizacao.pas
-CursorX=13
-CursorY=238
-TopLine=234
+Module=C:\Fonte\pagpop\udm.pas
+CursorX=74
+CursorY=283
+TopLine=268
 LeftCol=1
 
 [Watches]
@@ -246,8 +245,8 @@ Watch3='sDescCodGP',256,0,18,1,0,'Watches'
 
 [Breakpoints]
 Count=2
-Breakpoint0='C:\Fonte\pagpop\uperiodo2.pas',1279,'',0,1,'',1,0,0,'',1,'','',''
-Breakpoint1='C:\Fonte\modulos\Funcoes.pas',3648,'',0,1,'',1,0,0,'',1,'','',''
+Breakpoint0='C:\Fonte\pagpop\FAtualizacao.pas',278,'',0,1,'',1,0,0,'',1,'','',''
+Breakpoint1='C:\Fonte\pagpop\FAtualizacao.pas',387,'',0,1,'',1,0,0,'',1,'','',''
 
 [AddressBreakpoints]
 Count=0

@@ -365,7 +365,6 @@ object fdm: Tfdm
     Database = 'sigac'
     User = 'root'
     Password = 'g0808a'
-    AutoCommit = False
     BeforeConnect = conectorBeforeConnect
     Left = 133
     Top = 12
@@ -424,7 +423,6 @@ object fdm: Tfdm
     Port = 3306
     Database = 'sigac'
     User = 'root'
-    AutoCommit = False
     BeforeConnect = conectnetBeforeConnect
     Left = 74
     Top = 12
@@ -441,7 +439,6 @@ object fdm: Tfdm
     Port = 3306
     Database = 'sigac'
     User = 'root'
-    AutoCommit = False
     BeforeConnect = sqextBeforeConnect
     Left = 191
     Top = 12
@@ -503,7 +500,6 @@ object fdm: Tfdm
     Port = 3306
     Database = 'sigac'
     User = 'root'
-    AutoCommit = False
     BeforeConnect = conectempBeforeConnect
     Left = 250
     Top = 12
@@ -522,7 +518,6 @@ object fdm: Tfdm
     Port = 3306
     Database = 'cep'
     User = 'root'
-    AutoCommit = False
     BeforeConnect = dbcepBeforeConnect
     Left = 16
     Top = 12
@@ -975,20 +970,22 @@ object fdm: Tfdm
   object sqlLocal: TZQuery
     Connection = conector
     SQL.Strings = (
-      
-        'select transportadora,  filial,  np,  pontos,  fisjur,  nome,  c' +
-        'odigogp,  gp,  cnpj,'
+      'select transportadora,  filial,  np,  pontos,  '
+      '       case when fisjur = '#39'F'#39
+      '            then 1'
+      '            else 2 end as fisjur,  '
+      '       nome,  codigogp,  gp,  cnpj,'
       
         '       ie,  nascimento,  data,  dtvenda,  statu,  CRO,  nomecurt' +
-        'o,  endereco,  complemento,'
+        'o,  '
+      '       concat(endereco,'#39', '#39',numero) as endereco,  complemento,'
       
         '       bairro,   municipio,  uf,  cep,  fone,  fone2,  fone3,  e' +
         'mail,  vendedor,  vinculo,'
       
         '       codigo,  titular,  cnpjconta,  tpconta,  nbanco,  banco, ' +
-        ' agencia,  conta,  tipocliente'
-      'from tbcliente'
-      ' ')
+        ' agencia,  conta,  tipocliente, statu'
+      'from tbcliente  ')
     Params = <>
     Left = 543
     Top = 64
@@ -1003,6 +1000,27 @@ object fdm: Tfdm
     Params = <>
     ProviderName = 'dspLocal'
     Left = 660
-    Top = 66
+    Top = 64
+  end
+  object qryAtualiza: TZQuery
+    Connection = conector
+    SQL.Strings = (
+      'select case when fisjur = '#39'F'#39
+      '            then 1'
+      '            else 2 end as fisjur, '
+      
+        '       nome, codigogp, cnpj, ie, statu, CRO, nomecurto, concat(e' +
+        'ndereco,'#39', '#39',numero) as endereco,'
+      
+        '       complemento, bairro, municipio, uf, cep, fone, fone2, fon' +
+        'e3, email, vinculo, codigo, Titular,'
+      
+        #9'   cnpjconta, tpconta, nbanco, agencia, conta, tipocliente, tra' +
+        'nsportadora'
+      'from tbcliente '
+      'where flagsite = '#39'1'#39)
+    Params = <>
+    Left = 719
+    Top = 64
   end
 end
