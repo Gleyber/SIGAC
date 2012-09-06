@@ -130,8 +130,8 @@ begin
   fdm.cdsweb.first;
   while not fdm.cdsWeb.eof do
   begin
-    selecione('select count(*) as total from tbcliente si WHERE si.transportadora = '+
-                      QuotedStr(fdm.cdsWeb.FieldByName('usuario').AsString));
+    selecione('select count(*) as total from tbcliente WHERE codigo = '+
+                      QuotedStr(fdm.cdsWeb.FieldByName('cod_user').AsString));
 
     if sqlpub.FieldByName('total').AsInteger = 1 then
       fdm.cdsWeb.Delete
@@ -227,8 +227,8 @@ begin
   fdm.cdsLocal.first;
   while not fdm.cdsLocal.eof do
   begin
-    selecioneNet('select count(*) as total from tab_clientes WHERE usuario = '+
-                      QuotedStr(fdm.cdsLocal.FieldByName('transportadora').AsString));
+    selecioneNet('select count(*) as total from tab_clientes WHERE cod_user = '+
+                      QuotedStr(fdm.cdsLocal.FieldByName('codigo').AsString));
 
     Barra(fdm.cdsLocal.RecNo);
 
@@ -374,7 +374,7 @@ begin
               'agencia = '+QuotedStr(fdm.qryAtualiza.FieldByname('agencia').AsString)+', '+
               'conta = '+QuotedStr(fdm.qryAtualiza.FieldByname('conta').AsString)+', '+
               'profissao = '+QuotedStr(fdm.qryAtualiza.FieldByname('tipocliente').AsString)+' '+
-              'WHERE usuario = '+QuotedStr(fdm.qryAtualiza.FieldByname('transportadora').AsString);
+              'WHERE cod_user = '+QuotedStr(fdm.qryAtualiza.FieldByname('codigo').AsString);
 
       selecioneNet(sSql);
 
