@@ -92,6 +92,7 @@ begin
 
   CONF_GLOBAL:= ExtractFilePath(ParamStr(0)) + 'imagem\sigacnet.ini';
 
+
   if lowercase(copy(System,1,2)) <> 'c:' then
     conf_local := copy(System,1,2)+'\sigacnet.ini'
   else
@@ -116,6 +117,18 @@ begin
     Ini.WriteString('mysqld', 'databasenet', 'odontocred1');
   if ini.Readstring('mysqld', 'usernet', '') = '' then
     Ini.WriteString('mysqld', 'usernet', 'odontoc_soft');
+
+    {renival ini}
+    sWebHost   := ini.Readstring('mysqld', 'ipnet', '');
+    sWebUser   := ini.Readstring('mysqld', 'usernet', '');
+    sWebPwd   := ini.Readstring('mysqld', 'pwdnet', '');
+    sWebDb     := ini.Readstring('mysqld', 'databasenet', '');
+
+    ipnet       := sWebHost;
+    databasenet := sWebDb ;
+    Usernet     := sWebUser;
+    Passwordnet := sWebPwd;
+    {renival fin}
 
 //  if ini.Readstring('mysqld', 'pwdnet', '') = '' then      Ini.WriteString('mysqld', 'pwdnet',  Crypt('C','soft1423'));
   // Gleyber - 10/07/2012 - Fim

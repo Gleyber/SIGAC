@@ -1,6 +1,6 @@
 object ffinanceiro: Tffinanceiro
-  Left = 352
-  Top = 174
+  Left = 17
+  Top = 147
   Width = 808
   Height = 578
   BorderIcons = [biSystemMenu, biMaximize]
@@ -22,8 +22,8 @@ object ffinanceiro: Tffinanceiro
   object DBGrid1: TDBGrid
     Left = 0
     Top = 146
-    Width = 792
-    Height = 370
+    Width = 800
+    Height = 381
     Align = alClient
     Color = clWhite
     DataSource = ds
@@ -426,7 +426,7 @@ object ffinanceiro: Tffinanceiro
   object panel2: TPanel
     Left = 0
     Top = 95
-    Width = 792
+    Width = 800
     Height = 51
     Align = alTop
     BevelInner = bvLowered
@@ -600,8 +600,8 @@ object ffinanceiro: Tffinanceiro
   end
   object Panel3: TPanel
     Left = 0
-    Top = 516
-    Width = 792
+    Top = 527
+    Width = 800
     Height = 24
     Align = alBottom
     BevelInner = bvLowered
@@ -1308,7 +1308,7 @@ object ffinanceiro: Tffinanceiro
   object panel1: TPanel
     Left = 0
     Top = 0
-    Width = 792
+    Width = 800
     Height = 41
     Align = alTop
     BevelInner = bvLowered
@@ -1495,7 +1495,7 @@ object ffinanceiro: Tffinanceiro
   object Panel4: TPanel
     Left = 0
     Top = 41
-    Width = 792
+    Width = 800
     Height = 54
     Align = alTop
     BevelInner = bvLowered
@@ -1528,7 +1528,7 @@ object ffinanceiro: Tffinanceiro
     object rtipo: TRadioGroup
       Left = 2
       Top = 2
-      Width = 788
+      Width = 796
       Height = 32
       Align = alTop
       Caption = 'Exibir'

@@ -43,7 +43,7 @@ implementation
 
 {$R *.dfm}
 
-uses funcoes,udm, uConnect;
+uses funcoes,udm;
 
 procedure TFacesso.btnconfirmarClick(Sender: TObject);
 var
@@ -197,7 +197,7 @@ var
 st:string;
 ini:tinifile;
 begin
-  TestCryptoIni;
+  //TestCryptoIni;
 
   if fileexists(ExtractFilePath(ParamStr(0)) + 'user.txt') then
   begin

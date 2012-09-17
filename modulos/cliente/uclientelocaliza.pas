@@ -177,8 +177,8 @@ var
 
 implementation
 
-uses  udm, funcoes, umanu,  uconsumotexto,
-   uimp, ufiltrocad,UvalidaIE, uclientevalor1, uConnect, Math, FAtualizacao;
+uses  udm, funcoes, umanu,  uconsumotexto, uconnect,
+   uimp, ufiltrocad,UvalidaIE, uclientevalor1,  Math, FAtualizacao;
 
 {$R *.dfm}
 
@@ -555,7 +555,7 @@ var
 exp,loc,imp,ctp:string;
 itens:boolean;
 begin
-tbgrupo.open;
+//tbgrupo.open;
         abortaacao(tabela,nil,'chave','','','','',0);
 
           if contato then
@@ -678,9 +678,9 @@ begin
         criaMa('hhhultimacompra','Com Movim. Desde :',i,1);
         i:=i+22;
         criaMCh('tipocliente','Tipo: ', 'tbtipocliente','tipocliente',i);
-        i:=i+22;
+        {i:=i+22;
         criaMCh('regiao','Região: ', 'tbregcli','nome',i);
-        i:=i+22;
+        i:=i+22; }
         criaMCh('municipio','Cidade: ','tbcliente','municipio',i);
         i:=i+22;
         criaMCh('bairro','Bairro: ','tbcliente','bairro',i);

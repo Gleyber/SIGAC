@@ -1620,13 +1620,6 @@ begin
                       ' vendedor = '+  quotedstr(tabela.fieldbyname('nome').AsString)+
                       ' where codigovendedor = '+ quotedstr(tabela.fieldbyname('codigo').AsString));
 
-        //fornecedor
-        if nummodulo = 7 then
-          selecione('update tbentrada set '+
-                      ' cnpj = '+  quotedstr(tabela.fieldbyname('cnpj').AsString)+
-                      ' ,ie = '+  quotedstr(tabela.fieldbyname('ie').AsString)+
-                      ' ,uf = '+  quotedstr(tabela.fieldbyname('uf').AsString)+
-                      ' where codigo = '+ quotedstr(tabela.fieldbyname('codigo').AsString));
 
         //servico
         if nummodulo = 18 then
@@ -1638,10 +1631,6 @@ begin
           Altera(tabela, nil,fcadg.nometb);
           galtera(inttostr(nummodulo),tabela.fieldbyname('codigo').AsString,'a' );
 
-          if nummodulo =4 then begin
-             updatecliente('tbnf',tabela.fieldbyname('codigo').AsString);
-             updatecliente('venda',tabela.fieldbyname('codigo').AsString);
-          end;
 
 end;
 

@@ -4197,12 +4197,12 @@ procedure Tfcadg.mrctipocontaClick(Sender: TObject);
 begin
 
              cadplanocontas;
-             Tipocontad    := nomelink('codconta','chave', 'descricao','tbconta','Tipoconta');
-             Contacontabild:= nomelink('codconta','chave', 'contacontabil','tbconta','Contacontabil');
-             Tipocontac    := nomelink('codconta2','chave', 'descricao','tbconta','Tipoconta_C');
-             Contacontabilc:= nomelink('codconta2','chave', 'contacontabil','tbconta','Contacontabil_C');
-             Tipocontab    := nomelink('codconta3','chave', 'descricao','tbconta','Tipoconta_B');
-             Contacontabilb:= nomelink('codconta3','chave', 'contacontabil','tbconta','Contacontabil_B');
+             Tipocontad    := nomelink('r.codconta','chave', 'descricao','tbconta','Tipoconta');
+             Contacontabild:= nomelink('r.codconta','chave', 'contacontabil','tbconta','Contacontabil');
+             Tipocontac    := nomelink('r.codconta2','chave', 'descricao','tbconta','Tipoconta_C');
+             Contacontabilc:= nomelink('r.codconta2','chave', 'contacontabil','tbconta','Contacontabil_C');
+             Tipocontab    := nomelink('r.codconta3','chave', 'descricao','tbconta','Tipoconta_B');
+             Contacontabilb:= nomelink('r.codconta3','chave', 'contacontabil','tbconta','Contacontabil_B');
 end;
 
 procedure Tfcadg.mcedenteClick(Sender: TObject);

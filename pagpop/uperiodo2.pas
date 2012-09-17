@@ -1340,11 +1340,6 @@ begin
          Usernet     := sWebUser;
          Passwordnet := sWebPwd;
 
-//         ipnet := 'mysql.vitalcred.com.br';
-//         databasenet := 'odontocred1';
-//         Usernet := 'odontoc_soft';
-//         Passwordnet := 'soft1423';
-
 
          case rgvital.ItemIndex of
               0: sel :=' and (bandeira <> "ITAU" and bandeira <> "VISA_ELECTRON") ';

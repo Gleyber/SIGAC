@@ -130,16 +130,8 @@ begin
   fdm.cdsweb.first;
   while not fdm.cdsWeb.eof do
   begin
-    // Executa o 1º teste na tabela de dados original
-    selecione('select count(*) as total from tbcliente WHERE codigo = '+
-                      QuotedStr(fdm.cdsWeb.FieldByName('cod_user').AsString));
-
-    if sqlpub.FieldByName('total').AsInteger = 0 then
-	// Se o primeiro teste não localizar então efetua o 2º teste na tabela de dados duplicados
-	begin
-  	  selecione('select count(*) as total from arq_tbcliente WHERE codigo = '+
-                           QuotedStr(fdm.cdsWeb.FieldByName('cod_user').AsString));
-	end;
+    selecione('select count(*) as total from tbcliente si WHERE si.transportadora = '+
+                      QuotedStr(fdm.cdsWeb.FieldByName('usuario').AsString));
 
     if sqlpub.FieldByName('total').AsInteger = 1 then
       fdm.cdsWeb.Delete
@@ -148,7 +140,6 @@ begin
       Inc(iTotalRec);
       fdm.cdsWeb.Next;
     end;
-	Barra(fdm.cdsWeb.RecNo);
   end;
 
   MensUsuario('Total de registros apurados para esta operação: '+IntToStr(iTotalRec));
@@ -236,25 +227,18 @@ begin
   fdm.cdsLocal.first;
   while not fdm.cdsLocal.eof do
   begin
-    // Executa o 1º teste na tabela de dados original
-	selecioneNet('select count(*) as total from tab_clientes WHERE cod_user = '+
-                      QuotedStr(fdm.cdsLocal.FieldByName('codigo').AsString));
+    selecioneNet('select count(*) as total from tab_clientes WHERE usuario = '+
+                      QuotedStr(fdm.cdsLocal.FieldByName('transportadora').AsString));
 
-    if sqlpub.FieldByName('total').AsInteger = 0 then
-	// Se o primeiro teste não localizar então efetua o 2º teste na tabela de dados duplicados
-	begin
-  	  selecioneNet('select count(*) as total from arq_clientes WHERE cod_user = '+
-                        QuotedStr(fdm.cdsLocal.FieldByName('codigo').AsString));
-	end;
-	
+    Barra(fdm.cdsLocal.RecNo);
+
     if sqlpub.FieldByName('total').AsInteger = 1 then
       fdm.cdsLocal.Delete
-	else
+    else
     begin
       Inc(iTotalRec);
       fdm.cdsLocal.Next;
     end;
-	Barra(fdm.cdsLocal.RecNo);
   end;
 
   MensUsuario('Total de registros apurados para esta operação: '+IntToStr(iTotalRec));
@@ -390,7 +374,7 @@ begin
               'agencia = '+QuotedStr(fdm.qryAtualiza.FieldByname('agencia').AsString)+', '+
               'conta = '+QuotedStr(fdm.qryAtualiza.FieldByname('conta').AsString)+', '+
               'profissao = '+QuotedStr(fdm.qryAtualiza.FieldByname('tipocliente').AsString)+' '+
-              'WHERE cod_user = '+QuotedStr(fdm.qryAtualiza.FieldByname('codigo').AsString);
+              'WHERE usuario = '+QuotedStr(fdm.qryAtualiza.FieldByname('transportadora').AsString);
 
       selecioneNet(sSql);
 

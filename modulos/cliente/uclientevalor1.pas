@@ -551,11 +551,11 @@ begin
                   ' ,carteira = '+quotedstr(DBEdit4.text)+
                   ' where codigo = '+quotedstr(ecodigo.Text));
 
-        selecione('update tbfinanceirop set '+
+{        selecione('update tbfinanceirop set '+
                   ' nome='+quotedstr(enome.Text)+
                   ' ,nbanco='+quotedstr(lbanco.caption)+
                   ' ,carteira = '+quotedstr(DBEdit4.text)+
-                  ' where codigo = '+quotedstr(ecodigo.Text));
+                  ' where codigo = '+quotedstr(ecodigo.Text));}
 
 
 
@@ -563,7 +563,7 @@ begin
         else flag :=  ' null ';
 
         selecione('update tbfinanceiro set flag1 = '+flag+' where codigo = ' + QuotedStr(ecodigo.Text));
-        selecione('update tbfinanceirop set flag1 = '+flag+' where codigo = ' + QuotedStr(ecodigo.Text));
+        //selecione('update tbfinanceirop set flag1 = '+flag+' where codigo = ' + QuotedStr(ecodigo.Text));
 
 end;
 

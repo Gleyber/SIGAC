@@ -401,18 +401,6 @@ begin
         selecione( 'select nome from tbfuncionario where usuario = ' + quotedstr(inttostr(usuariolink)));
         vendedor := sqlpub.FieldByName('nome').AsString;
 
-
-        selecione( 'select contado from tbproduto where contado = "S" limit 0,1');
-        contprod := sqlpub['contado']='S';
-
-
-        selecione('select fsuporte, email, MSN from tbrepresentante');
-
-        if sqlpub['fsuporte']<> null then fone:= sqlpub.fieldbyname('fsuporte').AsString;
-        if sqlpub['email']<> null then email:= sqlpub.fieldbyname('email').AsString;
-        if sqlpub['msn']<> null then msn:= sqlpub.fieldbyname('msn').AsString;
-        sqlpub := nil;
-
         lusu.Caption       := usuario + '   '+ timetostr(now);
         lemailfone.Caption := fone;
         lreg.Caption       := 'Reg N º '+ codloc;
@@ -462,66 +450,18 @@ end;
 
 procedure Tfmenu.confExecute(Sender: TObject);
 
-      procedure estoqueprod;
-      var multempresa:boolean;
-      begin
-
-         selecione2('select multempresa from tbconfig');
-         multempresa := sqlpub2['multempresa'] = 'S';
-
-         if multempresa then begin
-             selecione2('select chave from tbempresa where (flag  <> "D" or flag is null) order by chave');
-             estoqueM :='';
-             if sqlpub2.RecordCount >=2 then begin
-
-                while not sqlpub2.eof do begin
-                      estoqueM := estoqueM + 'estoque'+sqlpub2.fieldbyname('chave').asstring+',';
-                      sqlpub2.Next;
-                   end;
-
-                sqlpub2 := nil;
-                end else estoqueM :='';
-
-           end else estoqueM :='';
-
-            prod := ' Select Chave,codigo,codigobarras,codigofornecedor,codigooriginal,NCMSH,descricao,tamanho,'+
-                    ' vrcompra,fracao,despesaacessoria,desctotal,vrunit,percent,vrvenda,percentatacado,vratacado,'+
-                    ' percent3,valor3,vrminimo,'+estoqueM+' estoque,cmedio,minimo,maximo,promocao,vrpromocao,iniciopromocao,validade,un,'+
-                    ' CFOP,CST,NacImp, CF,Imposto,IPI,ModoIPI,PIS,confins,modopis,modocofins,mva,peso,comissao,garantia,desconto,ativo,pesagem,'+
-                    ' fabricante,fornecedor,departamento,familia,grupo,subgrupo,prateleira,box,item,CurvaQtd,CurvaValor,IniCurva,FinCurva,'+
-                    ' dtcadastro,ultimacompra,ultimavenda,ultalteracao,ativov,aplicacao,especificacao,'+
-                    ' estoquedepois,estoqueAntes, divergencia, contado ,ctp from tbproduto';
-      end;
-
 var
 ini:tinifile;
 hora:integer;
 
 begin
 
-         criaestoquee;
-         estoqueprod;
-//        atualizacontas;
         fdm.tbempresa.IndexFieldNames := 'emp';
         fdm.tbconfig.close;
         fdm.tbconfig.Open;
 
         tipoempresa := fdm.tbconfig.FieldByName('tipoempresa').AsString;
-        if responsavel = 'VITALCRED' then cadcli :=cadclientev
-
-        else if responsavel = 'SINDICATO' then cadcli :='select chave, data,DtAdmi,tipocliente,CdEmp,NomeEmpresa,CodEmp,codigo,'+
-                         ' nomecurto,nome,cep,endereco,numero,complemento,'+
-                         ' bairro,municipio,uf,CNPJ,IE,CTP,ddd,fone '+
-                         ' fone2,fone3,fax,nascimento,contato,email,site,msn,profissao,sexo,estadocivil,conjuge, '+
-                         ' mensalidade, confederativo, assistencial, sindical, convmedico, odontologico, '+
-                         ' obs,obs1 '
-
-        else if tipoempresa = '2' then cadcli :='Select Chave, Data, Codigo ,Nome , Naturalidade, Nascimento , Sexo , '+
-                 ' Estadocivil, Cor, Peso, Instrucao, Responsavel, Indicado_por,  Cep ,Endereco , Numero,  '+
-                 ' Complemento , Bairro , Municipio, Municipion ,  Uf , Regiao ,  Cnpj , Ie , Ddd , Fone , Fone2,  '+
-                 ' Fone3 , Fax , Email , Msn , Skype,  Contato , Pai, Mae, Flag, Obs, obs1  From Tbcliente '
-
-        else cadcli := cadcliente;
+        cadcli :=cadclientev;
 
         if fileexists(ExtractFilePath(ParamStr(0)) + 'linknet.txt') then
            servpath := ExtractFilePath(ParamStr(0))
@@ -685,7 +625,7 @@ end;
 
 procedure Tfmenu.Cadastrarfiliais1Click(Sender: TObject);
 begin
-            cadp ('tbfiliais', 'select chave, nome, ip,banco, usuario, senha from tbfiliais', 'MANUTENÇÃO DE FILIAIS',
+{            cadp ('tbfiliais', 'select chave, nome, ip,banco, usuario, senha from tbfiliais', 'MANUTENÇÃO DE FILIAIS',
                   'nome','ip',
                   '','','',
                   '','','',
@@ -694,7 +634,7 @@ begin
                   '',
                   '',
                   '',
-                  1,0);
+                  1,0);}
 end;
 
 procedure Tfmenu.UsurioPermisses1Click(Sender: TObject);
@@ -863,7 +803,7 @@ var
 ini:tinifile;
                      
 begin
-
+{
         vf:=false;
         periodo2('tabip','','','','','',144,365,0);
 
@@ -904,7 +844,7 @@ begin
         //fdm.conector.Connected := False;
         vf:=false;
 
-
+ }
 
 end;
 
