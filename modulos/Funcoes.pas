@@ -156,7 +156,7 @@ procedure cabecaimpressao(form:tform;tit:boolean);
 procedure rodapeimpressao(linhas,condensado:boolean);
 procedure impgrade(tabela:tclientdataset;tz:tzquery;ds:tdatasource;grade:tdbgrid;tit,cap,rodape:string;visualiza:boolean);
 procedure valcnpj(ecn:tdbedit;tabnome:tclientdataset;tz:tzquery;campo:string);
-procedure criaMCh(nomecampo,cap,ntb,campo:string;topo:integer);
+procedure criaMCh(nomecampo,cap,ntb,campo:string;topo:integer;script:string);
 procedure criaMa(nomecampo,cap:string;topo,qtd:integer);
 procedure criaRa(nomecampo,c1,c2,c3,c4,c5,c6,c7:string;topo:integer);
 procedure criaDbl(nomecampo,cap:string;topo:integer);
@@ -6667,7 +6667,7 @@ begin
 end;
 
 
-procedure criaMCh(nomecampo,cap,ntb,campo:string;topo:integer);
+procedure criaMCh(nomecampo,cap,ntb,campo:string;topo:integer;script:string);
 var
   combo:TComboBox;
   lb:tlabel;
@@ -6755,7 +6755,7 @@ begin
             with sq do begin
                 Connection := fdm.conector ;
                 sql.Clear;
-                sql.add( 'select distinct '+campo+' from '+ntb+' order by '+campo);
+                sql.add( 'select distinct '+campo+' from '+ntb+ script + ' order by '+campo);
 
                 open;
 

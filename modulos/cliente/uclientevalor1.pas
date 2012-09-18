@@ -178,6 +178,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure Label8Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
+    procedure DBRadioGroup5Change(Sender: TObject);
   private
         contato:string;
    { Private declarations }
@@ -829,6 +830,16 @@ begin
   FrmDadosAdicionaisOBS.dbmObs.DataField  := 'obs1';
   FrmDadosAdicionaisOBS.ShowModal;
   FrmDadosAdicionaisOBS.Free;
+end;
+
+procedure Tfclientevalor1.DBRadioGroup5Change(Sender: TObject);
+begin
+
+      if DBRadioGroup5.ItemIndex = 2 then begin
+         fclientelocaliza.tabela.edit;
+         fclientelocaliza.tabela['dtcancelamento'] := date;
+      end;
+
 end;
 
 end.

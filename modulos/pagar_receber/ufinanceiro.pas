@@ -962,7 +962,7 @@ begin
         i:=i+20;
         criaMa('dtpagamento','Recebidos de:',i,2);
         i:=i+20;
-        criaMCh('gp','Grupo Cartão: ', 'tbcliente','gp',i);
+        criaMCh('gp','Grupo Cartão: ', 'tbcliente','gp',i,'');
         ffiltrocad.Show;
 
         end else

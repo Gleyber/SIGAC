@@ -668,38 +668,41 @@ begin
         criaRa('fisjur','Física','Jurídica','','','','','',i);
         i:=i+25;
         criaRa('estadocivil','Solt','Cas','Div','Out','','','',i);
-        i:=i+30;
+        i:=i+70;
         criaMa('data','Cadastrados De: ',i,2);
-        i:=i+20;
-        criaMa('ultimacompra','Compras de:',i,2);
+        i:=i+25;
+       { criaMa('ultimacompra','Compras de:',i,2);
         i:=i+20;
         criaMa('hhultimacompra','Sem Movim. Desde :',i,1);
         i:=i+20;
         criaMa('hhhultimacompra','Com Movim. Desde :',i,1);
+        i:=i+22;}
+        criaMCh('tipocliente','Tipo: ', 'tbtipocliente','tipocliente',i,'');
+
         i:=i+22;
-        criaMCh('tipocliente','Tipo: ', 'tbtipocliente','tipocliente',i);
-        {i:=i+22;
-        criaMCh('regiao','Região: ', 'tbregcli','nome',i);
-        i:=i+22; }
-        criaMCh('municipio','Cidade: ','tbcliente','municipio',i);
+        criaMCh('gp','GP Cartão: ', 'tbconffin','descricao',i,' where tp = 10 ');
         i:=i+22;
-        criaMCh('bairro','Bairro: ','tbcliente','bairro',i);
+//        select * from tbconffin where tp = 10 order by descricao
+
+        criaMCh('municipio','Cidade: ','tbcliente','municipio',i,'');
         i:=i+22;
-        criaMCh('cep','Cep: ','tbcliente','cep',i);
+        criaMCh('bairro','Bairro: ','tbcliente','bairro',i,'');
         i:=i+22;
-        criaMCh('uf','Estado: ','tbcliente','uf',i);
+        criaMCh('cep','Cep: ','tbcliente','cep',i,'');
         i:=i+22;
-        criaMCh('nascimento','Nascidos mês de: ','tbcliente','',i);
+        criaMCh('uf','Estado: ','tbcliente','uf',i,'');
         i:=i+22;
-        criaMCh('dnascimento','Nascidos dia: ','tbcliente','',i);
+        {criaMCh('nascimento','Nascidos mês de: ','tbcliente','',i,'');
         i:=i+22;
-        criaMCh('vendedor','Vendedor: ','tbcliente','vendedor',i);
+        criaMCh('dnascimento','Nascidos dia: ','tbcliente','',i,'');
+        i:=i+22;}
+        criaMCh('vendedor','Vendedor: ','tbcliente','vendedor',i,'');
 
         if responsavel = 'VITALCRED' then begin
            i:=i+22;
-           criaMCh('Banco','Banco: ','tbcliente','banco',i);
+           criaMCh('Banco','Banco: ','tbcliente','banco',i,'');
            i:=i+22;
-           criaMCh('agencia','Agência: ','tbcliente','agencia',i);
+           criaMCh('agencia','Agência: ','tbcliente','agencia',i,'');
            ffiltrocad.PageControl1.Height :=380;
         end;
 
@@ -1217,6 +1220,7 @@ begin
 
              criacoluna(dbgrid1,'Nome','Nome',250);
              criacoluna(dbgrid1,'titular','Tut. Conta',150);
+
              criacoluna(dbgrid1,'DDD','DDD',25);
              criacoluna(dbgrid1,'Fone','Fone',66);
              criacoluna(dbgrid1,'Fone2','Fone2',66);
@@ -1261,6 +1265,8 @@ begin
              criacoluna(dbgrid1,'statu','Órgão',70);
              criacoluna(dbgrid1,'CRO','CRO',64);
              criacoluna(dbgrid1,'data','DtCad',64);
+             criacoluna(dbgrid1,'dtativacao','Ativado em',64);
+             criacoluna(dbgrid1,'dtcancelamento','Cancelado em',64);
              criacoluna(dbgrid1,'dtvenda','DtVenda',64);
              criacoluna(dbgrid1,'limitecredito','Limite Créd',64);
 

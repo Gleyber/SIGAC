@@ -2162,6 +2162,7 @@ object fclientevalor1: Tfclientevalor1
       'A'
       'I'
       'C')
+    OnChange = DBRadioGroup5Change
   end
   object ebanco: TDBLookupComboBox
     Left = 450

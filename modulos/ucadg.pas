@@ -2093,106 +2093,106 @@ begin
 
 
                    if lowercase(grade.Columns[j].FieldName) = 'tipocliente' then begin
-                      criaMCh('tipocliente','Tipo Cliente: ', 'tbtipocliente','tipocliente',i);
+                      criaMCh('tipocliente','Tipo Cliente: ', 'tbtipocliente','tipocliente',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'municipio' then begin
-                      criaMCh('municipio','Cidade: ',nometb,'municipio',i);
+                      criaMCh('municipio','Cidade: ',nometb,'municipio',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'bairro' then begin
-                      criaMCh('bairro','Bairro: ',nometb,'bairro',i);
+                      criaMCh('bairro','Bairro: ',nometb,'bairro',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'cep' then begin
-                      criaMCh('cep','Cep: ',nometb,'cep',i);
+                      criaMCh('cep','Cep: ',nometb,'cep',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'uf' then begin
-                      criaMCh('uf','Estado: ',nometb,'uf',i);
+                      criaMCh('uf','Estado: ',nometb,'uf',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'nascimento' then begin
-                      criaMCh('nascimento','Nascidos mês de: ',nometb,'',i);
+                      criaMCh('nascimento','Nascidos mês de: ',nometb,'',i,'');
                       i:=i+22;
 
                    end;   
                    if lowercase(grade.Columns[j].FieldName) = 'nascimento' then begin
-                      criaMCh('dnascimento','Nascidos dia: ',nometb,'',i);
+                      criaMCh('dnascimento','Nascidos dia: ',nometb,'',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'nascimento' then begin
-                      criaMCh('vendedor','Vendedor: ',nometb,'vendedor',i);
+                      criaMCh('vendedor','Vendedor: ',nometb,'vendedor',i,'');
                       i:=i+22;
                    end;
                    if lowercase(grade.Columns[j].FieldName) = 'nome' then begin
-                      criaMCh('nome','Nome: ',nometb,'nome',i);
+                      criaMCh('nome','Nome: ',nometb,'nome',i,'');
                       i:=i+22;
                    end;
 
                     if lowercase(grade.Columns[j].FieldName) = 'banco' then begin
                       i:=i+22;
-                      criaMCh('banco','Banco: ',nometb,'banco',i);
+                      criaMCh('banco','Banco: ',nometb,'banco',i,'');
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'agencia' then begin
                       i:=i+22;
-                      criaMCh('agencia','Agência: ',nometb,'agencia',i);
+                      criaMCh('agencia','Agência: ',nometb,'agencia',i,'');
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'conta' then begin
-                      criaMCh('conta','Conta: ',nometb,'conta',i);
+                      criaMCh('conta','Conta: ',nometb,'conta',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'dc' then begin
-                      criaMCh('DC','DC: ',nometb,'DC',i);
+                      criaMCh('DC','DC: ',nometb,'DC',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'usuario' then begin
-                      criaMCh('usuario','Usuário: ',nometb,'usuario',i);
+                      criaMCh('usuario','Usuário: ',nometb,'usuario',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'fabricante' then begin
-                      criaMCh('fabricante','Fabricante: ',nometb,'fabricante',i);
+                      criaMCh('fabricante','Fabricante: ',nometb,'fabricante',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'fabricante' then begin
-                      criaMCh('fornecedor','Marca: ',nometb,'fornecedor',i);
+                      criaMCh('fornecedor','Marca: ',nometb,'fornecedor',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'departamento' then begin
-                      criaMCh('departamento','Departamento: ',nometb,'departamento',i);
+                      criaMCh('departamento','Departamento: ',nometb,'departamento',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'familia' then begin
-                      criaMCh('familia','Seção: ',nometb,'familia',i);
+                      criaMCh('familia','Seção: ',nometb,'familia',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'grupo' then begin
-                      criaMCh('grupo','Grupo: ',nometb,'grupo',i);
+                      criaMCh('grupo','Grupo: ',nometb,'grupo',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'subgrupo' then begin
-                      criaMCh('subgrupo','Subgrupo: ',nometb,'subgrupo',i);
+                      criaMCh('subgrupo','Subgrupo: ',nometb,'subgrupo',i,'');
                       i:=i+22;
                    end;
 
                    if lowercase(grade.Columns[j].FieldName) = 'descricao' then begin
-                      criaMCh('descricao','Descrição: ',nometb,'descricao',i);
+                      criaMCh('descricao','Descrição: ',nometb,'descricao',i,'');
                       i:=i+22;
                    end;                   
 

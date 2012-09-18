@@ -307,6 +307,7 @@ type
     BitBtn2: TBitBtn;
     paf16: TBitBtn;
     tbcaixagrupoemp: TIntegerField;
+    ativarcli: TAction;
 
     procedure conectpaf;
 
@@ -369,6 +370,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure paf16Click(Sender: TObject);
     procedure gradevital1TitleClick(Column: TColumn);
+    procedure ativarcliExecute(Sender: TObject);
   private
   tot : double;
   importado:boolean;
@@ -1476,7 +1478,7 @@ tot:double;
 sq:tzquery;
 sq1, sq2, sq3:tzquery;
 begin
-                    
+
 
         if importado then msg('#Estes já foram inportados.',0);
         abortaacao(fdm.tbnet,nil,'codigo','','','','',0);
@@ -1570,6 +1572,8 @@ begin
                  msg('Cartão: ' + fdm.tbnet.fieldbyname('bandeira').AsString+ ' não localizado no SIGAC',0);
                  fdm.tbnet.Filtered := false;
                  periodovital1Execute(self);
+
+
               end;
 
 
@@ -1625,6 +1629,9 @@ begin
                            ' where cod = ' + quotedstr(fdm.tbnet.fieldbyname('chave').AsString));
                    execsql;
               end;
+
+
+              ativarcliExecute(self); //ativa o cliente se nao estiver ativado
 
               fdm.tbnet.next;
         end;
@@ -2507,6 +2514,47 @@ end;
 procedure Tfperiodo2.gradevital1TitleClick(Column: TColumn);
 begin
 //fdm.tbnet.IndexFieldNames := Column.FieldName;
+end;
+
+procedure Tfperiodo2.ativarcliExecute(Sender: TObject);
+var
+codcli:string;
+sq:tzquery;
+begin
+
+
+{use sigac;
+alter table tbcliente add dtativacao date;
+alter table tbcliente add dtcancelamento date;}
+
+        codcli := quotedstr(fdm.tbnet.fieldbyname('codigo').AsString);
+        sq := tzquery.Create(application);
+
+        with sq do begin
+             Connection := fdm.conector;
+             sql.Clear;
+
+             // verifica se este cliente ja movimentou
+             sql.add('SELECT count(*) as qtd FROM tbfinanceiro f WHERE f.codigo = '+codcli+' AND f.tp != 4 '+
+                     ' UNION '+
+                     ' SELECT count(*) as qtd FROM tbfinanceirop fp WHERE fp.codigo = '+codcli+' AND fp.tp != 4');
+             open;
+
+
+             if sq['qtd'] > '0' then begin
+                sql.Clear;
+                sql.add(' UPDATE tbcliente SET np = "A", dtativacao = now() '+
+                        ' WHERE np != "C" '+
+                        ' and codigo = ' + codcli);
+                execsql;
+                destroy;
+
+                        //' AND (0 < (SELECT count(*) FROM tbfinanceiro f WHERE f.codigo = '+codcli+' AND f.tp != 4) '+
+                        //' OR 0 < (SELECT count(*) FROM tbfinanceirop fp WHERE fp.codigo = '+codcli+' AND fp.tp != 4 ');
+             end;
+
+        end;
+
 end;
 
 end.

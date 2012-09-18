@@ -4083,6 +4083,10 @@ object fperiodo2: Tfperiodo2
       Caption = 'periodovital1'
       OnExecute = periodovital1Execute
     end
+    object ativarcli: TAction
+      Caption = 'ativarcli'
+      OnExecute = ativarcliExecute
+    end
     object _tababrecaixa: TAction
       Caption = '_tababrecaixa'
       OnExecute = _tababrecaixaExecute

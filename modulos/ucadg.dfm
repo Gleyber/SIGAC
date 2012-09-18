@@ -39,7 +39,7 @@ object fcadg: Tfcadg
   object rativo: TRadioGroup
     Left = 0
     Top = 105
-    Width = 1020
+    Width = 1028
     Height = 32
     Align = alTop
     Color = 6049863
@@ -60,7 +60,7 @@ object fcadg: Tfcadg
   object panel2: TPanel
     Left = 0
     Top = 0
-    Width = 1020
+    Width = 1028
     Height = 105
     Align = alTop
     BevelOuter = bvNone
@@ -385,8 +385,8 @@ object fcadg: Tfcadg
   end
   object pcliente: TPanel
     Left = 0
-    Top = 605
-    Width = 1020
+    Top = 616
+    Width = 1028
     Height = 89
     Align = alBottom
     BevelOuter = bvNone
@@ -726,7 +726,7 @@ object fcadg: Tfcadg
     Left = 0
     Top = 137
     Width = 200
-    Height = 468
+    Height = 479
     Align = alLeft
     BevelOuter = bvNone
     Color = clWhite
@@ -736,7 +736,7 @@ object fcadg: Tfcadg
       Left = 0
       Top = 0
       Width = 200
-      Height = 376
+      Height = 387
       Hint = 'Clique no cabe'#231'alho de uma coluna para indexar'
       Align = alClient
       Color = 16382712
@@ -812,7 +812,7 @@ object fcadg: Tfcadg
     end
     object rqtd: TRadioGroup
       Left = 0
-      Top = 376
+      Top = 387
       Width = 200
       Height = 30
       Align = alBottom
@@ -834,7 +834,7 @@ object fcadg: Tfcadg
     end
     object GroupBox1: TGroupBox
       Left = 0
-      Top = 406
+      Top = 417
       Width = 200
       Height = 62
       Align = alBottom
@@ -916,16 +916,16 @@ object fcadg: Tfcadg
   object Panel1: TPanel
     Left = 200
     Top = 137
-    Width = 820
-    Height = 468
+    Width = 828
+    Height = 479
     Align = alClient
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 4
     object psemelhante: TPanel
       Left = 0
-      Top = 274
-      Width = 820
+      Top = 285
+      Width = 828
       Height = 30
       Align = alBottom
       Anchors = []
@@ -934,7 +934,7 @@ object fcadg: Tfcadg
       TabOrder = 0
       Visible = False
       object Panel6: TPanel
-        Left = 795
+        Left = 803
         Top = 0
         Width = 25
         Height = 30
@@ -976,7 +976,7 @@ object fcadg: Tfcadg
       object grades: TDBGrid
         Left = 0
         Top = 0
-        Width = 795
+        Width = 803
         Height = 30
         Hint = 'Clique no cabe'#231'alho de uma coluna para ordenar'
         Align = alClient
@@ -1004,8 +1004,8 @@ object fcadg: Tfcadg
     object grade: TDBGrid
       Left = 0
       Top = 0
-      Width = 820
-      Height = 173
+      Width = 828
+      Height = 184
       Hint = 'Clique no cabe'#231'alho de uma coluna para ordenar'
       Align = alClient
       Color = 16382712
@@ -1033,8 +1033,8 @@ object fcadg: Tfcadg
     end
     object padesivo: TPanel
       Left = 0
-      Top = 304
-      Width = 820
+      Top = 315
+      Width = 828
       Height = 164
       Align = alBottom
       Anchors = []
@@ -1426,8 +1426,8 @@ object fcadg: Tfcadg
     end
     object pgradepreco: TDBGrid
       Left = 0
-      Top = 173
-      Width = 820
+      Top = 184
+      Width = 828
       Height = 101
       Hint = 'Clique duplo para inserir/alterar'
       Align = alBottom
