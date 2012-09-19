@@ -515,7 +515,7 @@ begin
     sSql := sSql + QuotedStr(FieldByName('telefone2').AsString)+',';     // fone2
     sSql := sSql + QuotedStr(FieldByName('celular').AsString)+',';       // fone3
     sSql := sSql + QuotedStr(FieldByName('email').AsString)+',';         // email
-    sSql := sSql + 'SITE' + ',';                                         // vendedor
+    sSql := sSql + QuotedStr('SITE') + ',';                              // vendedor
     sSql := sSql + QuotedStr(FieldByName('tipo_user').AsString)+',';     // vinculo
     sSql := sSql + QuotedStr(FieldByName('cod_user').AsString)+',';      // codigo
     sSql := sSql + QuotedStr(FieldByName('titular').AsString)+',';       // titular

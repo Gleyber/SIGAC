@@ -390,15 +390,18 @@ begin
 
   permissao(PN,'PN','CLIENTE');
 
-  if responsavel = 'VITALCRED' then begin
-     application.CreateForm(tfclientevalor1, fclientevalor1);
-     fclientevalor1.modo := 'gravar';
-     tabela.Insert;
-     tabela['socio'] := 'N';
-     tabela['sexo'] := 'M';
-     tabela['flagsite'] := '1';
-     tabela['vinculo'] := 'C';
-     tabela['np'] := 'I';
+  if responsavel = 'VITALCRED' then
+  begin
+     ShowMessage('A inserção de novos clientes só é permitida via web site');
+     Exit;
+     //application.CreateForm(tfclientevalor1, fclientevalor1);
+     //fclientevalor1.modo := 'gravar';
+     //tabela.Insert;
+     //tabela['socio'] := 'N';
+     //tabela['sexo'] := 'M';
+     //tabela['flagsite'] := '1';
+     //tabela['vinculo'] := 'C';
+     //tabela['np'] := 'I';
   end else begin
 //     application.CreateForm(tfclientevalor, fclientevalor);
 //     fclientevalor.modo := 'gravar';

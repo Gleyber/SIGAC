@@ -20,8 +20,8 @@ object fclientelocaliza: Tfclientelocaliza
   object DBGrid1: TDBGrid
     Left = 0
     Top = 149
-    Width = 790
-    Height = 344
+    Width = 782
+    Height = 333
     Align = alClient
     Color = clWhite
     DataSource = ds
@@ -52,11 +52,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'C'#243'digo'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 45
         Visible = True
       end
@@ -69,11 +64,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Nome Curto'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 82
         Visible = True
       end
@@ -86,11 +76,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Nome/Raz'#227'o'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 216
         Visible = True
       end
@@ -103,11 +88,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Ativado em'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -119,11 +99,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Cancelado em'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 80
         Visible = True
       end
@@ -136,11 +111,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Grupo'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 54
         Visible = True
       end
@@ -153,11 +123,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Grupo Cart'#227'o'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -169,11 +134,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Endere'#231'o'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 165
         Visible = True
       end
@@ -186,11 +146,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'N'#250'mero'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 45
         Visible = True
       end
@@ -203,11 +158,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Compl'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -219,11 +169,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Bairro'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 126
         Visible = True
       end
@@ -236,11 +181,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Cidade'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 84
         Visible = True
       end
@@ -253,11 +193,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Cep'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -269,11 +204,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'UF'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -285,11 +215,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Regi'#227'o'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -301,11 +226,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Nascido em'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 67
         Visible = True
       end
@@ -318,11 +238,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'CPF_CNPJ'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 114
         Visible = True
       end
@@ -335,11 +250,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'RG_IE'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 75
         Visible = True
       end
@@ -352,11 +262,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'DDD'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -368,11 +273,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Fone'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 63
         Visible = True
       end
@@ -385,11 +285,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Fone2'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 63
         Visible = True
       end
@@ -402,11 +297,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Fone3'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 63
         Visible = True
       end
@@ -419,11 +309,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Fax'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 63
         Visible = True
       end
@@ -436,11 +321,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Ramal'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -452,11 +332,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Contato'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 114
         Visible = True
       end
@@ -469,11 +344,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Cargo'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 85
         Visible = True
       end
@@ -486,11 +356,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Email'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 145
         Visible = True
       end
@@ -503,11 +368,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Site'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 139
         Visible = True
       end
@@ -520,11 +380,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Cateira'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 177
         Visible = True
       end
@@ -537,11 +392,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Usu'#225'rio Cart'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -553,11 +403,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Skype'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 229
         Visible = True
       end
@@ -570,11 +415,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'EndCobran'#231'a'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 261
         Visible = True
       end
@@ -587,11 +427,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'N'#250'm'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -603,11 +438,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Compl'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -619,11 +449,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'BairroCob'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 89
         Visible = True
       end
@@ -636,11 +461,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'CidadeCob'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 71
         Visible = True
       end
@@ -653,11 +473,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'CepCob'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -669,11 +484,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'UF'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 21
         Visible = True
       end
@@ -686,11 +496,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Transp'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 123
         Visible = True
       end
@@ -703,11 +508,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'D'#233'bito'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 55
         Visible = True
       end
@@ -720,11 +520,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = #218'ltCompra'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 81
         Visible = True
       end
@@ -737,11 +532,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Valor'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -753,11 +543,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'DtCad'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 67
         Visible = True
       end
@@ -770,11 +555,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Cr'#233'dito'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -786,11 +566,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Vendedor'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 108
         Visible = True
       end
@@ -803,11 +578,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'VdAvulsa'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 66
         Visible = True
       end
@@ -819,11 +589,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Height = -13
         Font.Name = 'Arial'
         Font.Style = []
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 35
         Visible = True
       end
@@ -836,11 +601,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Status'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -852,11 +612,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'EstCiv'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -868,11 +623,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Trabalho'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 84
         Visible = True
       end
@@ -885,11 +635,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'C'#244'njuge'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 117
         Visible = True
       end
@@ -902,11 +647,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Refer'#234'ncia'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -918,11 +658,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'V'#237'nculo'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -934,11 +669,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'FoneC'#244'nj'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -950,11 +680,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'DiaMensal'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 50
         Visible = True
       end
@@ -967,11 +692,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'VrMensal'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 50
         Visible = True
       end
@@ -984,11 +704,6 @@ object fclientelocaliza: Tfclientelocaliza
         Font.Name = 'Arial'
         Font.Style = []
         Title.Caption = 'Obs'
-        Title.Font.Charset = ANSI_CHARSET
-        Title.Font.Color = clBlack
-        Title.Font.Height = -11
-        Title.Font.Name = 'Arial'
-        Title.Font.Style = [fsBold]
         Width = 355
         Visible = True
       end>
@@ -996,7 +711,7 @@ object fclientelocaliza: Tfclientelocaliza
   object panel2: TPanel
     Left = 0
     Top = 0
-    Width = 790
+    Width = 782
     Height = 119
     Align = alTop
     BevelInner = bvLowered
@@ -1339,8 +1054,8 @@ object fclientelocaliza: Tfclientelocaliza
   end
   object prodape: TPanel
     Left = 0
-    Top = 493
-    Width = 790
+    Top = 482
+    Width = 782
     Height = 48
     Align = alBottom
     BevelInner = bvLowered
@@ -1723,7 +1438,7 @@ object fclientelocaliza: Tfclientelocaliza
   object rativo: TRadioGroup
     Left = 0
     Top = 119
-    Width = 790
+    Width = 782
     Height = 30
     Align = alTop
     Color = 16056319
