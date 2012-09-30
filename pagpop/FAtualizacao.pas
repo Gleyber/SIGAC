@@ -83,8 +83,11 @@ end;
 
 function TFrmAtualizacao.CopiaWebSiteParaSigac: Boolean;
 Var
-  iTotalRec : Integer;
-  sSql      : string;
+  iTotalRec,
+  iCont     : Integer;
+  sSql,
+  sLastCod,
+  sCod      : string;
 begin
   Result := True;
   iTotalRec := 0;
@@ -128,27 +131,54 @@ begin
   Log('Procurando por novos clientes na base web');
 
   fdm.cdsweb.first;
+  icont := 0;
+  sCod  := '';
   while not fdm.cdsWeb.eof do
   begin
-    // Executa o 1º teste na tabela de dados original
-    selecione('select count(*) as total from tbcliente WHERE codigo = '+
-                      QuotedStr(fdm.cdsWeb.FieldByName('cod_user').AsString));
+    if iCont > 0 then
+      sCod := sCod + ',';
 
-    if sqlpub.FieldByName('total').AsInteger = 0 then
-	// Se o primeiro teste não localizar então efetua o 2º teste na tabela de dados duplicados
-	begin
-  	  selecione('select count(*) as total from arq_tbcliente WHERE codigo = '+
-                           QuotedStr(fdm.cdsWeb.FieldByName('cod_user').AsString));
-	end;
+    sCod := sCod + QuotedStr(fdm.cdsWeb.FieldByName('cod_user').AsString);
 
-    if sqlpub.FieldByName('total').AsInteger = 1 then
-      fdm.cdsWeb.Delete
+    Inc(iCont);
+
+    if iCont < 1000 then
+    begin
+      fdm.cdsWeb.Next;
+      Continue;
+    end
     else
     begin
-      Inc(iTotalRec);
       fdm.cdsWeb.Next;
+      sLastCod := QuotedStr(fdm.cdsWeb.FieldByName('cod_user').AsString);
+      fdm.cdsWeb.Prior;
     end;
-	Barra(fdm.cdsWeb.RecNo);
+
+    sSql :='select codigo '+#10#13+
+           'from tbcliente WHERE codigo in ('+sCod+') '+#10#13+
+           'union all '+#10#13+
+           'select codigo '+#10#13+
+           'from arq_tbcliente WHERE codigo in ('+sCod+') ';
+
+    // Executa o teste na tabela de verificação
+    selecione(sSql);
+
+    sqlpub.First;
+    while Not sqlpub.Eof do
+    begin
+      if fdm.cdsWeb.Locate('cod_user',sqlpub.FieldByName('codigo').AsString,[]) then
+        fdm.cdsWeb.Delete
+      else
+       Inc(iTotalRec);
+
+      sqlpub.Next;
+    end;
+
+    iCont := 0;
+    sCod  := '';
+
+    fdm.cdsWeb.Locate('cod_user',sLastCod,[]);
+    Barra(fdm.cdsWeb.RecNo);
   end;
 
   MensUsuario('Total de registros apurados para esta operação: '+IntToStr(iTotalRec));
@@ -186,8 +216,11 @@ end;
 
 function TFrmAtualizacao.CopiaSigacParaWebSite: Boolean;
 Var
-  iTotalRec : Integer;
-  sSql      : string;
+  iTotalRec,
+  iCont     : Integer;
+  sSql,
+  sLastCod,
+  sCod      : string;
 begin
   Result := True;
   iTotalRec := 0;
@@ -234,27 +267,54 @@ begin
   pbBarra.Max := fdm.cdsLocal.RecordCount;
 
   fdm.cdsLocal.first;
+  icont := 0;
+  sCod  := '';
   while not fdm.cdsLocal.eof do
   begin
-    // Executa o 1º teste na tabela de dados original
-	selecioneNet('select count(*) as total from tab_clientes WHERE cod_user = '+
-                      QuotedStr(fdm.cdsLocal.FieldByName('codigo').AsString));
+    if iCont > 0 then
+      sCod := sCod + ',';
 
-    if sqlpub.FieldByName('total').AsInteger = 0 then
-	// Se o primeiro teste não localizar então efetua o 2º teste na tabela de dados duplicados
-	begin
-  	  selecioneNet('select count(*) as total from arq_clientes WHERE cod_user = '+
-                        QuotedStr(fdm.cdsLocal.FieldByName('codigo').AsString));
-	end;
-	
-    if sqlpub.FieldByName('total').AsInteger = 1 then
-      fdm.cdsLocal.Delete
-	else
+    sCod := sCod + QuotedStr(fdm.cdsLocal.FieldByName('codigo').AsString);
+
+    Inc(iCont);
+
+    if iCont < 1000 then
     begin
-      Inc(iTotalRec);
       fdm.cdsLocal.Next;
+      Continue;
+    end
+    else
+    begin
+      fdm.cdsLocal.Next;
+      sLastCod := QuotedStr(fdm.cdsLocal.FieldByName('codigo').AsString);
+      fdm.cdsLocal.Prior;
     end;
-	Barra(fdm.cdsLocal.RecNo);
+
+    sSql :='select cod_user '+#10#13+
+           'from tab_clientes WHERE cod_user in ('+sCod+') '+#10#13+
+           'union all '+#10#13+
+           'select cod_user '+#10#13+
+           'from arq_clientes WHERE cod_user in ('+sCod+') ';
+
+    // Executa o teste na tabela de verificação
+    selecione(sSql);
+
+    sqlpub.First;
+    while Not sqlpub.Eof do
+    begin
+      if fdm.cdsLocal.Locate('codigo',sqlpub.FieldByName('cod_user').AsString,[]) then
+        fdm.cdsLocal.Delete
+      else
+       Inc(iTotalRec);
+
+      sqlpub.Next;
+    end;
+
+    iCont := 0;
+    sCod  := '';
+
+    fdm.cdsLocal.Locate('codigo',sLastCod,[]);
+    Barra(fdm.cdsLocal.RecNo);
   end;
 
   MensUsuario('Total de registros apurados para esta operação: '+IntToStr(iTotalRec));
@@ -403,6 +463,7 @@ begin
       on E: Exception do
       begin
         Log('Erro ao atualizar usuário '+fdm.qryAtualiza.FieldByName('transportadora').AsString+' - '+E.Message);
+        Log('Consulta utilizada: '+sSql);
         Result := False;
       end;
     end;
